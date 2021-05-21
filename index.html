@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>后台登录</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
+<meta name="keywords" content="后台登录" />
+	<script  src="js/script.js"></script>
+	<link rel="stylesheet" href="css/normalize.min.css">
+	<link rel="stylesheet" href="css/txstyle.css">
+</head>
+<body>
+<div class="login-form">
+			<div class="top-login">
+				<span><img src="images/group.png" alt=""/></span>
+			</div>
+			<h1>药品管理系统</h1>
+			<div class="login-top">
+			<form>
+				<div class="login-ic">
+					<i ></i>
+					<input type="text"  id = "account" value="请输入用户名" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入用户名';}"/>
+					<div class="clear"> </div>
+				</div>
+				<div class="login-ic">
+					<i class="icon"></i>
+					<input type="password"  id = "pwd"  value="请输入密码" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入密码';}"/>
+					<div class="clear"> </div>
+				</div>
+				<div class="log-bwn">
+					<input type="button" id = "sub" onclick="login()" value="登录" >
+				</div>
+				</form>
+			</div>
+</div>
+
+
+<div class="toast">
+	<div class="toast__icon" role="alert" aria-live="assertive" aria-atomic="true">
+	</div>
+	<div class="toast__content">
+		<h2 id ="content"></h2>
+<!--		<p>请输入用户名或密码</p>-->
+	</div>
+</div>
+
+
+</body>
+<script>
+
+		function login(){
+			const account = $("#account").val();
+			const pwd = $("#pwd").val();
+			if(account == '' ||account =='请输入用户名' || pwd == ''||pwd == '请输入密码'){
+				jsWindow('请输入用户名和密码',$("#sub"),0);
+			}else{
+				$.ajax({
+					url:"http://localhost:8080/medical/login/session",
+					type:"get",
+					data:{account:account,pwd:pwd},
+					success:function (data){
+						if (data.success){
+							//跳转页面
+							window.location.href="main.html";
+						}
+						}
+						})
+			}
+		}
+
+
+		function jsWindow(message,trigger,index){
+			$("#content").html(message);
+			const toasts = document.querySelectorAll(".toast");
+			toasts[index].classList.add("toast--active");
+			toastTimeout = setTimeout(() => {
+				toasts[index].classList.remove("toast--active");
+			}, 3500);
+			// toasts[index].addEventListener("click", () => {
+			// 	toasts[index].classList.remove("toast--active");
+			// 	clearTimeout(toastTimeout);
+			// });
+		}
+
+</script>
+</html>
