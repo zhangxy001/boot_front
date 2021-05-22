@@ -64,7 +64,9 @@
 					success:function (data){
 						if (data.success){
 							//跳转页面
-							window.location.href="main.html";
+							window.location.href="sys/main.html";
+						}else {
+							jsWindow("登录错误",$("#sub"),0);
 						}
 						}
 						})
