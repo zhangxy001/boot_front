@@ -21,6 +21,10 @@
 	<link rel="stylesheet" href="charts/css/morris.css">
 	<!-- jvectormap -->
 	<link rel="stylesheet" href="css/jquery-jvectormap.css">
+	<link rel="stylesheet" href="../css/normalize.min.css">
+	<link rel="stylesheet" href="../css/txstyle.css">
+	<script src="js/common.js"></script>
+
 
 	<script src="js/modernizr.min.js"></script>
 </head>
@@ -48,7 +52,7 @@
 <!-- /Color Changer -->
 <div class="wrapper">
 	<!-- Page Content -->
-	<div id="content">
+	<div id="content1">
 		<!-- Top Navigation -->
 		<div class="container top-brand">
 			<nav class="navbar navbar-default">
@@ -181,151 +185,208 @@
 				</div>
 			</nav>
 		</div>
-				<!-- /Menu -->
-				<!-- Breadcrumb -->
-				<!-- Page Title -->
-				<div class="container mt-0">
-					<div class="row breadcrumb-bar">
-						<div class="col-md-6">
-							<h3 class="block-title">Edit 医生</h3>
-						</div>
-						<div class="col-md-6">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item">
-									<a href="index.html">
-										<span class="ti-home"></span>
-									</a>
-								</li>
-								<li class="breadcrumb-item">医生s</li>
-								<li class="breadcrumb-item active">Edit 医生</li>
-							</ol>
-						</div>
-					</div>
+		<!-- /Menu -->
+		<!-- Breadcrumb -->
+		<!-- Page Title -->
+		<div class="container mt-0">
+			<div class="row breadcrumb-bar">
+				<div class="col-md-6">
+					<h3 class="block-title">编辑用户</h3>
 				</div>
-			<!-- /Page Title -->
-
-			<!-- /Breadcrumb -->
-			<!-- Main Content -->
-			<div class="container">
-
-				<div class="row">
-					<!-- Widget Item -->
-					<div class="col-md-12">
-						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">Edit 医生</h3>
-							<form>
-								<div class="form-row">
-									<div class="form-group col-md-6">
-										<label for="医生-name">医生 Name</label>
-										<input type="text" value="Dr Daniel Smith" class="form-control" placeholder="医生 name" id="医生-name">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="dob">Date Of Birth</label>
-										<input type="date" value="1989-12-12" placeholder="Date of Birth" class="form-control" id="dob">
-                                    </div>
-                                    <div class="form-group col-md-6">
-										<label for="specialization">Specialization</label>
-										<input type="text" value="Dentist" placeholder="Specialization" class="form-control" id="specialization">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="experience">Experience</label>
-										<input type="text" value="10 years"  placeholder="Experience" class="form-control" id="experience">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="age">Age</label>
-										<input type="text" value="29" placeholder="Age" class="form-control" id="age">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="phone">Phone</label>
-										<input type="text" value="+91 12345 67890" placeholder="Phone" class="form-control" id="phone">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="email">Email</label>
-										<input type="email" value="email@yourdomain.com"  placeholder="email" class="form-control" id="Email">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="gender">Gender</label>
-										<select class="form-control" id="gender">
-											<option selected>Male</option>
-											<option>Female</option>
-											<option>Other</option>
-										</select>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="about-doctor">医生 Details</label>
-										<textarea placeholder="医生 Details" class="form-control" id="about-doctor" rows="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mauris odio, malesuada non rhoncus et, ultricies at turpis. Sed eget lectus nec magna bibendum ornare. </textarea>
-                                    </div>
-                                    <div class="form-group col-md-6">
-										<label for="address">Address</label>
-										<textarea placeholder="Address" class="form-control" id="address" rows="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mauris odio, malesuada non rhoncus et, ultricies at turpis.</textarea>
-									</div>
-									<div class="form-group col-md-12">
-										<label for="file">File</label>
-										<input type="file" class="form-control" id="file">
-									</div>
-																		
-									<div class="form-check col-md-12 mb-2">
-										<div class="text-left">
-											<div class="custom-control custom-checkbox">
-												<input class="custom-control-input" type="checkbox" id="ex-check-2">
-												<label class="custom-control-label" for="ex-check-2">Please Confirm</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group col-md-6 mb-3">
-										<button type="submit" class="btn btn-primary btn-lg">Update</button>
-									</div>
-								</div>
-							</form>
-							<!-- Alerts-->
-							<div class="alert alert-success alert-dismissible fade show" role="alert">
-								<strong>Updated Successfully!</strong> Please Check in doctors list
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
-							<div class="alert alert-warning alert-dismissible fade show" role="alert">
-								<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
-							<!-- /Alerts-->
-						</div>
-					</div>
-					<!-- /Widget Item -->
+				<div class="col-md-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="index.html">
+								<span class="ti-home"></span>
+							</a>
+						</li>
+						<li class="breadcrumb-item">人员管理</li>
+						<li class="breadcrumb-item active">编辑用户</li>
+					</ol>
 				</div>
 			</div>
-			<!-- /Main Content -->
-			<!--Copy Rights-->
-			<div class="container">
-				<div class="d-sm-flex justify-content-center">
-				  <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span> 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
-				</div>
-			</div>
-			<!-- /Copy Rights-->
 		</div>
-		<!-- /Page Content -->
+		<!-- /Page Title -->
+
+		<!-- /Breadcrumb -->
+		<!-- Main Content -->
+		<div class="container">
+
+			<div class="row">
+				<!-- Widget Item -->
+				<div class="col-md-12">
+					<div class="widget-area-2 lochana-box-shadow">
+						<h3 class="widget-title">编辑用户</h3>
+						<form>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="name">姓名</label>
+									<input type="text" class="form-control" placeholder="请输入姓名" id="name">
+								</div>
+								<input type="hidden" placeholder="请输入登录账号" class="form-control" id="id">
+								<div class="form-group col-md-6">
+									<label for="account">登录账号</label>
+									<input type="text" placeholder="请输入登录账号" class="form-control" id="account">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="pwd">密码</label>
+									<input type="text" placeholder="请输入密码" class="form-control" id="pwd">
+								</div>
+								<!--									<div class="form-group col-md-6">-->
+								<!--										<label for="experience">Experience</label>-->
+								<!--										<input type="text" placeholder="Experience" class="form-control" id="experience">-->
+								<!--									</div>-->
+								<div class="form-group col-md-6">
+									<label for="phone">电话号</label>
+									<input type="text" placeholder="请输入电话号" class="form-control" id="phone">
+								</div>
+
+								<div class="form-group col-md-6">
+									<label for="role">角色</label>
+									<select class="form-control" id="role">
+										<option value="">请选择角色<option>
+										<option value="0">普通员工</option>
+										<option value="1">管理员</option>
+									</select>
+								</div>
+								<!--									<div class="form-group col-md-6">-->
+								<!--										<label for="about-doctor">医生 Details</label>-->
+								<!--										<textarea placeholder="医生 Details" class="form-control" id="about-doctor" rows="3"></textarea>-->
+								<!--                                    </div>-->
+								<!--                                    <div class="form-group col-md-6">-->
+								<!--										<label for="address">Address</label>-->
+								<!--										<textarea placeholder="Address" class="form-control" id="address" rows="3"></textarea>-->
+								<!--									</div>-->
+								<!--									<div class="form-group col-md-12">-->
+								<!--										<label for="file">File</label>-->
+								<!--										<input type="file" class="form-control" id="file">-->
+								<!--									</div>-->
+
+								<div class="form-check col-md-12 mb-2">
+									<!--										<div class="text-left">-->
+									<!--											<div class="custom-control custom-checkbox">-->
+									<!--												<input class="custom-control-input" type="checkbox" id="ex-check-2">-->
+									<!--												<label class="custom-control-label" for="ex-check-2">Please Confirm</label>-->
+									<!--											</div>-->
+									<!--										</div>-->
+								</div>
+								<div class="form-group col-md-6 mb-3">
+									<button type="button" class="btn btn-primary btn-lg" id="sub" onclick=subInfo()>提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="toast">
+			<div class="toast__icon" role="alert" aria-live="assertive" aria-atomic="true">
+			</div>
+			<div class="toast__content">
+				<h2 id ="content"></h2>
+				<!--		<p>请输入用户名或密码</p>-->
+			</div>
+		</div>
+		<!-- /Copy Rights-->
 	</div>
-	<!-- Back to Top -->
-	<a id="back-to-top" href="#" class="back-to-top">
-		<span class="ti-angle-up"></span>
-	</a>
-	<!-- /Back to Top -->
-	<!-- Jquery Library-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<!-- Popper Library-->
-	<script src="js/popper.min.js"></script>
-	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
-	<script src="datatable/jquery.dataTables.min.js"></script>
-	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
-	<!-- Custom Script-->
-	<script src="js/custom.js"></script>
+	<!-- /Page Content -->
+</div>
+<!-- Back to Top -->
+<a id="back-to-top" href="#" class="back-to-top">
+	<span class="ti-angle-up"></span>
+</a>
+
+<!-- /Back to Top -->
+<!-- Jquery Library-->
+<script src="js/jquery-3.2.1.min.js"></script>
+<!-- Popper Library-->
+<script src="js/popper.min.js"></script>
+<!-- Bootstrap Library-->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Datatable  -->
+<script src="datatable/jquery.dataTables.min.js"></script>
+<script src="datatable/dataTables.bootstrap4.min.js"></script>
+
+<!-- Custom Script-->
+<script src="js/custom.js"></script>
+
+
 
 </body>
+<script>
+	window.onload = loadUser;
 
+	function loadUser(){
+		var url = location.search;
+		var id = "";
+		if(url.indexOf("?")!=-1){
+			url = url.substr(1);
+			var ids = url.split("=");
+			var id = ids[1];
+		}else{
+			var storage=window.localStorage;
+			id = storage.getItem("userId");
+		}
+		$.ajax({
+			url:baseUrl+"login/findById",
+			type:"get",
+			data:{id:id},
+			success:function (data){
+				//填充信息
+				 $("#id").val(data.data.id);
+				$("#name").val(data.data.name);
+				$("#pwd").val(data.data.pwd);
+				 $("#account").val(data.data.account);
+				 $("#phone").val(data.data.phone);
+				$("#role").select().val(data.data.role);
+			}
+		});
+	}
+
+	function notNull(name,pwd,account,phone,role){
+		if(name == ""||pwd == "" || account == "" || phone == "" || role == ""){
+			jsWindow("请输入完整信息",$("#sub"),0);
+			return false;
+		}
+	}
+	function jsWindow(message,trigger,index){
+		$("#content").html(message);
+		const toasts = document.querySelectorAll(".toast");
+		toasts[index].classList.add("toast--active");
+		toastTimeout = setTimeout(() => {
+			toasts[index].classList.remove("toast--active");
+		}, 3500);
+	}
+
+
+	function subInfo(){
+		const id = $("#id").val();
+		const name = $("#name").val();
+		const pwd = $("#pwd").val();
+		const account = $("#account").val();
+		const phone = $("#phone").val();
+		const role = $("#role").select().val();
+		notNull(name,pwd,account,phone,role);
+		$.ajax({
+			url:baseUrl+"login/update",
+			type:"get",
+			data:{id:id,name:name,pwd:pwd,account:account,phone:phone,role:role},
+			success:function (data){
+				if(data.success){
+					jsWindow("修改成功",$("#sub"),0);
+					window.location.href="users.html";
+				}
+				else{
+					jsWindow("修改失败",$("#sub"),0);
+				}
+			}
+		});
+	}
+
+
+
+
+</script>
 </html>

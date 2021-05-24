@@ -23,6 +23,7 @@
 	<link rel="stylesheet" href="css/jquery-jvectormap.css">
 
 	<script src="js/modernizr.min.js"></script>
+	<script src="js/common.js"></script>
 </head>
 
 <body>
@@ -172,7 +173,7 @@
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 								 aria-expanded="false"><span class="ti-key"></span> 药品数据导入导出</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="expout.html">导出模板</a>
+									<a class="dropdown-item" href="#" onclick="exportTemplate()">导出模板</a>
 									<a class="dropdown-item" href="expin.html">excle导入数据</a>
 									<a class="dropdown-item" href="record_fin.html">手动录入</a>
 								</div>
@@ -442,5 +443,14 @@
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
 </body>
+<script>
+	function exportTemplate(){
+		window.location.href=baseUrl+"export/exportFile";
+
+
+
+	}
+
+</script>
 
 </html>

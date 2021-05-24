@@ -21,8 +21,12 @@
 	<link rel="stylesheet" href="charts/css/morris.css">
 	<!-- jvectormap -->
 	<link rel="stylesheet" href="css/jquery-jvectormap.css">
-
 	<script src="js/modernizr.min.js"></script>
+<!--	<script src="js/common.js"></script>-->
+	<link rel="import" href="common.html">
+	<link rel="stylesheet" href="../css/normalize.min.css">
+	<link rel="stylesheet" href="../css/txstyle.css">
+	<script src="js/common.js"></script>
 </head>
 
 <body>
@@ -48,7 +52,7 @@
 <!-- /Color Changer -->
 <div class="wrapper">
 	<!-- Page Content -->
-	<div id="content">
+	<div id="content1">
 		<!-- Top Navigation -->
 		<div class="container top-brand">
 			<nav class="navbar navbar-default">
@@ -181,13 +185,10 @@
 				</div>
 			</nav>
 		</div>
-				<!-- /Menu -->
-				<!-- Breadcrumb -->
-				<!-- Page Title -->
 				<div class="container mt-0">
 					<div class="row breadcrumb-bar">
 						<div class="col-md-6">
-							<h3 class="block-title">医生s</h3>
+							<h3 class="block-title">用户列表</h3>
 						</div>
 						<div class="col-md-6">
 							<ol class="breadcrumb">
@@ -196,312 +197,54 @@
 										<span class="ti-home"></span>
 									</a>
 								</li>
-								<li class="breadcrumb-item">医生s</li>
-								<li class="breadcrumb-item active">All 医生s</li>
+								<li class="breadcrumb-item">人员管理</li>
+								<li class="breadcrumb-item active">管理用户信息</li>
 							</ol>
 						</div>
 					</div>
 				</div>
-			<!-- /Page Title -->
-
-			<!-- /Breadcrumb -->
-			<!-- Main Content -->
 			<div class="container">
-
 				<div class="row">
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">医生s List</h3>
+							<h3 class="widget-title">用户列表  <button type="button" className="btn btn-primary"><span className="ti-pencil-alt" onclick="tz()">添加用户</span> </button></h3>
 							<div class="table-responsive mb-3">
 								<table id="tableId" class="table table-bordered table-striped">
 									<thead>
-										<tr>
-											<th class="no-sort">
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="select-all">
-													<label class="custom-control-label" for="select-all"></label>
-												</div>
-											</th>
-											<th>医生 ID</th>
-											<th>医生 Name</th>
-											<th>Experience <small>(in Years)</small></th>
-											<th>Phone</th>
-											<th>Specialization</th>
-											<th>情况</th>
+											<th>ID</th>
+											<th>名称</th>
+											<th>账号</th>
+											<th>密码</th>
+											<th>电话</th>
+											<th>角色</th>
+											<th>操作</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="tb">
 										<tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="1">
-													<label class="custom-control-label" for="1"></label>
-												</div>
-											</td>
-											<td>1</td>
-											<td>Manoj Kumar</td>
-											<td>10</td>
-											<td>333-444-7777</td>
-											<td>牙科</td>
-											<td>
-												<span class="badge badge-success">可出诊</span>
-											</td>
 										</tr>
-										<tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="2">
-													<label class="custom-control-label" for="2"></label>
-												</div>
-											</td>
-											<td>2</td>
-											<td>Riya </td>
-											<td>6</td>
-											<td>3423-232-987</td>
-											<td>皮肤科</td>
-											<td>
-												<span class="badge badge-warning">休假</span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="3">
-													<label class="custom-control-label" for="3"></label>
-												</div>
-											</td>
-											<td>3</td>
-											<td>Paul</td>
-											<td>15</td>
-											<td>3423-132-987</td>
-											<td>General Physician</td>
-											<td>
-												<span class="badge badge-danger">Not 可出诊</span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="4">
-													<label class="custom-control-label" for="4"></label>
-												</div>
-											</td>
-											<td>4</td>
-											<td>Manoj Kumar</td>
-											<td>20</td>
-											<td>333-444-7777</td>
-											<td>ENT</td>
-											<td>
-												<span class="badge badge-success">可出诊</span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="5">
-													<label class="custom-control-label" for="5"></label>
-												</div>
-											</td>
-											<td>5</td>
-											<td>Riya </td>
-											<td>16</td>
-											<td>3423-232-987</td>
-											<td>General Physician</td>
-											<td>
-												<span class="badge badge-warning">休假</span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="6">
-													<label class="custom-control-label" for="6"></label>
-												</div>
-											</td>
-											<td>6</td>
-											<td>Paul</td>
-											<td>12</td>
-											<td>3423-132-987</td>
-											<td>皮肤科</td>
-											<td>
-												<span class="badge badge-danger">Not 可出诊</span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="7">
-													<label class="custom-control-label" for="7"></label>
-												</div>
-											</td>
-											<td>7</td>
-											<td>Manoj Kumar</td>
-											<td>19</td>
-											<td>333-444-7777</td>
-											<td>Nuero Surgen</td>
-											<td>
-												<span class="badge badge-success">可出诊</span>
-											</td>
-                                        </tr>
-                                        <tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="1">
-													<label class="custom-control-label" for="1"></label>
-												</div>
-											</td>
-											<td>1</td>
-											<td>Manoj Kumar</td>
-											<td>10</td>
-											<td>333-444-7777</td>
-											<td>牙科</td>
-											<td>
-												<span class="badge badge-success">可出诊</span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="2">
-													<label class="custom-control-label" for="2"></label>
-												</div>
-											</td>
-											<td>2</td>
-											<td>Riya </td>
-											<td>6</td>
-											<td>3423-232-987</td>
-											<td>皮肤科</td>
-											<td>
-												<span class="badge badge-warning">休假</span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="3">
-													<label class="custom-control-label" for="3"></label>
-												</div>
-											</td>
-											<td>3</td>
-											<td>Paul</td>
-											<td>15</td>
-											<td>3423-132-987</td>
-											<td>General Physician</td>
-											<td>
-												<span class="badge badge-danger">Not 可出诊</span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="4">
-													<label class="custom-control-label" for="4"></label>
-												</div>
-											</td>
-											<td>4</td>
-											<td>Manoj Kumar</td>
-											<td>20</td>
-											<td>333-444-7777</td>
-											<td>ENT</td>
-											<td>
-												<span class="badge badge-success">可出诊</span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="5">
-													<label class="custom-control-label" for="5"></label>
-												</div>
-											</td>
-											<td>5</td>
-											<td>Riya </td>
-											<td>16</td>
-											<td>3423-232-987</td>
-											<td>General Physician</td>
-											<td>
-												<span class="badge badge-warning">休假</span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="6">
-													<label class="custom-control-label" for="6"></label>
-												</div>
-											</td>
-											<td>6</td>
-											<td>Paul</td>
-											<td>12</td>
-											<td>3423-132-987</td>
-											<td>皮肤科</td>
-											<td>
-												<span class="badge badge-danger">Not 可出诊</span>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="7">
-													<label class="custom-control-label" for="7"></label>
-												</div>
-											</td>
-											<td>7</td>
-											<td>Manoj Kumar</td>
-											<td>19</td>
-											<td>333-444-7777</td>
-											<td>Nuero Surgen</td>
-											<td>
-												<span class="badge badge-success">可出诊</span>
-											</td>
-										</tr>
+
 									</tbody>
                                 </table>
-                                
-								<!--Export links-->
-								<nav aria-label="Page navigation example">
-									<ul class="pagination justify-content-center export-pagination">
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-download"></span> csv</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>
-										</li>
-									</ul>
-								</nav>
-								<!-- /Export links-->
-								<button type="button" class="btn btn-danger mt-3 mb-0"><span class="ti-trash"></span> DELETE</button>
-								<button type="button" class="btn btn-primary mt-3 mb-0"><span class="ti-pencil-alt"></span> EDIT</button>
+
 							</div>
 						</div>
 					</div>
-					<!-- /Widget Item -->
 				</div>
 			</div>
-			<!-- /Main Content -->
-			<!--Copy Rights-->
-			<div class="container">
-				<div class="d-sm-flex justify-content-center">
-				  <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span> 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
-				</div>
-			</div>
-			<!-- /Copy Rights-->
+
 		</div>
-		<!-- /Page Content -->
 	</div>
-	<!-- Back to Top -->
-	<a id="back-to-top" href="#" class="back-to-top">
-		<span class="ti-angle-up"></span>
-	</a>
-	<!-- /Back to Top -->
-	<!-- Jquery Library-->
+
+<div class="toast">
+	<div class="toast__icon" role="alert" aria-live="assertive" aria-atomic="true">
+	</div>
+	<div class="toast__content">
+		<h2 id ="content"></h2>
+	</div>
+</div>
+
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<!-- Popper Library-->
 	<script src="js/popper.min.js"></script>
@@ -516,5 +259,53 @@
 	<script src="js/custom.js"></script>
 	<script src="js/custom-datatables.js"></script>
 </body>
+<script>
+	window.onload = showUsers;
+	function showUsers(){
+		$.ajax({
+			url:baseUrl+"login/show",
+			type:"get",
+			success:function(data){
+				const list = data.data;
+				if(data.success){
+					var html = "";
+					for(var i = 0;i < list.length ; i++){
+						var medicalAdmin = list[i];
+						var id = medicalAdmin.id;
+						html += "<tr><td>"+medicalAdmin.id+"</td><td>"+medicalAdmin.name+"</td><td>"+medicalAdmin.account+"</td><td>"+medicalAdmin.pwd+"</td><td>"+medicalAdmin.phone+"</td><td>"+medicalAdmin.role?.replace("0","普通员工").replace("1","管理员")+"</td><td><button type='button' className='btn btn-danger' id='delbtn' onclick=deleteUser('"+id+"')><span className='ti-trash'></span> 删除 </button>"+
+								"&nbsp;&nbsp;&nbsp;<button type='button' className='btn btn-primary' onclick=editUser('"+id+"')><span className='ti-pencil-alt'></span> 编辑</button></td></tr>";
+					}
+					$("#tb").append(html);
+				}
+			}
+		})
+	}
 
+	function tz(){
+		window.location.href="add-user.html";
+	}
+	function deleteUser(id){
+		const confirm = window.confirm("真的要删除吗");
+		if(confirm){
+			$.ajax({
+				url:baseUrl+"login/deleteUser",
+				type:"get",
+				data:{id:id},
+				success:function (data){
+					if(data.success){
+						window.location.href="users.html";
+					}else{
+						window.alert("删除出错!");
+					}
+				}
+			});
+		}
+	}
+
+	function editUser(id){
+		window.location.href="edit-user.html?id="+id;
+	}
+
+
+</script>
 </html>

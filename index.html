@@ -11,6 +11,7 @@
 	<script  src="js/script.js"></script>
 	<link rel="stylesheet" href="css/normalize.min.css">
 	<link rel="stylesheet" href="css/txstyle.css">
+	<script src="sys/js/common.js"></script>
 </head>
 <body>
 <div class="login-form">
@@ -58,11 +59,13 @@
 				jsWindow('请输入用户名和密码',$("#sub"),0);
 			}else{
 				$.ajax({
-					url:"http://localhost:8080/medical/login/session",
+					url:baseUrl+"login/session",
 					type:"get",
 					data:{account:account,pwd:pwd},
 					success:function (data){
 						if (data.success){
+							var storage=window.localStorage;
+							storage.setItem("userId",data.data.id); //第三种存储方式，推荐使用
 							//跳转页面
 							window.location.href="sys/main.html";
 						}else {
