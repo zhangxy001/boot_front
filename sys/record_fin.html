@@ -187,7 +187,7 @@
 				<div class="container mt-0">
 					<div class="row breadcrumb-bar">
 						<div class="col-md-6">
-							<h3 class="block-title">Edit Room Allotment</h3>
+							<h3 class="block-title">手动录入</h3>
 						</div>
 						<div class="col-md-6">
 							<ol class="breadcrumb">
@@ -196,8 +196,8 @@
 										<span class="ti-home"></span>
 									</a>
 								</li>
-								<li class="breadcrumb-item">Room Allotments</li>
-								<li class="breadcrumb-item active">Edit Room Allotment</li>
+								<li class="breadcrumb-item">药品数据导入导出</li>
+								<li class="breadcrumb-item active">手动录入</li>
 							</ol>
 						</div>
 					</div>
@@ -212,56 +212,57 @@
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">Edit Room Allotment</h3>
+							<h3 class="widget-title">录入药品数据</h3>
 							<form>
 								<div class="form-row">
 									<div class="form-group col-md-6">
-										<label for="room-number">Room Number</label>
-										<input value="10" type="text" class="form-control" placeholder="Room Number" id="room-number">
+										<label for="name">药品名称</label>
+										<input  type="text" class="form-control" placeholder="请输入药品名称" id="name">
 									</div>
 									<div class="form-group col-md-6">
-										<label for="room-type">Room Type</label>
-										<select class="form-control" id="room-type">
-											<option>ICU</option>
-											<option selected>General</option>
-											<option>AC Room</option>
-										</select>
+										<label for="amount">库存</label>
+										<input  type="text" placeholder="请输入库存数量" class="form-control" id="amount">
 									</div>
 									<div class="form-group col-md-6">
-										<label for="patient-name">名人姓名</label>
-										<input value="Damodar Reddy" type="text" placeholder="名人姓名" class="form-control" id="patient-name">
+										<label for="type">规格</label>
+										<input  type="text" placeholder="请输入规格" class="form-control" id="type">
 									</div>
 									<div class="form-group col-md-6">
-										<label for="allot-date">Allotment Date</label>
-										<input value="2018-10-10" type="date" placeholder="Allotment Date" class="form-control" id="allot-date">
+										<label for="type2">包装量</label>
+										<input  type="text" placeholder="请输入包装量" class="form-control" id="type2">
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="prize">单价</label>
+										<input  type="text" placeholder="请输入单价" class="form-control" id="prize">
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="liter">容量</label>
+										<input  type="text" placeholder="请输入容量单位" class="form-control" id="liter">
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="product">生产单位</label>
+										<input  type="text" placeholder="请输入生产单位" class="form-control" id="product">
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="privide">供应商</label>
+										<input  type="text" placeholder="请输入生产单位" class="form-control" id="privide">
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="award">单件利率</label>
+										<input  type="text" placeholder="请输入单件利润" class="form-control" id="award">
 									</div>
 									<div class="form-group col-md-6">
-										<label for="discharge-date">Discharge Date</label>
-										<input value="2018-10-16" type="date" placeholder="Discharge Date" class="form-control" id="discharge-date">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="doctor-name">医生 Name</label>
-										<input value="Dr Manoj Kumar" type="text" placeholder="医生 Name" class="form-control" id="doctor-name">
-									</div>																	
-									
-									<div class="form-group col-md-6 mb-3">
-										<button type="submit" class="btn btn-primary btn-lg">Updated</button>
+										<button type="button" class="btn btn-primary btn-lg" onclick="subInfo()">提交</button>
 									</div>
 								</div>
 							</form>
 							<!-- Alerts-->
-							<div class="alert alert-success alert-dismissible fade show" role="alert">
-								<strong>Updated Successfully!</strong> Please check in Allotment list
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
-							<div class="alert alert-warning alert-dismissible fade show" role="alert">
-								<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
+
 							<!-- /Alerts-->
 						</div>
 					</div>
@@ -270,11 +271,7 @@
 			</div>
 			<!-- /Main Content -->
 			<!--Copy Rights-->
-			<div class="container">
-				<div class="d-sm-flex justify-content-center">
-				  <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span> 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
-				</div>
-			</div>
+
 			<!-- /Copy Rights-->
 		</div>
 		<!-- /Page Content -->
@@ -297,7 +294,46 @@
     
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
+<script src="js/common.js"></script>
 
 </body>
+<script>
+	function notNull(amount,type,type2,prize,liter,name,product,privide,award){
+		if(amount==""||type==""||type2==""||prize==""||liter==""||name==""||product==""||privide==""||award==""){
 
+				alert("页面所有元素都不能为空，请继续填写！");
+				return false;
+		}
+	}
+
+
+	function subInfo(){
+		var amount = $("#amount").val();
+		var type = $("#type").val();
+		var type2 = $("#type2").val();
+		var prize = $("#prize").val();
+		var liter = $("#liter").val();
+		var name = $("#name").val();
+		var product = $("#product").val();
+		var privide = $("#privide").val();
+		var award = $("#award").val();
+
+		$.ajax({
+			type:"get",
+			url:baseUrl+"order/saveMerchandise",
+			data:{amount:amount,type:type,type2:type2,prize:prize,liter:liter,name:name,product:product,privide:privide,award:award},
+			success:function (data){
+				if(data.success){
+					alert("保存成功！");
+				}
+			}
+		});
+
+
+
+	}
+
+
+
+</script>
 </html>

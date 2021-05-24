@@ -97,7 +97,7 @@
 							<a class="dropdown-item" href="#">
 								<span class="ti-wheelchair"></span> 新消息</a>
 							<a class="dropdown-item" href="#">
-								<span class="ti-money"></span> 已收款订单</a>
+								<span class="ti-money"></span> 已完成订单</a>
 							<a class="dropdown-item" href="#">
 								<span class="ti-time"></span>在途订单</a>
 							<a class="dropdown-item" href="#">
@@ -155,7 +155,7 @@
 							   aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="add-order.html">添加采购订单</a>
-								<a class="dropdown-item" href="orders.html">在途订单信息</a>
+								<a class="dropdown-item" href="orders.html">订单列表信息</a>
 								<a class="dropdown-item" href="his-orders.html">历史订单信息</a>
 							</div>
 						</li>
@@ -181,129 +181,188 @@
 				</div>
 			</nav>
 		</div>
-				<!-- /Menu -->
-			<!-- Breadcrumb -->
-			<!-- Page Title -->
-			<div class="container mt-0">
-				<div class="row breadcrumb-bar">
-					<div class="col-md-6">
-						<h3 class="block-title">Appointment Details</h3>
-					</div>
-					<div class="col-md-6">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item">
-								<a href="index.html">
-									<span class="ti-home"></span>
-								</a>
-							</li>
-							<li class="breadcrumb-item">出诊</li>
-							<li class="breadcrumb-item active">Appointment Details</li>
-						</ol>
-					</div>
+		<!-- /Menu -->
+		<!-- Breadcrumb -->
+		<!-- Page Title -->
+		<div class="container mt-0">
+			<div class="row breadcrumb-bar">
+				<div class="col-md-6">
+					<h3 class="block-title">已完成订单列表</h3>
+				</div>
+				<div class="col-md-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="index.html">
+								<span class="ti-home"></span>
+							</a>
+						</li>
+						<li class="breadcrumb-item">订单管理</li>
+						<li class="breadcrumb-item active">已完成订单列表</li>
+					</ol>
 				</div>
 			</div>
-			<!-- /Page Title -->
-
-			<!-- /Breadcrumb -->
-			<!-- Main Content -->
-			<div class="container">
-                <div class="row">
-                    <!-- Widget Item -->
-                    <div class="col-md-12">
-                        <div class="widget-area-2 lochana-box-shadow">
-                            <h3 class="widget-title">Appointment Details</h3>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Patient ID</strong></td>
-                                            <td>PT56</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Department</strong></td>
-                                            <td>牙科</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>医生 Name</strong></td>
-                                            <td>Dr Kiran Sharma</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Appointment Date</strong></td>
-                                            <td>16-nov-2018</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Time Slot </strong></td>
-                                            <td>10AM-11AM</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Token Number </strong></td>
-                                            <td>27</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Problem</strong></td>
-                                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur convallis egestas aliquet.
-                                                Nunc ullamcorper massa in magna pulvinar, a eleifend felis condimentum.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!--Export links-->
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination export-pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><span class="ti-download"></span> csv</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><span class="ti-printer"></span> print</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><span class="ti-file"></span> PDF</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                                <!-- /Export links-->
-                                <button type="button" class="btn btn-success mb-3"><span class="ti-pencil-alt"></span> Edit
-                                    Appointment</button>
-                                <button type="button" class="btn btn-danger mb-3"><span class="ti-trash"></span> Delete
-                                    Appointment</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Widget Item -->
-                </div>
-			</div>
-			<!-- /Main Content -->
-			<!--Copy Rights-->
-			<div class="container">
-				<div class="d-sm-flex justify-content-center">
-				  <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span> 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
-				</div>
-			</div>
-			<!-- /Copy Rights-->
 		</div>
-		<!-- /Page Content -->
+		<!-- /Page Title -->
+
+		<!-- /Breadcrumb -->
+		<!-- Main Content -->
+		<div class="container">
+
+			<div class="row">
+				<!-- Widget Item -->
+				<div class="col-md-12">
+					<div class="widget-area-2 lochana-box-shadow">
+						<h3 class="widget-title">
+							已完成订单列表</h3>
+						<div class="table-responsive mb-3">
+							<table id="tableId" class="table table-bordered table-striped">
+								<thead>
+								<tr>
+									<th class="no-sort">
+										<div class="custom-control custom-checkbox">
+											<input class="custom-control-input" type="checkbox" id="select-all" name="select-all">
+											<label class="custom-control-label" for="select-all"></label>
+										</div>
+									</th>
+									<th>药品名称</th>
+									<th>客户名称</th>
+									<th>配送数量</th>
+									<th>配送状态</th>
+									<th>配送电话</th>
+									<th>配送地址</th>
+									<th>备注</th>
+								</tr>
+								</thead>
+								<tbody id="tb">
+								<tr>
+								</tr>
+
+								</tbody>
+							</table>
+
+
+						</div>
+					</div>
+				</div>
+				<!-- /Widget Item -->
+			</div>
+		</div>
+		<!-- /Main Content -->
+		<!--Copy Rights-->
+
+		<!-- /Copy Rights-->
 	</div>
-	<!-- Back to Top -->
-	<a id="back-to-top" href="#" class="back-to-top">
-		<span class="ti-angle-up"></span>
-	</a>
-	<!-- /Back to Top -->
-	<!-- Jquery Library-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<!-- Popper Library-->
-	<script src="js/popper.min.js"></script>
-	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
-	<script src="datatable/jquery.dataTables.min.js"></script>
-	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
-	<!-- Custom Script-->
-	<script src="js/custom.js"></script>
+	<!-- /Page Content -->
+</div>
+<!-- Back to Top -->
 
+<!-- /Back to Top -->
+<!-- Jquery Library-->
+<script src="js/jquery-3.2.1.min.js"></script>
+<!-- Popper Library-->
+<script src="js/popper.min.js"></script>
+<!-- Bootstrap Library-->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Datatable  -->
+<script src="datatable/jquery.dataTables.min.js"></script>
+<script src="datatable/dataTables.bootstrap4.min.js"></script>
+
+<!-- Custom Script-->
+<script src="js/custom.js"></script>
+<script src="js/common.js"></script>
+
+<script src="js/custom-datatables.js"></script>
 </body>
+<script>
+	// var state = "";
+	// function changeList(){
+	// 	state = $("#state").select().val();
+	// 	var tbody = $("#tb");
+	// 	tbody.clean();
+	// 	initData();
+	// }
 
+	window.onload = initData;
+	function initData(){
+		$.ajax({
+			url:baseUrl+"order/getOrders",
+			type:"get",
+			data:{state:"2"},
+			success:function (data){
+				if(data.success){
+					var list = data.data;
+					console.info(list);
+					var tbody = $("#tb");
+					var html="";
+					for(var i = 0; i< list.length;i++){
+						var id = list[i].id;
+						html+="<tr>";
+						html+="<td><div className=\"custom-control custom-checkbox\">";
+						html+="<input className=\"custom-control-input\" type=\"checkbox\" id=\"1\">";
+						html+="<label className=\"custom-control-label\" htmlFor=\"1\"></label>";
+						html+="</div>";
+						html+="</td>";
+						html+="<td>"+list[i].merchName+"</td>";
+						html+="<td>"+list[i].cusName+"</td>";
+						html+="<td>"+list[i].count+"</</td>";
+						html+="<td>"+list[i].state.replace("0","订单未配送").replace("1","订单已出库").replace("2","订单已完成")+"</</td>";
+						html+="<td>"+list[i].phone+"</</td>";
+						html+="<td>"+list[i].address+"</</td>";
+						html+="<td>"+list[i].remark+"</</td>";
+
+						html+="</tr>";
+					}
+					tbody.append(html);
+				}else{
+					alert("无订单，请添加");
+				}
+			}
+		});
+	}
+	function deleteOrder(id){
+		var confirm = window.confirm("确定要删除吗？")
+		if(!confirm){return false;}
+		$.ajax({
+			url:baseUrl+"order/deleteById",
+			type:"get",
+			data:{id:id},
+			success:function (data){
+				if(data.success){
+					alert("删除成功！");
+					window.location.href="orders.html";
+				}
+			}
+		});
+	}
+	function editOrder(id){
+		alert(id);
+	}
+	function pubOrder(id){
+		$.ajax({
+			url:baseUrl+"order/updateById",
+			type:"get",
+			data:{id:id,state:"1"},
+			success:function (data){
+				if(data.success){
+					alert("发货成功");
+					window.location.href="orders.html";
+				}
+			}
+		});
+	}
+	function finOrder(id){
+		$.ajax({
+			url:baseUrl+"order/updateById",
+			type:"get",
+			data:{id:id,state:"2"},
+			success:function (data){
+				if(data.success){
+					alert("订单完成");
+					window.location.href="orders.html";
+				}
+			}
+		});
+	}
+</script>
 </html>
