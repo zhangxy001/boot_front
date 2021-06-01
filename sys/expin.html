@@ -63,44 +63,19 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="modal" data-target=".lochana-modal-lg">
-							<span class="ti-search"></span>
-						</a>
-						<div class="modal fade lochana-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-							<div class="modal-dialog modal-lorvens">
-								<div class="modal-content lochana-box-shadow2">
-									<div class="modal-header">
-										<h5 class="modal-title">订单号:</h5>
-										<span class="ti-close" data-dismiss="modal" aria-label="Close">
-											</span>
-									</div>
-									<div class="modal-body">
-										<form>
-											<div class="form-group">
-												<input type="text" class="form-control" id="search-term" placeholder="输入订单号">
-												<button type="button" class="btn btn-lorvens lochana-bg">
-													<span class="ti-location-arrow"></span> 查找</button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="nav-item">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 						   aria-expanded="false">
 							<span class="ti-announcement"></span>
 						</a>
 						<div class="dropdown-menu lochana-box-shadow2 notifications animated flipInY">
-							<h5>消息通知</h5>
-							<a class="dropdown-item" href="#">
-								<span class="ti-wheelchair"></span> 新消息</a>
-							<a class="dropdown-item" href="#">
+							<h5>订单通知</h5>
+							<!--								<a class="dropdown-item" href="#" onclick="">-->
+							<!--									<span class="ti-wheelchair"></span> 新消息</a>-->
+							<a class="dropdown-item" href="his-orders.html">
 								<span class="ti-money"></span> 已收款订单</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="ing-orders.html">
 								<span class="ti-time"></span>在途订单</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="cre-orders.html">
 								<span class="ti-wheelchair"></span> 未安排订单</a>
 						</div>
 					</li>
@@ -111,11 +86,11 @@
 						</a>
 						<div class="dropdown-menu lochana-box-shadow2 profile animated flipInY">
 							<h5>个人信息</h5>
-							<a class="dropdown-item" href="#">
-								<span class="ti-settings"></span> 设置</a>
-							<a class="dropdown-item" href="#">
+							<!--								<a class="dropdown-item" href="#">-->
+							<!--									<span class="ti-settings"></span> 设置</a>-->
+							<a class="dropdown-item" href="#" onclick="help()">
 								<span class="ti-help-alt"></span> 帮助</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="../index.html">
 								<span class="ti-power-off"></span> 退出</a>
 						</div>
 					</li>
@@ -155,24 +130,26 @@
 							   aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="add-order.html">添加采购订单</a>
-								<a class="dropdown-item" href="orders.html">在途订单信息</a>
-								<a class="dropdown-item" href="his-orders.html">历史订单信息</a>
+								<a class="dropdown-item" href="orders.html">订单列表</a>
+								<a class="dropdown-item" href="his-orders.html">已完成订单信息</a>
+								<a class="dropdown-item" href="ing-orders.html">在途订单信息</a>
+								<a class="dropdown-item" href="cre-orders.html">未发货订单信息</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-							   aria-expanded="false"><span class="ti-money"></span> 收入统计</a>
+							   aria-expanded="false"><span class="ti-money"></span> 统计及其他</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="payment-year.html">年度统计</a>
-								<a class="dropdown-item" href="payment-quart.html">季度统计</a>
-								<a class="dropdown-item" href="payment-month.html">月度统计</a>
+								<a class="dropdown-item" href="payment-year.html">收入对比统计</a>
+								<a class="dropdown-item" href="payment-quart.html">客户列表</a>
+								<!--								<a class="dropdown-item" href="payment-month.html">月度统计</a>-->
 							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-key"></span> 药品数据导入导出</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="expout.html">导出模板</a>
+								<a class="dropdown-item" href="#" onclick="exportTemplate()">导出模板</a>
 								<a class="dropdown-item" href="expin.html">excle导入数据</a>
 								<a class="dropdown-item" href="record_fin.html">手动录入</a>
 							</div>
@@ -207,12 +184,15 @@
 			<!-- /Breadcrumb -->
 			<!-- Main Content -->
 			<div class="container">
-
 				<div class="row">
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 lochana-box-shadow">
 							<h3 class="widget-title">导入数据</h3>
+							<form  method="post" enctype="multipart/form-data">
+							<input type="file" id="upfile" name="upfile">
+							<input type="button" value = "上传文件" onclick="subFile()">
+							</form>
 							<div class="table-responsive mb-3">
 								<table id="tableId" class="table table-bordered table-striped">
 									<thead>
@@ -223,220 +203,38 @@
 													<label class="custom-control-label" for="select-all"></label>
 												</div>
 											</th>
-											<th>Room</th>
-											<th>Room Type</th>
-											<th>名人姓名</th>
-											<th>Allotment Date</th>
-                                            <th>Discharge Date</th>
-                                            <th>医生 Name</th>
-											<th>状态</th>
+											<th>商品通用名</th>
+											<th>存货数量</th>
+											<th>规格</th>
+											<th>包装量</th>
+											<th>单价</th>
+											<th>容量单位</th>
+											<th>生产单位</th>
+											<th>供应商</th>
+											<th>利润</th>
 										</tr>
 									</thead>
-                                    <tbody>
+                                    <tbody id="tb">
                                         <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="1">
-                                                    <label class="custom-control-label" for="1"></label>
-                                                </div>
-                                            </td>
-                                            <td>10</td>
-                                            <td>Icu</td>
-                                            <td>Manoj Kumar</td>
-                                            <td>12-11-2018</td>
-                                            <td>16-11-2018</td>
-                                            <td>Dr Daniel Smith</td>
-                                            <td>
-                                                <span class="badge badge-success">可出诊</span>
-                                            </td>
+<!--                                            <td>-->
+<!--                                                <div class="custom-control custom-checkbox">-->
+<!--                                                    <input class="custom-control-input" type="checkbox" id="1">-->
+<!--                                                    <label class="custom-control-label" for="1"></label>-->
+<!--                                                </div>-->
+<!--                                            </td>-->
+<!--                                            <td>10</td>-->
+<!--                                            <td>Icu</td>-->
+<!--                                            <td>Manoj Kumar</td>-->
+<!--                                            <td>12-11-2018</td>-->
+<!--                                            <td>16-11-2018</td>-->
+<!--                                            <td>Dr Daniel Smith</td>-->
+<!--                                            <td>-->
+<!--                                                <span class="badge badge-success">可出诊</span>-->
+<!--                                            </td>-->
+<!--											<td>Dr Daniel Smith</td>-->
+<!--											<td>Dr Daniel Smith</td>-->
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="2">
-                                                    <label class="custom-control-label" for="2"></label>
-                                                </div>
-                                            </td>
-                                            <td>4</td>
-                                            <td>Ac Room</td>
-                                            <td>Susan</td>
-                                            <td>10-11-2018</td>
-                                            <td>-</td>
-                                            <td>Dr Daniel Smith</td>
-                                            <td>
-                                                <span class="badge badge-danger">Not Discharged</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="3">
-                                                    <label class="custom-control-label" for="3"></label>
-                                                </div>
-                                            </td>
-                                            <td>2</td>
-                                            <td>Ac Room</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>
-                                                <span class="badge badge-warning">Not Alloted</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="4">
-                                                    <label class="custom-control-label" for="4"></label>
-                                                </div>
-                                            </td>
-                                            <td>3</td>
-                                            <td>General</td>
-                                            <td>Raj kiran</td>
-                                            <td>10-11-2018</td>
-                                            <td>12-11-2018</td>
-                                            <td>Dr Wilsson</td>
-                                            <td>
-                                                <span class="badge badge-success">可出诊</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="5">
-                                                    <label class="custom-control-label" for="5"></label>
-                                                </div>
-                                            </td>
-                                            <td>10</td>
-                                            <td>Icu</td>
-                                            <td>Manoj Kumar</td>
-                                            <td>12-11-2018</td>
-                                            <td>16-11-2018</td>
-                                            <td>Dr Daniel Smith</td>
-                                            <td>
-                                                <span class="badge badge-success">可出诊</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="6">
-                                                    <label class="custom-control-label" for="6"></label>
-                                                </div>
-                                            </td>
-                                            <td>4</td>
-                                            <td>Ac Room</td>
-                                            <td>Susan</td>
-                                            <td>10-11-2018</td>
-                                            <td>-</td>
-                                            <td>Dr Daniel Smith</td>
-                                            <td>
-                                                <span class="badge badge-danger">Not Discharged</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="7">
-                                                    <label class="custom-control-label" for="7"></label>
-                                                </div>
-                                            </td>
-                                            <td>2</td>
-                                            <td>Ac Room</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>
-                                                <span class="badge badge-warning">Not Alloted</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="8">
-                                                    <label class="custom-control-label" for="8"></label>
-                                                </div>
-                                            </td>
-                                            <td>3</td>
-                                            <td>General</td>
-                                            <td>Raj kiran</td>
-                                            <td>10-11-2018</td>
-                                            <td>12-11-2018</td>
-                                            <td>Dr Wilsson</td>
-                                            <td>
-                                                <span class="badge badge-success">可出诊</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="9">
-                                                    <label class="custom-control-label" for="9"></label>
-                                                </div>
-                                            </td>
-                                            <td>10</td>
-                                            <td>Icu</td>
-                                            <td>Manoj Kumar</td>
-                                            <td>12-11-2018</td>
-                                            <td>16-11-2018</td>
-                                            <td>Dr Daniel Smith</td>
-                                            <td>
-                                                <span class="badge badge-success">可出诊</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="10">
-                                                    <label class="custom-control-label" for="10"></label>
-                                                </div>
-                                            </td>
-                                            <td>4</td>
-                                            <td>Ac Room</td>
-                                            <td>Susan</td>
-                                            <td>10-11-2018</td>
-                                            <td>-</td>
-                                            <td>Dr Daniel Smith</td>
-                                            <td>
-                                                <span class="badge badge-danger">Not Discharged</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="11">
-                                                    <label class="custom-control-label" for="11"></label>
-                                                </div>
-                                            </td>
-                                            <td>2</td>
-                                            <td>Ac Room</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>
-                                                <span class="badge badge-warning">Not Alloted</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="12">
-                                                    <label class="custom-control-label" for="12"></label>
-                                                </div>
-                                            </td>
-                                            <td>3</td>
-                                            <td>General</td>
-                                            <td>Raj kiran</td>
-                                            <td>10-11-2018</td>
-                                            <td>12-11-2018</td>
-                                            <td>Dr Wilsson</td>
-                                            <td>
-                                                <span class="badge badge-success">可出诊</span>
-                                            </td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
 
@@ -471,7 +269,78 @@
     
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
+	<script src="js/common.js"></script>
+
 	<script src="js/custom-datatables.js"></script>
 </body>
+<script>
+	window.onload=initData;
+	function initData(){
+			$.ajax({
+				url:baseUrl+"order/showMerchandise",
+				type:"get",
+				data:{},
+				success:function (data){
+					if(data.success){
+						var list = data.data;
+						var html = "";
+						var tbody = $("#tb");
+						for(var i = 0;i<list.length;i++){
+							html+="<tr>";
+							html+="<td>";
+							html+="<div className=\"custom-control custom-checkbox\">";
+							html+="<input className=\"custom-control-input\" type=\"checkbox\" id=\"1\">";
+							html+="<label className=\"custom-control-label\" htmlFor=\"1\"></label>";
+							html+="</div>";
+							html+="</td>";
+							html+="<td>"+list[i].name+"</td>";
+							html+="<td>"+list[i].amount+"</td>";
+							html+="<td>"+list[i].type+"</td>";
+							html+="<td>"+list[i].type2+"</td>";
+							html+="<td>"+list[i].prize+"</td>";
+							html+="<td>"+list[i].liter+"</td>";
+							html+="<td>"+list[i].product+"</td>";
+							html+="<td>"+list[i].privide+"</td>";
+							html+="<td>"+list[i].award+"</td>";
+							html+="</tr>";
+						}
+						tbody.append(html);
+					}else{
+						alert("暂时无数据");
+					}
+				}
+			})
+	}
+
+	function subFile(){
+		var formData = new FormData();
+		formData.append("upfile", document.getElementById("upfile").files[0]);
+		$.ajax({
+			url: baseUrl+"export/exportIntoFile",
+			type: "POST",
+			data: formData,
+			/**
+			 *必须false才会自动加上正确的Content-Type
+			 */
+			contentType: false,
+			/**
+			 * 必须false才会避开jQuery对 formdata 的默认处理
+			 * XMLHttpRequest会对 formdata 进行正确的处理
+			 */
+			processData: false,
+			success: function (data) {
+				alert("导入成功！");
+			},
+			error: function () {
+				alert("导入失败！");
+			}
+		});
+
+
+
+
+	}
+
+</script>
 
 </html>

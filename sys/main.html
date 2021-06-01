@@ -64,44 +64,19 @@
 							</a>							
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="modal" data-target=".lochana-modal-lg">
-								<span class="ti-search"></span>
-							</a>
-							<div class="modal fade lochana-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-								<div class="modal-dialog modal-lorvens">
-									<div class="modal-content lochana-box-shadow2">
-										<div class="modal-header">
-											<h5 class="modal-title">订单号:</h5>
-											<span class="ti-close" data-dismiss="modal" aria-label="Close">
-											</span>
-										</div>
-										<div class="modal-body">
-											<form>
-												<div class="form-group">
-													<input type="text" class="form-control" id="search-term" placeholder="输入订单号">
-													<button type="button" class="btn btn-lorvens lochana-bg">
-														<span class="ti-location-arrow"></span> 查找</button>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="nav-item">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							 aria-expanded="false">
 								<span class="ti-announcement"></span>
 							</a>
 							<div class="dropdown-menu lochana-box-shadow2 notifications animated flipInY">
-								<h5>消息通知</h5>
-								<a class="dropdown-item" href="#">
-									<span class="ti-wheelchair"></span> 新消息</a>
-								<a class="dropdown-item" href="#">
+								<h5>订单通知</h5>
+<!--								<a class="dropdown-item" href="#" onclick="">-->
+<!--									<span class="ti-wheelchair"></span> 新消息</a>-->
+								<a class="dropdown-item" href="his-orders.html">
 									<span class="ti-money"></span> 已收款订单</a>
-								<a class="dropdown-item" href="#">
+								<a class="dropdown-item" href="ing-orders.html">
 									<span class="ti-time"></span>在途订单</a>
-								<a class="dropdown-item" href="#">
+								<a class="dropdown-item" href="cre-orders.html">
 									<span class="ti-wheelchair"></span> 未安排订单</a>
 							</div>
 						</li>
@@ -112,11 +87,11 @@
 							</a>
 							<div class="dropdown-menu lochana-box-shadow2 profile animated flipInY">
 								<h5>个人信息</h5>
-								<a class="dropdown-item" href="#">
-									<span class="ti-settings"></span> 设置</a>
-								<a class="dropdown-item" href="#">
+<!--								<a class="dropdown-item" href="#">-->
+<!--									<span class="ti-settings"></span> 设置</a>-->
+								<a class="dropdown-item" href="#" onclick="help()">
 									<span class="ti-help-alt"></span> 帮助</a>
-								<a class="dropdown-item" href="#">
+								<a class="dropdown-item" href="../index.html">
 									<span class="ti-power-off"></span> 退出</a>
 							</div>
 						</li>
@@ -156,17 +131,19 @@
 								 aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="add-order.html">添加采购订单</a>
-									<a class="dropdown-item" href="orders.html">在途订单信息</a>
-									<a class="dropdown-item" href="his-orders.html">历史订单信息</a>
+									<a class="dropdown-item" href="orders.html">订单列表</a>
+									<a class="dropdown-item" href="his-orders.html">已完成订单信息</a>
+									<a class="dropdown-item" href="ing-orders.html">在途订单信息</a>
+									<a class="dropdown-item" href="cre-orders.html">未发货订单信息</a>
 								</div>
 							</li>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"><span class="ti-money"></span> 收入统计</a>
+								   aria-expanded="false"><span class="ti-money"></span> 统计及其他</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="payment-year.html">年度统计</a>
-									<a class="dropdown-item" href="payment-quart.html">季度统计</a>
-									<a class="dropdown-item" href="payment-month.html">月度统计</a>
+									<a class="dropdown-item" href="payment-year.html">收入对比统计</a>
+									<a class="dropdown-item" href="payment-quart.html">客户列表</a>
+									<!--								<a class="dropdown-item" href="payment-month.html">月度统计</a>-->
 								</div>
 							</li>
 							<li class="nav-item dropdown">
@@ -215,8 +192,8 @@
 							</div>
 							<div class="widget-right">
 								<h4 class="wiget-title">合作厂商</h4>
-								<span class="numeric color-red">348</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-up"></span> +20% 增长</p>
+								<span class="numeric color-red" id ="partner">348</span>
+								<p class="inc-dec mb-0"><span class="ti-angle-up" id="partner_increase"></span>增长</p>
 							</div>
 						</div>
 					</div>
@@ -229,8 +206,8 @@
 							</div>
 							<div class="widget-right">
 								<h4 class="wiget-title">订单</h4>
-								<span class="numeric color-green">1585</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-down"></span> -15% 减少</p>
+								<span class="numeric color-green" id="order">1585</span>
+								<p class="inc-dec mb-0"><span class="ti-angle-up" id="order_increase"></span>增长</p>
 							</div>
 						</div>
 					</div>
@@ -243,8 +220,8 @@
 							</div>
 							<div class="widget-right">
 								<h4 class="wiget-title">收入</h4>
-								<span class="numeric color-yellow">$7300</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-up"></span> +10% 增长</p>
+								<span class="numeric color-yellow" id="payment">$7300</span>
+								<p class="inc-dec mb-0"><span class="ti-angle-up" id="payment_increase"></span>增长</p>
 							</div>
 						</div>
 					</div>
@@ -263,7 +240,7 @@
 					<!-- Widget Item -->
 					<div class="col-md-6">
 						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title"> 收入按年统计</h3>
+							<h3 class="widget-title"> 收入按季度统计</h3>
 							<div id="barMorris" class="chart-home"></div>
 						</div>
 					</div>
@@ -281,73 +258,14 @@
 										<tr>
 											<th>药品名称</th>
 											<th>规格</th>
-											<th>剂型</th>
+											<th>包装量</th>
 											<th>生产厂商</th>
 											<th>单位</th>
 											<th>单价</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>阿莫西林</td>
-											<td>0.3g*48</td>
-											<td>胶囊</td>
-											<td>哈药六场</td>
-											<td>盒</td>
-											<td>
-												<span class="badge badge-success">21.3￥</span>
-											</td>
-										</tr>
-										<tr>
-											<td>感冒灵</td>
-											<td>0.3g*48</td>
-											<td>胶囊</td>
-											<td>哈药六场</td>
-											<td>盒</td>
-											<td>
-												<span class="badge badge-success">11.2￥</span>
-											</td>
-										</tr>
-										<tr>
-											<td>阿娇胡贝散</td>
-											<td>0.3g*48</td>
-											<td>胶囊</td>
-											<td>哈药六场</td>
-											<td>盒</td>
-											<td>
-												<span class="badge badge-success">45.0￥</span>
-											</td>
-										</tr>
-										<tr>
-											<td>雷贝拉唑</td>
-											<td>0.3g*48</td>
-											<td>胶囊</td>
-											<td>哈药六场</td>
-											<td>盒</td>
-											<td>
-												<span class="badge badge-success">36.3￥</span>
-											</td>
-										</tr>
-										<tr>
-											<td>意可贴</td>
-											<td>0.3g*48</td>
-											<td>胶囊</td>
-											<td>哈药六场</td>
-											<td>盒</td>
-											<td>
-												<span class="badge badge-success">7.6￥</span>
-											</td>
-										</tr>
-										<tr>
-											<td>三精葡萄糖口服溶液</td>
-											<td>0.3g*48</td>
-											<td>胶囊</td>
-											<td>哈药六场</td>
-											<td>盒</td>
-											<td>
-												<span class="badge badge-success">22.3￥</span>
-											</td>
-										</tr>
+									<tbody id="tb">
+
 									</tbody>
 								</table>
 							</div>
@@ -378,35 +296,7 @@
 											<th>库存</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>阿莫西林胶囊</td>
-											<td>12309887333WW</td>
-											<td>
-												<span class="badge badge-success">0</span>
-											</td>
-										</tr>
-										<tr>
-											<td>感冒灵</td>
-											<td>12309887333ee</td>
-											<td>
-												<span class="badge badge-warning">17</span>
-											</td>
-										</tr>
-										<tr>
-											<td>感康</td>
-											<td>12309887333ff</td>
-											<td>
-												<span class="badge badge-danger">23</span>
-											</td>
-										</tr>
-										<tr>
-											<td>意可贴</td>
-											<td>12309887333th</td>
-											<td>
-												<span class="badge badge-success">57</span>
-											</td>
-										</tr>
+									<tbody id="tb2">
 									</tbody>
 								</table>
 							</div>
@@ -446,11 +336,212 @@
 <script>
 	function exportTemplate(){
 		window.location.href=baseUrl+"export/exportFile";
+	}
 
+	window.onload = initData;
+	function initData(){
+		initRankList();
+		initStorm();
+		initShowFast();
+		draw();
+		cicle();
+		payment();
+	}
 
+	function initRankList(){
+		//初始化库存
+		$.ajax({
+			url:baseUrl+"statistics/rankingList",
+			type:"get",
+			success:function (data){
+				var tbody = $("#tb");
+				var list = data.data;
+				console.info(list);
+				var html="";
+				if(data.success){
+					for(var i =0;i<list.length;i++){
+						var obj = list[i];
+						html+="<tr>";
+						html+="<td>"+obj.name+"</td>";
+						html+="<td>"+obj.type+"</td>";
+						html+="<td>"+obj.type2+"</td>";
+						html+="<td>"+obj.product+"</td>";
+						html+="<td>"+obj.liter+"</td>";
+						html+="<td><span className=\"badge badge-success\">"+obj.prize+"￥</span></td>";
+						html+="</tr>";
+					}
+					tbody.append(html);
+				}
+			}
+		});
+	}
+	function initStorm(){
+		//初始化库存
+		$.ajax({
+			url:baseUrl+"statistics/store",
+			type:"get",
+			success:function (data){
+				if(data.success){
+					var list = data.data;
+					var html="";
+					var tbody = $("#tb2");
+					for(var i =0;i<list.length;i++){
+						var obj = list[i];
+						html+="<tr>";
+						html+="<td>"+obj.name+"</td>";
+						html+="<td>"+obj.id+"</td>";
+						html+="<td><span className=\"badge badge-success\">"+obj.count+"</span></td>";
+						html+="</tr>";
+					}
+					tbody.append(html);
+				}
+			}
+		});
+	}
+
+	function initShowFast(){
+		//初始化库存
+		$.ajax({
+			url:baseUrl+"statistics/fastStatistics",
+			type:"get",
+			success:function (data){
+				if(data.success){
+					console.info(data.data);
+					var obj = data.data;
+					$("#partner").html(obj.partner);
+					$("#partner_increase").html(obj.partner_increase);
+					$("#order").html(obj.order);
+					$("#order_increase").html(obj.order_increase);
+					$("#payment").html(obj.payment);
+					$("#payment_increase").html(obj.payment_increase);
+				}
+			}
+		});
+	}
+
+	function draw(){
+		$.ajax({
+			url: baseUrl + "/statistics/drawCount",
+			type: "get",
+			success: function (data) {
+				console.info(data);
+				var value1 = parseInt(data.data[0]);
+				var value2 = parseInt(data.data[1]);
+				var value3 = parseInt(data.data[2]);
+				var value4 = parseInt(data.data[3]);
+				var value5 = parseInt(data.data[4]);
+				var value6 = parseInt(data.data[5]);
+				var value7 = parseInt(data.data[6]);
+				var value8 = parseInt(data.data[7]);
+				var value9 = parseInt(data.data[8]);
+				var value10 = parseInt(data.data[9]);
+				var value11= parseInt(data.data[10]);
+				var value12 = parseInt(data.data[11]);
+				var data = [
+					{ y: '2021 Q1', Appointments: value1+value2+value3 },
+					// { y: '2021 M2', Appointments: value2 },
+					// { y: '2021 M3', Appointments: value3 },
+					{ y: '2021 Q2', Appointments: value4+value5+value6 },
+					// { y: '2021 M5', Appointments: value5 },
+					// { y: '2021 M6', Appointments: value6 },
+					{ y: '2021 Q3', Appointments: value7+value8+value9 },
+					// { y: '2021 M8', Appointments: value8 },
+					// { y: '2021 M9', Appointments: value8 },
+					{ y: '2021 Q4', Appointments: value10+value11+value12},
+					// { y: '2021 M11', Appointments: value11 },
+					// { y: '2021 M12', Appointments: value12 }
+				];
+
+				var lineMorris = new Morris.Line({
+					element: 'lineMorris',
+					resize: true,
+					data: data,
+					xkey: 'y',
+					ykeys: ['Appointments'],
+					labels: ['Appointments'],
+					gridLineColor: '#eef0f2',
+					lineColors: ['#E57498'],
+					lineWidth: 2,
+					hideHover: 'auto'
+				});
+			}
+			});
 
 	}
 
+
+
+	function payment(){
+		$.ajax({
+			url: baseUrl + "/statistics/drawPay",
+			type: "get",
+			success: function (data) {
+				var value1 = parseFloat(data.data[0]);
+				var value2 = parseFloat(data.data[1]);
+				var value3 = parseFloat(data.data[2]);
+				var value4 = parseFloat(data.data[3]);
+				var value = 10;
+				var data = [{
+					y: '2018',
+					a: value1
+				}, {
+					y: '2019',
+					a: value2
+				}, {
+					y: '2020',
+					a: value3
+				}, {
+					y: '2021',
+					a: value4
+				}];
+//barmorris
+				var ctx = document.getElementById("barMorris");
+				if (ctx === null) return;
+				var chart = Morris.Bar({
+					element: 'barMorris',
+					data: data,
+					xkey: 'y',
+					ykeys: ['a'],
+					labels: ['Patients'],
+					barColors: ['#FF7D00'],
+					barOpacity: 1,
+					barSizeRatio: 0.5,
+					hideHover: 'auto',
+					gridLineColor: '#eef0f2',
+					resize: true
+				});
+
+			}
+		});
+	}
+
+
+	function cicle(){
+		$.ajax({
+			url:baseUrl+"/statistics/drawCicle",
+			type:"get",
+			success:function (data){
+				if(data.success){
+					// morris donut charts
+					if($("#donutMorris").length == 1){
+						var $donutData = [
+							{ label: "在途中", value: data.data.ing },
+							{ label: "待发货", value: data.data.cre },
+							{ label: "已完成", value: data.data.fin }
+						];
+						Morris.Donut({
+							element: 'donutMorris',
+							data: $donutData,
+							barSize: 0.1,
+							labelColor: '#3e5569',
+							resize: true, //defaulted to true
+							colors: ['#FFAA2A', '#ef6e6e', '#22c6ab']
+						});
+					}
+				}
+			}
+		});
+	}
 </script>
 
 </html>

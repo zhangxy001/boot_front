@@ -32,7 +32,7 @@ img{max-width:100%;}
 body{
   font-family: 'Montserrat', sans-serif;
    font-size: 100%;
-   background: url(../images/bbb.jpg)no-repeat;
+   background: deepskyblue;
        background-size: cover;
 }
 .login-form{
@@ -202,10 +202,10 @@ p.copy {
 .top-login {
     width: 90px;
     height:90px;
-    margin: 0 auto 3em;
+    margin: 0 auto ;
 }
 .top-login span img {
-    margin: 5px 0 0 5px;
+    margin: 0px 0 0 5px;
 }
 .top-login span {
     width: 75px;

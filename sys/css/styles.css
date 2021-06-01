@@ -124,7 +124,7 @@ a:focus {
     border: 0px solid;
 }
 .breadcrumb-item {
-	color: #ffffff;
+	color: #fff;
     font-size: 13px;
 }
 .breadcrumb-item.active {

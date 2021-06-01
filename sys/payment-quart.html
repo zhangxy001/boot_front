@@ -63,44 +63,19 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="modal" data-target=".lochana-modal-lg">
-							<span class="ti-search"></span>
-						</a>
-						<div class="modal fade lochana-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-							<div class="modal-dialog modal-lorvens">
-								<div class="modal-content lochana-box-shadow2">
-									<div class="modal-header">
-										<h5 class="modal-title">订单号:</h5>
-										<span class="ti-close" data-dismiss="modal" aria-label="Close">
-											</span>
-									</div>
-									<div class="modal-body">
-										<form>
-											<div class="form-group">
-												<input type="text" class="form-control" id="search-term" placeholder="输入订单号">
-												<button type="button" class="btn btn-lorvens lochana-bg">
-													<span class="ti-location-arrow"></span> 查找</button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="nav-item">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 						   aria-expanded="false">
 							<span class="ti-announcement"></span>
 						</a>
 						<div class="dropdown-menu lochana-box-shadow2 notifications animated flipInY">
-							<h5>消息通知</h5>
-							<a class="dropdown-item" href="#">
-								<span class="ti-wheelchair"></span> 新消息</a>
-							<a class="dropdown-item" href="#">
+							<h5>订单通知</h5>
+							<!--								<a class="dropdown-item" href="#" onclick="">-->
+							<!--									<span class="ti-wheelchair"></span> 新消息</a>-->
+							<a class="dropdown-item" href="his-orders.html">
 								<span class="ti-money"></span> 已收款订单</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="ing-orders.html">
 								<span class="ti-time"></span>在途订单</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="cre-orders.html">
 								<span class="ti-wheelchair"></span> 未安排订单</a>
 						</div>
 					</li>
@@ -111,11 +86,11 @@
 						</a>
 						<div class="dropdown-menu lochana-box-shadow2 profile animated flipInY">
 							<h5>个人信息</h5>
-							<a class="dropdown-item" href="#">
-								<span class="ti-settings"></span> 设置</a>
-							<a class="dropdown-item" href="#">
+							<!--								<a class="dropdown-item" href="#">-->
+							<!--									<span class="ti-settings"></span> 设置</a>-->
+							<a class="dropdown-item" href="#" onclick="help()">
 								<span class="ti-help-alt"></span> 帮助</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="../index.html">
 								<span class="ti-power-off"></span> 退出</a>
 						</div>
 					</li>
@@ -155,24 +130,26 @@
 							   aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="add-order.html">添加采购订单</a>
-								<a class="dropdown-item" href="orders.html">在途订单信息</a>
-								<a class="dropdown-item" href="his-orders.html">历史订单信息</a>
+								<a class="dropdown-item" href="orders.html">订单列表</a>
+								<a class="dropdown-item" href="his-orders.html">已完成订单信息</a>
+								<a class="dropdown-item" href="ing-orders.html">在途订单信息</a>
+								<a class="dropdown-item" href="cre-orders.html">未发货订单信息</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-							   aria-expanded="false"><span class="ti-money"></span> 收入统计</a>
+							   aria-expanded="false"><span class="ti-money"></span> 统计及其他</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="payment-year.html">年度统计</a>
-								<a class="dropdown-item" href="payment-quart.html">季度统计</a>
-								<a class="dropdown-item" href="payment-month.html">月度统计</a>
+								<a class="dropdown-item" href="payment-year.html">收入对比统计</a>
+								<a class="dropdown-item" href="payment-quart.html">客户列表</a>
+								<!--								<a class="dropdown-item" href="payment-month.html">月度统计</a>-->
 							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-key"></span> 药品数据导入导出</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="expout.html">导出模板</a>
+								<a class="dropdown-item" href="#" onclick="exportTemplate()">导出模板</a>
 								<a class="dropdown-item" href="expin.html">excle导入数据</a>
 								<a class="dropdown-item" href="record_fin.html">手动录入</a>
 							</div>
@@ -187,7 +164,7 @@
 				<div class="container mt-0">
 					<div class="row breadcrumb-bar">
 						<div class="col-md-6">
-							<h3 class="block-title">Payments</h3>
+							<h3 class="block-title">客户列表</h3>
 						</div>
 						<div class="col-md-6">
 							<ol class="breadcrumb">
@@ -196,8 +173,8 @@
 										<span class="ti-home"></span>
 									</a>
 								</li>
-								<li class="breadcrumb-item">Payments</li>
-								<li class="breadcrumb-item active">All Payments</li>
+								<li class="breadcrumb-item">统计及其他</li>
+								<li class="breadcrumb-item active">客户列表</li>
 							</ol>
 						</div>
 					</div>
@@ -207,15 +184,14 @@
 			<!-- /Breadcrumb -->
 			<!-- Main Content -->
 			<div class="container">
-
 				<div class="row">
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">Payments List</h3>
+							<h3 class="widget-title">客户列表</h3>
 							<div class="table-responsive mb-3">
 								<table id="tableId" class="table table-bordered table-striped">
-									<thead>
+									<thead >
 										<tr>
 											<th class="no-sort">
 												<div class="custom-control custom-checkbox">
@@ -223,230 +199,27 @@
 													<label class="custom-control-label" for="select-all"></label>
 												</div>
 											</th>
-											<th>名人姓名</th>
-											<th>医生 Name</th>
-											<th>Service Name</th>
-											<th>Charges</th>
-											<th>Discount <small>(%)</small></th>
-											<th>状态</th>
+											<th>客户编号</th>
+											<th>客户名称</th>
+											<th>录入时间</th>
 										</tr>
 									</thead>
-                                    <tbody>
+                                    <tbody id ="tb">
                                         <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="1">
-                                                    <label class="custom-control-label" for="1"></label>
-                                                </div>
-                                            </td>
-                                            <td>Manoj Kumar</td>
-                                            <td>Daniel Smith</td>
-                                            <td>X-ray</td>
-                                            <td>$500</td>
-                                            <td>5</td>
-                                            <td>
-                                                <span class="badge badge-success">completed</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="2">
-                                                    <label class="custom-control-label" for="2"></label>
-                                                </div>
-                                            </td>
-                                            <td>Riya</td>
-                                            <td>Daniel Smith</td>
-                                            <td>ECG</td>
-                                            <td>$120</td>
-                                            <td>10</td>
-                                            <td>
-                                                <span class="badge badge-success">completed</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="3">
-                                                    <label class="custom-control-label" for="3"></label>
-                                                </div>
-                                            </td>
-                                            <td>Susan</td>
-                                            <td>Daniel Smith</td>
-                                            <td>牙科</td>
-                                            <td>$190</td>
-                                            <td>8</td>
-                                            <td>
-                                                <span class="badge badge-warning">Pending</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="4">
-                                                    <label class="custom-control-label" for="4"></label>
-                                                </div>
-                                            </td>
-                                            <td>Manoj Kumar</td>
-                                            <td>Daniel Smith</td>
-                                            <td>X-ray</td>
-                                            <td>$500</td>
-                                            <td>5</td>
-                                            <td>
-                                                <span class="badge badge-danger">cancelled</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="5">
-                                                    <label class="custom-control-label" for="5"></label>
-                                                </div>
-                                            </td>
-                                            <td>Riya</td>
-                                            <td>Daniel Smith</td>
-                                            <td>ECG</td>
-                                            <td>$120</td>
-                                            <td>10</td>
-                                            <td>
-                                                <span class="badge badge-success">completed</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="6">
-                                                    <label class="custom-control-label" for="6"></label>
-                                                </div>
-                                            </td>
-                                            <td>Susan</td>
-                                            <td>Daniel Smith</td>
-                                            <td>牙科</td>
-                                            <td>$190</td>
-                                            <td>8</td>
-                                            <td>
-                                                <span class="badge badge-warning">Pending</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="7">
-                                                    <label class="custom-control-label" for="7"></label>
-                                                </div>
-                                            </td>
-                                            <td>Manoj Kumar</td>
-                                            <td>Daniel Smith</td>
-                                            <td>X-ray</td>
-                                            <td>$500</td>
-                                            <td>5</td>
-                                            <td>
-                                                <span class="badge badge-success">completed</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="8">
-                                                    <label class="custom-control-label" for="8"></label>
-                                                </div>
-                                            </td>
-                                            <td>Riya</td>
-                                            <td>Daniel Smith</td>
-                                            <td>ECG</td>
-                                            <td>$120</td>
-                                            <td>10</td>
-                                            <td>
-                                                <span class="badge badge-success">completed</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="9">
-                                                    <label class="custom-control-label" for="9"></label>
-                                                </div>
-                                            </td>
-                                            <td>Susan</td>
-                                            <td>Daniel Smith</td>
-                                            <td>牙科</td>
-                                            <td>$190</td>
-                                            <td>8</td>
-                                            <td>
-                                                <span class="badge badge-warning">Pending</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="10">
-                                                    <label class="custom-control-label" for="10"></label>
-                                                </div>
-                                            </td>
-                                            <td>Manoj Kumar</td>
-                                            <td>Daniel Smith</td>
-                                            <td>X-ray</td>
-                                            <td>$500</td>
-                                            <td>5</td>
-                                            <td>
-                                                <span class="badge badge-danger">cancelled</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="11">
-                                                    <label class="custom-control-label" for="11"></label>
-                                                </div>
-                                            </td>
-                                            <td>Riya</td>
-                                            <td>Daniel Smith</td>
-                                            <td>ECG</td>
-                                            <td>$120</td>
-                                            <td>10</td>
-                                            <td>
-                                                <span class="badge badge-success">completed</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" type="checkbox" id="12">
-                                                    <label class="custom-control-label" for="12"></label>
-                                                </div>
-                                            </td>
-                                            <td>Susan</td>
-                                            <td>Daniel Smith</td>
-                                            <td>牙科</td>
-                                            <td>$190</td>
-                                            <td>8</td>
-                                            <td>
-                                                <span class="badge badge-warning">Pending</span>
-                                            </td>
+<!--                                            <td>-->
+<!--                                                <div class="custom-control custom-checkbox">-->
+<!--                                                    <input class="custom-control-input" type="checkbox" id="1">-->
+<!--                                                    <label class="custom-control-label" for="1"></label>-->
+<!--                                                </div>-->
+<!--                                            </td>-->
+<!--                                            <td>Manoj Kumar</td>-->
+<!--                                            <td>Daniel Smith</td>-->
+<!--                                            <td>X-ray</td>-->
                                         </tr>
                                     </tbody>
                                 </table>
-                                
-								<!--Export links-->
-								<nav aria-label="Page navigation example">
-									<ul class="pagination justify-content-center export-pagination">
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-download"></span> csv</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-printer"></span>  print</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-file"></span> PDF</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#"><span class="ti-align-justify"></span> Excel</a>
-										</li>
-									</ul>
-								</nav>
-								<!-- /Export links-->
-								<button type="button" class="btn btn-danger mt-3 mb-0"><span class="ti-trash"></span> DELETE</button>
-								<button type="button" class="btn btn-primary mt-3 mb-0"><span class="ti-pencil-alt"></span> EDIT</button>
+
+
 							</div>
 						</div>
 					</div>
@@ -455,11 +228,7 @@
 			</div>
 			<!-- /Main Content -->
 			<!--Copy Rights-->
-			<div class="container">
-				<div class="d-sm-flex justify-content-center">
-				  <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span> 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
-				</div>
-			</div>
+
 			<!-- /Copy Rights-->
 		</div>
 		<!-- /Page Content -->
@@ -482,7 +251,40 @@
     
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
+	<script src="js/common.js"></script>
 	<script src="js/custom-datatables.js"></script>
 </body>
+<script>
 
+	window.onload = initData;
+	function initData(){
+		$.ajax({
+			url:baseUrl+"order/getCus",
+			type:"get",
+			data:{},
+			success:function (data){
+				var tbody = $("#tb");
+				var html = "";
+				var list = data.data;
+				if(data.success){
+					for(var i = 0 ;i<list.length;i++){
+						var obj = list[i];
+						html += "<tr>";
+						html += "<td>";
+						html += "<div className=\"custom-control custom-checkbox\">";
+						html += "<input className=\"custom-control-input\" type=\"checkbox\" id=\"1\">";
+						html += "<label className=\"custom-control-label\" htmlFor=\"1\"></label>";
+						html += "</div>";
+						html += "</td>";
+						html += "<td>"+obj.id+"</td>";
+						html += "<td>"+obj.name+"</td>";
+						html += "<td>"+obj.createTime+"</td>";
+						html += "</tr>";
+					}
+					tbody.append(html);
+				}
+			}
+		});
+	}
+</script>
 </html>

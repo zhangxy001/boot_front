@@ -63,44 +63,19 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="modal" data-target=".lochana-modal-lg">
-							<span class="ti-search"></span>
-						</a>
-						<div class="modal fade lochana-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-							<div class="modal-dialog modal-lorvens">
-								<div class="modal-content lochana-box-shadow2">
-									<div class="modal-header">
-										<h5 class="modal-title">订单号:</h5>
-										<span class="ti-close" data-dismiss="modal" aria-label="Close">
-											</span>
-									</div>
-									<div class="modal-body">
-										<form>
-											<div class="form-group">
-												<input type="text" class="form-control" id="search-term" placeholder="输入订单号">
-												<button type="button" class="btn btn-lorvens lochana-bg">
-													<span class="ti-location-arrow"></span> 查找</button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="nav-item">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 						   aria-expanded="false">
 							<span class="ti-announcement"></span>
 						</a>
 						<div class="dropdown-menu lochana-box-shadow2 notifications animated flipInY">
-							<h5>消息通知</h5>
-							<a class="dropdown-item" href="#">
-								<span class="ti-wheelchair"></span> 新消息</a>
-							<a class="dropdown-item" href="#">
+							<h5>订单通知</h5>
+							<!--								<a class="dropdown-item" href="#" onclick="">-->
+							<!--									<span class="ti-wheelchair"></span> 新消息</a>-->
+							<a class="dropdown-item" href="his-orders.html">
 								<span class="ti-money"></span> 已收款订单</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="ing-orders.html">
 								<span class="ti-time"></span>在途订单</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="cre-orders.html">
 								<span class="ti-wheelchair"></span> 未安排订单</a>
 						</div>
 					</li>
@@ -111,11 +86,11 @@
 						</a>
 						<div class="dropdown-menu lochana-box-shadow2 profile animated flipInY">
 							<h5>个人信息</h5>
-							<a class="dropdown-item" href="#">
-								<span class="ti-settings"></span> 设置</a>
-							<a class="dropdown-item" href="#">
+							<!--								<a class="dropdown-item" href="#">-->
+							<!--									<span class="ti-settings"></span> 设置</a>-->
+							<a class="dropdown-item" href="#" onclick="help()">
 								<span class="ti-help-alt"></span> 帮助</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="../index.html">
 								<span class="ti-power-off"></span> 退出</a>
 						</div>
 					</li>
@@ -155,24 +130,26 @@
 							   aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="add-order.html">添加采购订单</a>
-								<a class="dropdown-item" href="orders.html">在途订单信息</a>
-								<a class="dropdown-item" href="his-orders.html">历史订单信息</a>
+								<a class="dropdown-item" href="orders.html">订单列表</a>
+								<a class="dropdown-item" href="his-orders.html">已完成订单信息</a>
+								<a class="dropdown-item" href="ing-orders.html">在途订单信息</a>
+								<a class="dropdown-item" href="cre-orders.html">未发货订单信息</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-							   aria-expanded="false"><span class="ti-money"></span> 收入统计</a>
+							   aria-expanded="false"><span class="ti-money"></span> 统计及其他</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="payment-year.html">年度统计</a>
-								<a class="dropdown-item" href="payment-quart.html">季度统计</a>
-								<a class="dropdown-item" href="payment-month.html">月度统计</a>
+								<a class="dropdown-item" href="payment-year.html">收入对比统计</a>
+								<a class="dropdown-item" href="payment-quart.html">客户列表</a>
+								<!--								<a class="dropdown-item" href="payment-month.html">月度统计</a>-->
 							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-key"></span> 药品数据导入导出</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="expout.html">导出模板</a>
+								<a class="dropdown-item" href="#" onclick="exportTemplate()">导出模板</a>
 								<a class="dropdown-item" href="expin.html">excle导入数据</a>
 								<a class="dropdown-item" href="record_fin.html">手动录入</a>
 							</div>
@@ -187,7 +164,7 @@
 				<div class="container mt-0">
 					<div class="row breadcrumb-bar">
 						<div class="col-md-6">
-							<h3 class="block-title">Add Payment</h3>
+							<h3 class="block-title">收入统计</h3>
 						</div>
 						<div class="col-md-6">
 							<ol class="breadcrumb">
@@ -196,8 +173,8 @@
 										<span class="ti-home"></span>
 									</a>
 								</li>
-								<li class="breadcrumb-item">Payments</li>
-								<li class="breadcrumb-item active">Add Payment</li>
+								<li class="breadcrumb-item">统计及其他</li>
+								<li class="breadcrumb-item active">收入对比统计</li>
 							</ol>
 						</div>
 					</div>
@@ -212,101 +189,25 @@
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">Add Payment</h3>
-							<form>
-								<div class="form-row">
-									<div class="form-group col-md-6">
-										<label for="patient-id">Patient ID</label>
-										<input type="text" class="form-control" placeholder="Patient ID" id="patient-id">
-                                    </div>
-                                    <div class="form-group col-md-6">
-										<label for="patient-name">名人姓名</label>
-										<input type="text" class="form-control" placeholder="名人姓名" id="patient-name">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="department">Department</label>
-										<select class="form-control" id="department">
-											<option>Neuro</option>
-											<option>皮肤科</option>
-											<option>General</option>
-										</select>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="doctor-name">医生 Name</label>
-										<input type="text" placeholder="医生 Name" class="form-control" id="doctor-name">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="adminssion-date">Admission Date</label>
-										<input type="date" placeholder="Adminssion Date" class="form-control" id="adminssion-date">
-                                    </div>	
-                                    <div class="form-group col-md-6">
-										<label for="discharge-date">Discharge Date</label>
-										<input type="date" placeholder="Discharge Date" class="form-control" id="discharge-date">
-                                    </div>	
-                                    <div class="form-group col-md-12">
-										<h4>Services</h4>										
-                                    </div>
-                                    <div class="form-group col-md-6">
-										<label for="service-name">Service Name</label>
-										<input type="text" placeholder="Service Name" class="form-control" id="service-name">
-                                    </div>	
-                                    <div class="form-group col-md-6">
-										<label for="treatment-cost">Cost of Treatment</label>
-										<input type="text" placeholder="Cost of Treatment" class="form-control" id="treatment-cost">
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <button type="button" class="btn btn-outline-success"><span class="ti-plus"></span> Add Service</button>										
-                                    </div>
-                                    <div class="form-group col-md-12">
-										<h4>Payment</h4>										
-                                    </div>
-                                    <div class="form-group col-md-3">
-										<label for="discount">Discount (%)</label>
-										<input type="text" placeholder="Discount" class="form-control" id="discount">
-                                    </div>	
-                                    <div class="form-group col-md-3">
-										<label for="advance-paid">Advance Paid</label>
-										<input type="text" placeholder="Advance Paid" class="form-control" id="advance-paid">
-                                    </div>
-                                    <div class="form-group col-md-3">
-										<label for="payment-type">Payment Type</label>
-										<select class="form-control" id="payment-type">
-											<option>Check</option>
-											<option>Card</option>
-											<option>Cash</option>
-										</select>
-                                    </div>	
-                                    <div class="form-group col-md-3">
-										<label for="card-check">Card/Check No</label>
-										<input type="text" placeholder="Card/Check No" class="form-control" id="card-check">
-									</div>																	
-									<div class="form-check col-md-12 mb-2">
-										<div class="text-left">
-											<div class="custom-control custom-checkbox">
-												<input class="custom-control-input" type="checkbox" id="ex-check-2">
-												<label class="custom-control-label" for="ex-check-2">Please Confirm</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group col-md-6 mb-3">
-										<button type="submit" class="btn btn-primary btn-lg">Submit</button>
-									</div>
+							<h3 class="widget-title">收入对比统计</h3>
+
+							<div class="row">
+							<div class="col-md-6">
+								<div class="widget-area-2 lochana-box-shadow">
+									<h3 class="widget-title">前四位药物利润对比</h3>
+									<div id="lineMorris" class="chart-home"></div>
 								</div>
-							</form>
-							<!-- Alerts-->
-							<div class="alert alert-success alert-dismissible fade show" role="alert">
-								<strong>Successfully Done!</strong> Payment added
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
 							</div>
-							<div class="alert alert-warning alert-dismissible fade show" role="alert">
-								<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
+							<!-- /Widget Item -->
+							<!-- Widget Item -->
+							<div class="col-md-6">
+								<div class="widget-area-2 lochana-box-shadow">
+									<h3 class="widget-title"> 前四位药物收入对比</h3>
+									<div id="barMorris" class="chart-home"></div>
+								</div>
 							</div>
-							<!-- /Alerts-->
+							</div>
+
 						</div>
 					</div>
 					<!-- /Widget Item -->
@@ -314,11 +215,7 @@
 			</div>
 			<!-- /Main Content -->
 			<!--Copy Rights-->
-			<div class="container">
-				<div class="d-sm-flex justify-content-center">
-				  <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span> 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
-				</div>
-			</div>
+
 			<!-- /Copy Rights-->
 		</div>
 		<!-- /Page Content -->
@@ -341,7 +238,114 @@
     
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
+	<script src="js/common.js"></script>
+
+	<script src="charts/js/raphael-min.js"></script>
+	<script src="charts/js/morris.min.js"></script>
+	<script src="js/custom-morris.js"></script>
 
 </body>
+
+<script>
+	window.onload = initPic;
+	function  initPic(){
+		draw();
+		payment();
+	}
+	function draw(){
+		$.ajax({
+			url: baseUrl + "/statistics/drawAwardByMerch",
+			type: "get",
+			success: function (data) {
+				var name1 = data.data[0];
+				var value1 = parseFloat(data.data[1]);
+				var name2 = data.data[2];
+				var value2 = parseFloat(data.data[3]);
+				var name3 = data.data[4];
+				var value3 = parseFloat(data.data[5]);
+				var name4 = data.data[6];
+				var value4 = parseFloat(data.data[7]);
+				var data = [{
+					y: name1,
+					a: value1
+				}, {
+					y: name2,
+					a: value2
+				}, {
+					y: name3,
+					a: value3
+				}, {
+					y: name4,
+					a: value4
+				}];
+//barmorris
+				var ctx = document.getElementById("lineMorris");
+				if (ctx === null) return;
+				var chart = Morris.Bar({
+					element: 'lineMorris',
+					data: data,
+					xkey: 'y',
+					ykeys: ['a'],
+					labels: ['Patients'],
+					barColors: ['#FF7D00'],
+					barOpacity: 1,
+					barSizeRatio: 0.5,
+					hideHover: 'auto',
+					gridLineColor: '#eef0f2',
+					resize: true
+				});
+
+			}
+		});
+	}
+
+	function payment(){
+		$.ajax({
+			url: baseUrl + "/statistics/drawPayByMerch",
+			type: "get",
+			success: function (data) {
+				var name1 = data.data[0];
+				var value1 = parseFloat(data.data[1]);
+				var name2 = data.data[2];
+				var value2 = parseFloat(data.data[3]);
+				var name3 = data.data[4];
+				var value3 = parseFloat(data.data[5]);
+				var name4 = data.data[6];
+				var value4 = parseFloat(data.data[7]);
+				var data = [{
+					y: name1,
+					a: value1
+				}, {
+					y: name2,
+					a: value2
+				}, {
+					y: name3,
+					a: value3
+				}, {
+					y: name4,
+					a: value4
+				}];
+//barmorris
+				var ctx = document.getElementById("barMorris");
+				if (ctx === null) return;
+				var chart = Morris.Bar({
+					element: 'barMorris',
+					data: data,
+					xkey: 'y',
+					ykeys: ['a'],
+					labels: ['Patients'],
+					barColors: ['#FF7D00'],
+					barOpacity: 1,
+					barSizeRatio: 0.5,
+					hideHover: 'auto',
+					gridLineColor: '#eef0f2',
+					resize: true
+				});
+
+			}
+		});
+	}
+
+</script>
 
 </html>

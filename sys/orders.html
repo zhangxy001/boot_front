@@ -63,44 +63,19 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="modal" data-target=".lochana-modal-lg">
-							<span class="ti-search"></span>
-						</a>
-						<div class="modal fade lochana-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-							<div class="modal-dialog modal-lorvens">
-								<div class="modal-content lochana-box-shadow2">
-									<div class="modal-header">
-										<h5 class="modal-title">订单号:</h5>
-										<span class="ti-close" data-dismiss="modal" aria-label="Close">
-											</span>
-									</div>
-									<div class="modal-body">
-										<form>
-											<div class="form-group">
-												<input type="text" class="form-control" id="search-term" placeholder="输入订单号">
-												<button type="button" class="btn btn-lorvens lochana-bg">
-													<span class="ti-location-arrow"></span> 查找</button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="nav-item">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 						   aria-expanded="false">
 							<span class="ti-announcement"></span>
 						</a>
 						<div class="dropdown-menu lochana-box-shadow2 notifications animated flipInY">
-							<h5>消息通知</h5>
-							<a class="dropdown-item" href="#">
-								<span class="ti-wheelchair"></span> 新消息</a>
-							<a class="dropdown-item" href="#">
-								<span class="ti-money"></span> 已完成订单</a>
-							<a class="dropdown-item" href="#">
+							<h5>订单通知</h5>
+							<!--								<a class="dropdown-item" href="#" onclick="">-->
+							<!--									<span class="ti-wheelchair"></span> 新消息</a>-->
+							<a class="dropdown-item" href="his-orders.html">
+								<span class="ti-money"></span> 已收款订单</a>
+							<a class="dropdown-item" href="ing-orders.html">
 								<span class="ti-time"></span>在途订单</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="cre-orders.html">
 								<span class="ti-wheelchair"></span> 未安排订单</a>
 						</div>
 					</li>
@@ -111,11 +86,11 @@
 						</a>
 						<div class="dropdown-menu lochana-box-shadow2 profile animated flipInY">
 							<h5>个人信息</h5>
-							<a class="dropdown-item" href="#">
-								<span class="ti-settings"></span> 设置</a>
-							<a class="dropdown-item" href="#">
+							<!--								<a class="dropdown-item" href="#">-->
+							<!--									<span class="ti-settings"></span> 设置</a>-->
+							<a class="dropdown-item" href="#" onclick="help()">
 								<span class="ti-help-alt"></span> 帮助</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="../index.html">
 								<span class="ti-power-off"></span> 退出</a>
 						</div>
 					</li>
@@ -155,24 +130,26 @@
 							   aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="add-order.html">添加采购订单</a>
-								<a class="dropdown-item" href="orders.html">订单列表信息</a>
-								<a class="dropdown-item" href="his-orders.html">历史订单信息</a>
+								<a class="dropdown-item" href="orders.html">订单列表</a>
+								<a class="dropdown-item" href="his-orders.html">已完成订单信息</a>
+								<a class="dropdown-item" href="ing-orders.html">在途订单信息</a>
+								<a class="dropdown-item" href="cre-orders.html">未发货订单信息</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-							   aria-expanded="false"><span class="ti-money"></span> 收入统计</a>
+							   aria-expanded="false"><span class="ti-money"></span> 统计及其他</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="payment-year.html">年度统计</a>
-								<a class="dropdown-item" href="payment-quart.html">季度统计</a>
-								<a class="dropdown-item" href="payment-month.html">月度统计</a>
+								<a class="dropdown-item" href="payment-year.html">收入对比统计</a>
+								<a class="dropdown-item" href="payment-quart.html">客户列表</a>
+								<!--								<a class="dropdown-item" href="payment-month.html">月度统计</a>-->
 							</div>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-key"></span> 药品数据导入导出</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="expout.html">导出模板</a>
+								<a class="dropdown-item" href="#" onclick="exportTemplate()">导出模板</a>
 								<a class="dropdown-item" href="expin.html">excle导入数据</a>
 								<a class="dropdown-item" href="record_fin.html">手动录入</a>
 							</div>
