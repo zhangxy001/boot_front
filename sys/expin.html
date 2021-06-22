@@ -129,6 +129,7 @@
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#" onclick="exportTemplate(4)">导出订单模板</a>
 								<a class="dropdown-item" href="add-order.html">添加采购订单</a>
 								<a class="dropdown-item" href="orders.html">订单列表</a>
 								<a class="dropdown-item" href="his-orders.html">已完成订单信息</a>
@@ -154,6 +155,27 @@
 								<a class="dropdown-item" href="record_fin.html">手动录入</a>
 							</div>
 						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+							   aria-expanded="false"><span class="ti-key"></span> 仓库数据导入导出</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#" onclick="exportTemplate(2)">导出仓库模板</a>
+								<a class="dropdown-item" href="depository.html">导入仓库数据</a>
+								<a class="dropdown-item" href="depository_fin.html">手动录入仓库信息</a>
+							</div>
+						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+							   aria-expanded="false"><span class="ti-key"></span> 客户数据导入导出</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#" onclick="exportTemplate(3)">导出客户模板</a>
+								<a class="dropdown-item" href="cus.html">导入客户数据</a>
+								<a class="dropdown-item" href="cus_fin.html">手动录入客户信息</a>
+							</div>
+						</li>
+
 					</ul>
 				</div>
 			</nav>
@@ -188,54 +210,14 @@
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">导入数据</h3>
+							<h3 class="widget-title">药品目录</h3>
 							<form  method="post" enctype="multipart/form-data">
 							<input type="file" id="upfile" name="upfile">
 							<input type="button" value = "上传文件" onclick="subFile()">
 							</form>
 							<div class="table-responsive mb-3">
 								<table id="tableId" class="table table-bordered table-striped">
-									<thead>
-										<tr>
-											<th class="no-sort">
-												<div class="custom-control custom-checkbox">
-													<input class="custom-control-input" type="checkbox" id="select-all">
-													<label class="custom-control-label" for="select-all"></label>
-												</div>
-											</th>
-											<th>商品通用名</th>
-											<th>存货数量</th>
-											<th>规格</th>
-											<th>包装量</th>
-											<th>单价</th>
-											<th>容量单位</th>
-											<th>生产单位</th>
-											<th>供应商</th>
-											<th>利润</th>
-										</tr>
-									</thead>
-                                    <tbody id="tb">
-                                        <tr>
-<!--                                            <td>-->
-<!--                                                <div class="custom-control custom-checkbox">-->
-<!--                                                    <input class="custom-control-input" type="checkbox" id="1">-->
-<!--                                                    <label class="custom-control-label" for="1"></label>-->
-<!--                                                </div>-->
-<!--                                            </td>-->
-<!--                                            <td>10</td>-->
-<!--                                            <td>Icu</td>-->
-<!--                                            <td>Manoj Kumar</td>-->
-<!--                                            <td>12-11-2018</td>-->
-<!--                                            <td>16-11-2018</td>-->
-<!--                                            <td>Dr Daniel Smith</td>-->
-<!--                                            <td>-->
-<!--                                                <span class="badge badge-success">可出诊</span>-->
-<!--                                            </td>-->
-<!--											<td>Dr Daniel Smith</td>-->
-<!--											<td>Dr Daniel Smith</td>-->
-                                        </tr>
 
-                                    </tbody>
                                 </table>
 
 							</div>
@@ -271,50 +253,75 @@
 	<script src="js/custom.js"></script>
 	<script src="js/common.js"></script>
 
-	<script src="js/custom-datatables.js"></script>
+<!--	<script src="js/custom-datatables.js"></script>-->
 </body>
 <script>
 	window.onload=initData;
 	function initData(){
-			$.ajax({
-				url:baseUrl+"order/showMerchandise",
-				type:"get",
-				data:{},
-				success:function (data){
-					if(data.success){
-						var list = data.data;
-						var html = "";
-						var tbody = $("#tb");
-						for(var i = 0;i<list.length;i++){
-							html+="<tr>";
-							html+="<td>";
-							html+="<div className=\"custom-control custom-checkbox\">";
-							html+="<input className=\"custom-control-input\" type=\"checkbox\" id=\"1\">";
-							html+="<label className=\"custom-control-label\" htmlFor=\"1\"></label>";
-							html+="</div>";
-							html+="</td>";
-							html+="<td>"+list[i].name+"</td>";
-							html+="<td>"+list[i].amount+"</td>";
-							html+="<td>"+list[i].type+"</td>";
-							html+="<td>"+list[i].type2+"</td>";
-							html+="<td>"+list[i].prize+"</td>";
-							html+="<td>"+list[i].liter+"</td>";
-							html+="<td>"+list[i].product+"</td>";
-							html+="<td>"+list[i].privide+"</td>";
-							html+="<td>"+list[i].award+"</td>";
-							html+="</tr>";
-						}
-						tbody.append(html);
-					}else{
-						alert("暂时无数据");
-					}
-				}
-			})
+		$('#tableId').DataTable({
+			// "destroy":true,
+			"processing": true,
+			"searching": true,
+			// "serverSide": true,
+			"bPaginate":true,
+			"bLengthChange":true,
+			"edit":true,
+			"bFilter":true,
+			"bSort":true,
+			"bAutoWidth": true,
+			language: {
+				"sProcessing": "处理中...",
+				"sLengthMenu": "显示 _MENU_ 项结果",
+				"sZeroRecords": "没有匹配结果",
+				"sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+				"sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+				"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+				"sInfoPostFix": "",
+				"sSearch": "搜索:",
+				"sUrl": "",
+				"sEmptyTable": "表中数据为空",
+				"sLoadingRecords": "载入中...",
+				"oPaginate": {
+					"sFirst": "首页",
+					"sPrevious": "上页",
+					"sNext": "下页",
+					"sLast": "末页"
+				}},
+			"ajax": {//ajax请求数据源
+				"url": baseUrl+"order/showMerchandise",
+				"type": "get",
+			},
+			"order": [],
+			"columns": [
+				{"sTitle":"药品名称", "mDataProp": "name","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				// {"sTitle":"药品数量", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "50",editable:true},
+				{"sTitle":"规格", "mDataProp": "type","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
+				{"sTitle":"包装量", "mDataProp": "type2","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"单价", "mDataProp": "prize","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
+				{"sTitle":"容量单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "100"},
+				{"sTitle":"生产单位", "mDataProp": "product","sClass": "center", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"供应商", "mDataProp": "privide","sClass": "center", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "50",mRender:function (data){
+						var html ="";
+						// html+="<input type='button' onclick='editOne("+data+")' value='修改'></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+						html+="<input type='button' onclick='deleteInfo(\""+data+"\")' value='删除' />";
+						return html;
+					}},
+				// {"data": ''}
+			]
+		});
 	}
 
 	function subFile(){
+		var val = $("#upfile").val();
+		alert(val);
+		if(val==''||val=='undefined'){
+			alert("请先上传文件");
+			return false;
+		}
 		var formData = new FormData();
 		formData.append("upfile", document.getElementById("upfile").files[0]);
+		formData.append("type","4");
 		$.ajax({
 			url: baseUrl+"export/exportIntoFile",
 			type: "POST",
@@ -330,16 +337,28 @@
 			processData: false,
 			success: function (data) {
 				alert("导入成功！");
+				location.href='expin.html';
+			},
+			beforeSend:function (request){
+				request.setRequestHeader("token",userId);
 			},
 			error: function () {
 				alert("导入失败！");
 			}
 		});
-
-
-
-
 	}
+
+	function deleteInfo(id){
+		$.ajax({
+			url:baseUrl+"order/deleteMerchandise",
+			type:"get",
+			data:{id:id},
+			success:function (data){
+				window.location.href="expin.html";
+			}
+		});
+	}
+
 
 </script>
 

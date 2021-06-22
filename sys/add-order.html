@@ -21,8 +21,12 @@
 	<link rel="stylesheet" href="charts/css/morris.css">
 	<!-- jvectormap -->
 	<link rel="stylesheet" href="css/jquery-jvectormap.css">
-
+<!--	<script src="js/jquery.min.js"></script>-->
+<!--	<link rel="stylesheet" href="css/bootstrap.css">-->
 	<script src="js/modernizr.min.js"></script>
+	<style>
+		.table{text-align: center;}
+	</style>
 </head>
 
 <body>
@@ -106,7 +110,7 @@
 							aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="ti-menu text-white"></span>
 					</button>
-
+					<input type="hidden" id ="parentId" value="" />
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item dropdown active">
@@ -125,10 +129,12 @@
 									<a class="dropdown-item" href="edit-user.html">编辑我的个人信息</a>
 								</div>
 							</li>
+
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 								   aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 								<div class="dropdown-menu">
+									<a class="dropdown-item" href="#" onclick="exportTemplate(4)">导出订单模板</a>
 									<a class="dropdown-item" href="add-order.html">添加采购订单</a>
 									<a class="dropdown-item" href="orders.html">订单列表</a>
 									<a class="dropdown-item" href="his-orders.html">已完成订单信息</a>
@@ -154,6 +160,27 @@
 									<a class="dropdown-item" href="record_fin.html">手动录入</a>
 								</div>
 							</li>
+
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+								   aria-expanded="false"><span class="ti-key"></span> 仓库数据导入导出</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="#" onclick="exportTemplate(2)">导出仓库模板</a>
+									<a class="dropdown-item" href="depository.html">导入仓库数据</a>
+									<a class="dropdown-item" href="depository_fin.html">手动录入仓库信息</a>
+								</div>
+							</li>
+
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+								   aria-expanded="false"><span class="ti-key"></span> 客户数据导入导出</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="#" onclick="exportTemplate(3)">导出客户模板</a>
+									<a class="dropdown-item" href="cus.html">导入客户数据</a>
+									<a class="dropdown-item" href="cus_fin.html">手动录入客户信息</a>
+								</div>
+							</li>
+
 						</ul>
 					</div>
 				</nav>
@@ -189,68 +216,43 @@
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">添加采购订单</h3>
+<!--							<h3 class="widget-title">添加采购订单</h3>-->
+							<button onclick="orderEnd()">结束此订单操作</button>
 							<form>
 								<div class="form-row">
 									<div class="form-group col-md-6">
-										<label for="merchId">药物</label>
-										<select class="form-control" id="merchId">
-<!--											<option>阿莫西林</option>-->
-<!--											<option>感冒灵</option>-->
-<!--											<option>板蓝根</option>-->
-										</select>
-									</div>
-									<div class="form-group col-md-6">
 										<label for="cusName">客户</label>
-										<input type="text" placeholder="请输入客户名称" class="form-control" id="cusName">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="custType">客户类型</label>
-										<select class="form-control" id="custType">
-											<option>A类</option>
-											<option>B类</option>
-											<option>C类</option>
+										<select class="form-control" id="cusName">
+											<!--											<option>A类</option>-->
+											<!--											<option>B类</option>-->
+											<!--											<option>C类</option>-->
 										</select>
 									</div>
-
 									<div class="form-group col-md-6">
-										<label for="count">定购数量 </label>
-										<input type="text" placeholder="请输入定购数量" class="form-control" id="count">
-									</div>
-									<div class="form-group col-md-12">
-										<label for="phone">送货电话</label>
-										<input type="text" placeholder="请输入送货电话" class="form-control" id="phone">
-									</div>
-
-									<div class="form-group col-md-12">
-										<label for="address">送货地址</label>
-										<textarea placeholder="请输入送货地址" class="form-control" id="address" rows="3"></textarea>
-									</div>
-									<div class="form-group col-md-12">
-										<label for="remark">备注</label>
-										<textarea placeholder="请输入备注" class="form-control" id="remark" rows="3"></textarea>
-									</div>
-
-									<div class="form-group col-md-6 mb-3">
-										<button type="button" class="btn btn-primary btn-lg" onclick="subInfo()">提交</button>
+										<label for="sellway">销售方式</label>
+										<select class="form-control" id="sellway">
+												<option value="0">对公实销实结</option>
+												<option value="1">对公月结</option>
+												<option value="2">现金（微信、支付宝、转账）</option>
+												<option value="3">赠品不回款</option>
+												<option value="4">效期换货不回款</option>
+												<option value="5">抵返利，不回款</option>
+										</select>
 									</div>
 								</div>
 							</form>
-							<!-- Alerts-->
-<!--							<div class="alert alert-success alert-dismissible fade show" role="alert">-->
-<!--								<strong>操作成功</strong> -->
-<!--								<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-<!--									<span aria-hidden="true">×</span>-->
-<!--								</button>-->
-<!--							</div>-->
-<!--							<div class="alert alert-warning alert-dismissible fade show" role="alert">-->
-<!--								<strong>Holy guacamole!</strong> You should check in on some of those fields below.-->
-<!--								<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-<!--									<span aria-hidden="true">×</span>-->
-<!--								</button>-->
-<!--							</div>-->
-							<!-- /Alerts-->
+							<table class="table table-bordered table-hover" id="tableAdd">
+							</table>
+
+							<div class="table-responsive mb-3" style="margin-top: 50px;">
+								<table id="tableId" class="table table-bordered table-striped">
+
+								</table>
+
+							</div>
 						</div>
+
+
 					</div>
 					<!-- /Widget Item -->
 				</div>
@@ -285,7 +287,6 @@
 </body>
 <script>
 	window.onload = initData;
-
 	function initData(){
 		$.ajax({
 			url:baseUrl+"order/getOption",
@@ -303,14 +304,262 @@
 				}
 			}
 		});
+
+
+		$.ajax({
+			url:baseUrl+"order/getOption2",
+			type:"get",
+			data:{},
+			success:function (data){
+				if(data.success){
+					var sel = $("#cusName");
+					console.info(data.data);
+					var option ="";
+					for(var i = 0;i <data.data.length;i++){
+						option+="<option value= "+data.data[i].id+">"+data.data[i].name+"</option>";
+					}
+					sel.append(option);
+				}
+			}
+		});
+		// initTB();
+		tab2();
+		initDataTab();
+
 	}
 
-	function notNull(merchId,cusName,cusType,count,phone,address){
-		if(merchId ==""||cusName==""||cusType==""||count==""||phone==""||address==""){
-			alert("除备注外的必填项不能为空");
+	function orderEnd(){
+		localStorage.removeItem("parentId");
+		window.location.href= "add-order.html";
+	}
+
+
+	function initDataTab(){
+		$('#tableId').DataTable({
+			// "destroy":true,
+			"processing": true,
+			"searching": true,
+			// "serverSide": true,
+			"bPaginate":true,
+			"bLengthChange":true,
+			"edit":true,
+			"bFilter":true,
+			"bSort":true,
+			"bAutoWidth": true,
+			language: {
+				"sProcessing": "处理中...",
+				"sLengthMenu": "显示 _MENU_ 项结果",
+				"sZeroRecords": "没有匹配结果",
+				"sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+				"sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+				"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+				"sInfoPostFix": "",
+				"sSearch": "搜索:",
+				"sUrl": "",
+				"sEmptyTable": "表中数据为空",
+				"sLoadingRecords": "载入中...",
+				"oPaginate": {
+					"sFirst": "首页",
+					"sPrevious": "上页",
+					"sNext": "下页",
+					"sLast": "末页"
+				}},
+			"ajax": {//ajax请求数据源
+				"url": baseUrl+"order/showBeach",
+				"type": "get",
+			},
+			"order": [],
+			"columns": [
+				{"sTitle":"药品名称", "mDataProp": "meachName","sClass": "center", "bSortable": false, "sWidth": "200","contenteditable":true},
+				{"sTitle":"库存", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "50",editable:true},
+				{"sTitle":"创建人", "mDataProp": "medicalAdminName","sClass": "center", "bSortable": false, "sWidth": "150",editable:true},
+				// {"sTitle":"包装量", "mDataProp": "type2","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"单价", "mDataProp": "shopPrize","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
+				// {"sTitle":"容量", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "100"},
+				{"sTitle":"生产日期", "mDataProp": "startTime","sClass": "center", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"有效期至", "mDataProp": "endTime","sClass": "center", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"仓库名称", "mDataProp": "depositoryName","sClass": "center", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"批号", "mDataProp": "beach_num","sClass": "center", "bSortable": false, "sWidth": "200"}
+			]
+		});
+		var table = $('#tableId').DataTable();
+
+		$('#tableId tbody').on('click','tr', function() {
+			var remark = $("#tableId").DataTable().row(this).data().remark;
+			var sellway = $("#sellway option:selected").val();
+			var cusName = $("#cusName option:selected").val();
+			var beach_num = $("#tableId").DataTable().row(this).data().beach_num;
+			//保存父订单信息开始保存子订单信息
+			var parentId = localStorage.getItem("parentId");
+			if(parentId == null || parentId == ""){
+				//如果是空，保存当前订单并刷新列表
+				parentId = guid();
+				var orderId = guid();
+				$.ajax({
+					"url": baseUrl+"order/saveOrder",
+					 data:{num:beach_num,type:sellway,cusId:cusName,parentId:parentId,orderId:orderId,remark:remark},
+					"type": "get",
+					success:function (data){
+						localStorage.setItem("parentId",data.data);
+						//var url =baseUrl+'order/showTab?parentId='+parentId;
+						 //$('#tableAdd').DataTable().ajax.url(url).load();
+						 window.location.href= "add-order.html";
+					},
+					beforeSend:function(request){
+						request.setRequestHeader("token",userId);
+					}
+				});
+
+			}else {
+				parentId = localStorage.getItem("parentId");
+				var orderId = guid();
+				$.ajax({
+					"url": baseUrl+"order/saveOrder",
+					data:{num:beach_num,type:sellway,cusId:cusName,parentId:parentId,orderId:orderId,remark:remark},
+					"type": "get",
+					success:function (data){
+						//$("#parentId").val(parentId);
+						// var url =baseUrl+'order/showTab?parentId='+parentId;
+						// table2.ajax.url(url).load();
+						window.location.href= "add-order.html";
+					},
+					beforeSend:function(request){
+						request.setRequestHeader("token",userId);
+					}
+				});
+
+
+			}
+		});
+	}
+
+
+
+	function S4() {
+		return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+	}
+	function guid() {
+		return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+	}
+
+	function tab2(){
+		var parentId = localStorage.getItem("parentId");
+		$('#tableAdd').DataTable({
+			"bSort":true,
+			"bAutoWidth": true,
+			"processing": false,
+			"searching": false,
+			// "serverSide": true,
+			"bPaginate":false,
+			 "serverSide": false,
+			"bLengthChange":false,
+			"ajax": {//ajax请求数据源
+				"url": baseUrl+"order/showTab",
+				data:{parentId:parentId},
+				"type": "get",
+			},
+			language: {
+				"sProcessing": "处理中...",
+				"sLengthMenu": "显示 _MENU_ 项结果",
+				"sZeroRecords": "没有匹配结果",
+				"sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+				"sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+				"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+				"sInfoPostFix": "",
+				"sSearch": "搜索:",
+				"sUrl": "",
+				"sEmptyTable": "表中数据为空",
+				"sLoadingRecords": "暂无数据",
+				"oPaginate": {
+					"sFirst": "首页",
+					"sPrevious": "上页",
+					"sNext": "下页",
+					"sLast": "末页"
+				}},
+			"order": [],
+			columnDefs: [{
+				"targets": [2, 3,5],
+				createdCell: function (cell, cellData, rowData, rowIndex, colIndex) {
+					$(cell).click(function () {
+						$(this).html('<input type="text" size="16" style="width: 100%"/>');
+						var aInput = $(this).find(":input");
+						aInput.focus().val(cellData);
+					});
+					$(cell).on("blur", ":input", function () {
+						var text = $(this).val();
+						$(cell).html(text);
+						//editTableObj.cell(cell).data(text);
+						saveObj(text,colIndex,rowData);
+					});
+				}
+			}],
+			"columns": [
+				{"sTitle":"药品名称", "mDataProp": "merchName","sClass": "center", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"批号", "mDataProp": "beachNum","sClass": "center", "bSortable": false, "sWidth": "100"},
+				{"sTitle":"数量", "mDataProp": "count","sClass": "center", "bSortable": false, "sWidth": "100"},
+				// {"sTitle":"销售方式", "mDataProp": "sallWay","sClass": "center", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"销售单价", "mDataProp": "sallAmount","sClass": "center", "bSortable": false, "sWidth": "100"},
+				{"sTitle":"销售总额", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "100"},
+				 {"sTitle":"备注", "mDataProp": "remark","sClass": "center", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "100",mRender:function (data){
+						var html ="";
+						html+="<input type='button' onclick='deleteInfo(\""+data+"\")' value='删除子订单' />";
+						return html;
+					}},
+				// {"data": ''}
+			]
+		});
+		table2 = $('#tableAdd').DataTable();
+	}
+
+
+	function saveObj(cell,colIndex,rowData){
+		var id = rowData.id;
+		var beachNum = rowData.beachNum;
+		var count=rowData.count;
+		var sallAmount =rowData.sallAmount;
+		var remark = rowData.remark;
+		if(colIndex=='2'){
+			count = cell;
 		}
-
+		if(colIndex=='3'){
+			sallAmount = cell;
+		}
+		if(colIndex=='5'){
+			remark = cell;
+		}
+		$.ajax({
+			url:baseUrl+"order/updateOrder",
+			type:"get",
+			data:{id:id,beachNum:beachNum,count:count,sallAmount:sallAmount,remark:remark},
+			success:function (data){
+				if(data.success){
+					alert("更新完成");
+					window.location.href="add-order.html";
+				}else{
+					alert(data.data);
+				}
+			}
+		});
 	}
+
+	var table2 ;
+	function deleteInfo(id){
+		$.ajax({
+			url:baseUrl+"order/deleteOrder",
+			type:"get",
+			data:{id:id},
+			success:function (data){
+				if(data.success){
+					alert("删除完成");
+					window.location.href="add-order.html";
+				}else{
+					alert("删除完成");
+				}
+			}
+		});
+	}
+
 
 	function subInfo(){
 		var merchId = $("#merchId").select().val();
@@ -335,8 +584,6 @@
 				}
 			}
 		});
-
-
 	}
 </script>
 

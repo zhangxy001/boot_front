@@ -60,16 +60,24 @@
 					url:baseUrl+"login/session",
 					type:"get",
 					data:{account:account,pwd:pwd},
+					dataType:"json",
+					xhrFields:{withCredentials:true},
+					contentType: "application/x-www-form-urlencoded",
+					async:false,
 					success:function (data){
 						if (data.success){
 							var storage=window.localStorage;
 							storage.setItem("userId",data.data.id); //第三种存储方式，推荐使用
+							storage.setItem("name",data.data.name); //第三种存储方式，推荐使用
+							storage.setItem("role",data.data.role); //第三种存储方式，推荐使用
 							//跳转页面
 							window.location.href="sys/main.html";
 						}else {
 							jsWindow("登录错误",$("#sub"),0);
 						}
-						}
+						}, error: function () {
+							alert("跨域问题");
+					}
 						})
 			}
 		}

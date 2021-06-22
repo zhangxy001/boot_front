@@ -186,7 +186,7 @@
 				<div class="container mt-0">
 					<div class="row breadcrumb-bar">
 						<div class="col-md-6">
-							<h3 class="block-title">收入统计</h3>
+							<h3 class="block-title">手动录入</h3>
 						</div>
 						<div class="col-md-6">
 							<ol class="breadcrumb">
@@ -195,8 +195,8 @@
 										<span class="ti-home"></span>
 									</a>
 								</li>
-								<li class="breadcrumb-item">统计及其他</li>
-								<li class="breadcrumb-item active">收入对比统计</li>
+								<li class="breadcrumb-item">仓库数据导入导出</li>
+								<li class="breadcrumb-item active">手动录入</li>
 							</ol>
 						</div>
 					</div>
@@ -211,25 +211,21 @@
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">收入对比统计</h3>
-
-							<div class="row">
-							<div class="col-md-6">
-								<div class="widget-area-2 lochana-box-shadow">
-									<h3 class="widget-title">前四位药物利润对比</h3>
-									<div id="lineMorris" class="chart-home"></div>
+							<h3 class="widget-title">录入药品数据</h3>
+							<form>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="name">仓库名称</label>
+										<input  type="text" class="form-control" placeholder="请输入仓库名称" id="name">
+										<div class="form-group col-md-6">
+											<button type="button" class="btn btn-primary btn-lg" onclick="subInfomation()">提交</button>
+										</div>
+									</div>
 								</div>
-							</div>
-							<!-- /Widget Item -->
-							<!-- Widget Item -->
-							<div class="col-md-6">
-								<div class="widget-area-2 lochana-box-shadow">
-									<h3 class="widget-title"> 前四位药物收入对比</h3>
-									<div id="barMorris" class="chart-home"></div>
-								</div>
-							</div>
-							</div>
+							</form>
+							<!-- Alerts-->
 
+							<!-- /Alerts-->
 						</div>
 					</div>
 					<!-- /Widget Item -->
@@ -260,114 +256,48 @@
     
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
-	<script src="js/common.js"></script>
-
-	<script src="charts/js/raphael-min.js"></script>
-	<script src="charts/js/morris.min.js"></script>
-	<script src="js/custom-morris.js"></script>
+<script src="js/common.js"></script>
 
 </body>
-
 <script>
-	window.onload = initPic;
-	function  initPic(){
-		draw();
-		payment();
-	}
-	function draw(){
-		$.ajax({
-			url: baseUrl + "/statistics/drawAwardByMerch",
-			type: "get",
-			success: function (data) {
-				var name1 = data.data[0];
-				var value1 = parseFloat(data.data[1]);
-				var name2 = data.data[2];
-				var value2 = parseFloat(data.data[3]);
-				var name3 = data.data[4];
-				var value3 = parseFloat(data.data[5]);
-				var name4 = data.data[6];
-				var value4 = parseFloat(data.data[7]);
-				var data = [{
-					y: name1,
-					a: value1
-				}, {
-					y: name2,
-					a: value2
-				}, {
-					y: name3,
-					a: value3
-				}, {
-					y: name4,
-					a: value4
-				}];
-//barmorris
-				var ctx = document.getElementById("lineMorris");
-				if (ctx === null) return;
-				var chart = Morris.Bar({
-					element: 'lineMorris',
-					data: data,
-					xkey: 'y',
-					ykeys: ['a'],
-					labels: ['Patients'],
-					barColors: ['#FF7D00'],
-					barOpacity: 1,
-					barSizeRatio: 0.5,
-					hideHover: 'auto',
-					gridLineColor: '#eef0f2',
-					resize: true
-				});
 
+
+
+	function subInfomation(){
+		const name = $("#name").val();
+		if(name==''||name=='请输入仓库名称'){
+			alert("请输入仓库名称！");
+			return false;
+				}
+		$.ajax({
+			type:"get",
+			url:baseUrl+"/depository/saveDepository",
+			data:{"name":name},
+			dataType:"json",
+			xhrFields:{withCredentials:true},
+			contentType: "application/x-www-form-urlencoded",
+			async:false,
+			beforeSend:function (request){
+				request.setRequestHeader("token",userId);
+			},
+			success:function (data){
+				alert(data);
+				if(data.success){
+					alert("保存成功！");
+					location.href="depository.html";
+				}
 			}
 		});
 	}
 
-	function payment(){
-		$.ajax({
-			url: baseUrl + "/statistics/drawPayByMerch",
-			type: "get",
-			success: function (data) {
-				var name1 = data.data[0];
-				var value1 = parseFloat(data.data[1]);
-				var name2 = data.data[2];
-				var value2 = parseFloat(data.data[3]);
-				var name3 = data.data[4];
-				var value3 = parseFloat(data.data[5]);
-				var name4 = data.data[6];
-				var value4 = parseFloat(data.data[7]);
-				var data = [{
-					y: name1,
-					a: value1
-				}, {
-					y: name2,
-					a: value2
-				}, {
-					y: name3,
-					a: value3
-				}, {
-					y: name4,
-					a: value4
-				}];
-//barmorris
-				var ctx = document.getElementById("barMorris");
-				if (ctx === null) return;
-				var chart = Morris.Bar({
-					element: 'barMorris',
-					data: data,
-					xkey: 'y',
-					ykeys: ['a'],
-					labels: ['Patients'],
-					barColors: ['#FF7D00'],
-					barOpacity: 1,
-					barSizeRatio: 0.5,
-					hideHover: 'auto',
-					gridLineColor: '#eef0f2',
-					resize: true
-				});
+	// function ValnotNull(name){
+	// 	if(name==""||name="请输入仓库名称"){
+	// 			alert("页面所有元素都不能为空，请继续填写！");
+	// 			return false;
+	// 	}
+	// }
 
-			}
-		});
-	}
+
 
 </script>
-
 </html>

@@ -1,6 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
-
+﻿<html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -180,193 +178,199 @@
 				</div>
 			</nav>
 		</div>
-				<!-- /Menu -->
-				<!-- Breadcrumb -->
-				<!-- Page Title -->
-				<div class="container mt-0">
-					<div class="row breadcrumb-bar">
-						<div class="col-md-6">
-							<h3 class="block-title">收入统计</h3>
-						</div>
-						<div class="col-md-6">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item">
-									<a href="index.html">
-										<span class="ti-home"></span>
-									</a>
-								</li>
-								<li class="breadcrumb-item">统计及其他</li>
-								<li class="breadcrumb-item active">收入对比统计</li>
-							</ol>
-						</div>
-					</div>
+		<!-- /Menu -->
+		<!-- Breadcrumb -->
+		<!-- Page Title -->
+		<div class="container mt-0">
+			<div class="row breadcrumb-bar">
+				<div class="col-md-6">
+					<h3 class="block-title">导入数据</h3>
 				</div>
-			<!-- /Page Title -->
-
-			<!-- /Breadcrumb -->
-			<!-- Main Content -->
-			<div class="container">
-
-				<div class="row">
-					<!-- Widget Item -->
-					<div class="col-md-12">
-						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">收入对比统计</h3>
-
-							<div class="row">
-							<div class="col-md-6">
-								<div class="widget-area-2 lochana-box-shadow">
-									<h3 class="widget-title">前四位药物利润对比</h3>
-									<div id="lineMorris" class="chart-home"></div>
-								</div>
-							</div>
-							<!-- /Widget Item -->
-							<!-- Widget Item -->
-							<div class="col-md-6">
-								<div class="widget-area-2 lochana-box-shadow">
-									<h3 class="widget-title"> 前四位药物收入对比</h3>
-									<div id="barMorris" class="chart-home"></div>
-								</div>
-							</div>
-							</div>
-
-						</div>
-					</div>
-					<!-- /Widget Item -->
+				<div class="col-md-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="index.html">
+								<span class="ti-home"></span>
+							</a>
+						</li>
+						<li class="breadcrumb-item">客户数据导入导出</li>
+						<li class="breadcrumb-item active">导入数据</li>
+					</ol>
 				</div>
 			</div>
-			<!-- /Main Content -->
-			<!--Copy Rights-->
-
-			<!-- /Copy Rights-->
 		</div>
-		<!-- /Page Content -->
+		<!-- /Page Title -->
+
+		<!-- /Breadcrumb -->
+		<!-- Main Content -->
+		<div class="container">
+			<div class="row">
+				<!-- Widget Item -->
+				<div class="col-md-12">
+					<div class="widget-area-2 lochana-box-shadow">
+						<h3 class="widget-title">导入数据</h3>
+						<button class="button-btn-block" onclick="exportFile()">导出数据</button>
+						<form  method="post" enctype="multipart/form-data">
+							<input type="file" id="upfile" name="upfile">
+							<input type="button" value = "上传文件" onclick="subFile()">
+						</form>
+						<div class="table-responsive mb-3">
+							<table id="tableId" class="table table-bordered table-striped">
+								<!--                                    <tbody id="tb">-->
+
+								<!--                                    </tbody>-->
+							</table>
+
+						</div>
+					</div>
+				</div>
+				<!-- /Widget Item -->
+			</div>
+		</div>
+		<!-- /Main Content -->
+		<!--Copy Rights-->
+
+		<!-- /Copy Rights-->
 	</div>
-	<!-- Back to Top -->
-	<a id="back-to-top" href="#" class="back-to-top">
-		<span class="ti-angle-up"></span>
-	</a>
-	<!-- /Back to Top -->
-	<!-- Jquery Library-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<!-- Popper Library-->
-	<script src="js/popper.min.js"></script>
-	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
-	<script src="datatable/jquery.dataTables.min.js"></script>
-	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
-	<!-- Custom Script-->
-	<script src="js/custom.js"></script>
-	<script src="js/common.js"></script>
+	<!-- /Page Content -->
+</div>
+<!-- Back to Top -->
+<a id="back-to-top" href="#" class="back-to-top">
+	<span class="ti-angle-up"></span>
+</a>
+<!-- /Back to Top -->
+<!-- Jquery Library-->
+<script src="js/jquery-3.2.1.min.js"></script>
+<!-- Popper Library-->
+<script src="js/popper.min.js"></script>
+<!-- Bootstrap Library-->
+<script src="js/bootstrap.min.js"></script>
 
-	<script src="charts/js/raphael-min.js"></script>
-	<script src="charts/js/morris.min.js"></script>
-	<script src="js/custom-morris.js"></script>
-
+<!-- Datatable  -->
+<script src="datatable/jquery.dataTables.min.js"></script>
+<script src="datatable/dataTables.bootstrap4.min.js"></script>
+<!-- Custom Script-->
+<script src="js/custom.js"></script>
+<script src="js/common.js"></script>
 </body>
-
 <script>
-	window.onload = initPic;
-	function  initPic(){
-		draw();
-		payment();
+	function exportFile(){
+		window.location.href=baseUrl+"/export/exportCus";
 	}
-	function draw(){
-		$.ajax({
-			url: baseUrl + "/statistics/drawAwardByMerch",
-			type: "get",
-			success: function (data) {
-				var name1 = data.data[0];
-				var value1 = parseFloat(data.data[1]);
-				var name2 = data.data[2];
-				var value2 = parseFloat(data.data[3]);
-				var name3 = data.data[4];
-				var value3 = parseFloat(data.data[5]);
-				var name4 = data.data[6];
-				var value4 = parseFloat(data.data[7]);
-				var data = [{
-					y: name1,
-					a: value1
-				}, {
-					y: name2,
-					a: value2
-				}, {
-					y: name3,
-					a: value3
-				}, {
-					y: name4,
-					a: value4
-				}];
-//barmorris
-				var ctx = document.getElementById("lineMorris");
-				if (ctx === null) return;
-				var chart = Morris.Bar({
-					element: 'lineMorris',
-					data: data,
-					xkey: 'y',
-					ykeys: ['a'],
-					labels: ['Patients'],
-					barColors: ['#FF7D00'],
-					barOpacity: 1,
-					barSizeRatio: 0.5,
-					hideHover: 'auto',
-					gridLineColor: '#eef0f2',
-					resize: true
-				});
+	window.onload=initData;
+	function initData(){
+		$('#tableId').DataTable({
+			// "destroy":true,
+			"processing": true,
+			"searching": true,
+			// "serverSide": true,
+			"bPaginate":true,
+			"bLengthChange":true,
+			"edit":true,
+			"bFilter":true,
+			"bSort":true,
+			"bAutoWidth": true,
+			language: {
+				"sProcessing": "处理中...",
+				"sLengthMenu": "显示 _MENU_ 项结果",
+				"sZeroRecords": "没有匹配结果",
+				"sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+				"sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+				"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+				"sInfoPostFix": "",
+				"sSearch": "搜索客户名称:",
+				"sUrl": "",
+				"sEmptyTable": "表中数据为空",
+				"sLoadingRecords": "载入中...",
+				"oPaginate": {
+					"sFirst": "首页",
+					"sPrevious": "上页",
+					"sNext": "下页",
+					"sLast": "末页"
+				}},
+			"ajax": {//ajax请求数据源
+				"url": baseUrl+"/cus/list",
+				"type": "post",
+			},
+			"order": [],
+			"columns": [
+				{"sTitle":"客户编号", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "20",editable:true},
+				{"sTitle":"客户名称", "mDataProp": "name","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"客户电话", "mDataProp": "phone","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
+				{"sTitle":"客户地址", "mDataProp": "address","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"负责人", "mDataProp": "cusName","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
+				{"sTitle":"操作人", "mDataProp": "medicalAdminName","sClass": "center", "bSortable": false, "sWidth": "100"},
+				{"sTitle":"操作时间", "mDataProp": "createTime","sClass": "center", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "50",mRender:function (data){
+						var html ="";
+						// html+="<input type='button' onclick='editOne("+data+")' value='修改'></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+						html+="<input type='button' onclick='deleteInfo(\""+data+"\")' value='删除' />";
+						return html;
+					}},
 
+
+				// {"data": ''}
+			]
+		});
+	}
+
+	function subFile(){
+		var val = $("#upfile").val();
+		if(val==''||val=='undefined'){
+			alert("请先上传文件");
+			return false;
+		}
+		var formData = new FormData();
+		formData.append("upfile", document.getElementById("upfile").files[0]);
+		formData.append("type","3");
+		$.ajax({
+			url: baseUrl+"export/exportIntoFile",
+			type: "POST",
+			data: formData,
+			/**
+			 *必须false才会自动加上正确的Content-Type
+			 */
+			contentType: false,
+			/**
+			 * 必须false才会避开jQuery对 formdata 的默认处理
+			 * XMLHttpRequest会对 formdata 进行正确的处理
+			 */
+			processData: false,
+			beforeSend:function (request){
+				request.setRequestHeader("token",userId);
+			},
+			success: function (data) {
+				alert("导入成功！");
+				location.href='cus.html';
+			},
+			error: function () {
+				alert("导入失败！");
 			}
 		});
 	}
 
-	function payment(){
+	function deleteInfo(id){
 		$.ajax({
-			url: baseUrl + "/statistics/drawPayByMerch",
-			type: "get",
+			url:  baseUrl+"/cus/delById",
+			type: "post",
+			data:{"id":id},
+			dataType:"json",
+			xhrFields:{withCredentials:true},
+			contentType: "application/x-www-form-urlencoded",
+			async:false,
+			beforeSend:function (request){
+				request.setRequestHeader("token",userId);
+			},
 			success: function (data) {
-				var name1 = data.data[0];
-				var value1 = parseFloat(data.data[1]);
-				var name2 = data.data[2];
-				var value2 = parseFloat(data.data[3]);
-				var name3 = data.data[4];
-				var value3 = parseFloat(data.data[5]);
-				var name4 = data.data[6];
-				var value4 = parseFloat(data.data[7]);
-				var data = [{
-					y: name1,
-					a: value1
-				}, {
-					y: name2,
-					a: value2
-				}, {
-					y: name3,
-					a: value3
-				}, {
-					y: name4,
-					a: value4
-				}];
-//barmorris
-				var ctx = document.getElementById("barMorris");
-				if (ctx === null) return;
-				var chart = Morris.Bar({
-					element: 'barMorris',
-					data: data,
-					xkey: 'y',
-					ykeys: ['a'],
-					labels: ['Patients'],
-					barColors: ['#FF7D00'],
-					barOpacity: 1,
-					barSizeRatio: 0.5,
-					hideHover: 'auto',
-					gridLineColor: '#eef0f2',
-					resize: true
-				});
-
+				alert("删除成功！");
+				location.href = "cus.html";
+			},
+			error: function () {
+				alert("删除失败！");
 			}
 		});
 	}
+
 
 </script>
 

@@ -130,6 +130,7 @@
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 								 aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 								<div class="dropdown-menu">
+									<a class="dropdown-item" href="#" onclick="exportTemplate(4)">导出订单模板</a>
 									<a class="dropdown-item" href="add-order.html">添加采购订单</a>
 									<a class="dropdown-item" href="orders.html">订单列表</a>
 									<a class="dropdown-item" href="his-orders.html">已完成订单信息</a>
@@ -155,6 +156,27 @@
 									<a class="dropdown-item" href="record_fin.html">手动录入</a>
 								</div>
 							</li>
+
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+								   aria-expanded="false"><span class="ti-key"></span> 仓库数据导入导出</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="#" onclick="exportTemplate(2)">导出仓库模板</a>
+									<a class="dropdown-item" href="depository.html">导入仓库数据</a>
+									<a class="dropdown-item" href="depository_fin.html">手动录入仓库信息</a>
+								</div>
+							</li>
+
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+								   aria-expanded="false"><span class="ti-key"></span> 客户数据导入导出</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="#" onclick="exportTemplate(3)">导出客户模板</a>
+									<a class="dropdown-item" href="cus.html">导入客户数据</a>
+									<a class="dropdown-item" href="cus_fin.html">手动录入客户信息</a>
+								</div>
+							</li>
+
 						</ul>
 					</div>
 				</nav>
@@ -190,7 +212,7 @@
 							<div class="widget-left">
 								<span class="ti-user"></span>
 							</div>
-							<div class="widget-right">
+							<div class="widget-right" onclick="jump()">
 								<h4 class="wiget-title">合作厂商</h4>
 								<span class="numeric color-red" id ="partner">348</span>
 								<p class="inc-dec mb-0"><span class="ti-angle-up" id="partner_increase"></span>增长</p>
@@ -204,7 +226,7 @@
 							<div class="widget-left">
 								<span class="ti-bar-chart"></span>
 							</div>
-							<div class="widget-right">
+							<div class="widget-right" onclick="jump2()">
 								<h4 class="wiget-title">订单</h4>
 								<span class="numeric color-green" id="order">1585</span>
 								<p class="inc-dec mb-0"><span class="ti-angle-up" id="order_increase"></span>增长</p>
@@ -218,7 +240,7 @@
 							<div class="widget-left">
 								<span class="ti-money"></span>
 							</div>
-							<div class="widget-right">
+							<div class="widget-right" onclick="jump2()">
 								<h4 class="wiget-title">收入</h4>
 								<span class="numeric color-yellow" id="payment">$7300</span>
 								<p class="inc-dec mb-0"><span class="ti-angle-up" id="payment_increase"></span>增长</p>
@@ -228,24 +250,24 @@
 					<!-- /Widget Item -->
 				</div>
 
-				<div class="row">
-					<!-- Widget Item -->
-					<div class="col-md-6">
-						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">订单按年统计</h3>
-							<div id="lineMorris" class="chart-home"></div>
-						</div>
-					</div>
-					<!-- /Widget Item -->
-					<!-- Widget Item -->
-					<div class="col-md-6">
-						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title"> 收入按季度统计</h3>
-							<div id="barMorris" class="chart-home"></div>
-						</div>
-					</div>
-					<!-- /Widget Item -->
-				</div>
+<!--				<div class="row">-->
+<!--					&lt;!&ndash; Widget Item &ndash;&gt;-->
+<!--					<div class="col-md-6">-->
+<!--						<div class="widget-area-2 lochana-box-shadow">-->
+<!--							<h3 class="widget-title">订单按年统计</h3>-->
+<!--							<div id="lineMorris" class="chart-home"></div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					&lt;!&ndash; /Widget Item &ndash;&gt;-->
+<!--					&lt;!&ndash; Widget Item &ndash;&gt;-->
+<!--					<div class="col-md-6">-->
+<!--						<div class="widget-area-2 lochana-box-shadow">-->
+<!--							<h3 class="widget-title"> 收入按季度统计</h3>-->
+<!--							<div id="barMorris" class="chart-home"></div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					&lt;!&ndash; /Widget Item &ndash;&gt;-->
+<!--				</div>-->
 
 				<div class="row">
 					<!-- Widget Item -->
@@ -334,8 +356,14 @@
 	<script src="js/custom.js"></script>
 </body>
 <script>
-	function exportTemplate(){
-		window.location.href=baseUrl+"export/exportFile";
+	// function exportTemplate(){
+	// 	window.location.href=baseUrl+"export/exportFile";
+	// }
+	function jump(){
+		window.location.href="cus.html";
+	}
+	function jump2(){
+		window.location.href="orders.html";
 	}
 
 	window.onload = initData;
@@ -343,9 +371,9 @@
 		initRankList();
 		initStorm();
 		initShowFast();
-		draw();
+		// draw();
 		cicle();
-		payment();
+		// payment();
 	}
 
 	function initRankList(){
@@ -353,6 +381,10 @@
 		$.ajax({
 			url:baseUrl+"statistics/rankingList",
 			type:"get",
+			dataType:"json",
+			xhrFields:{withCredentials:true},
+			contentType: "application/x-www-form-urlencoded",
+			async:false,
 			success:function (data){
 				var tbody = $("#tb");
 				var list = data.data;
@@ -380,6 +412,10 @@
 		$.ajax({
 			url:baseUrl+"statistics/store",
 			type:"get",
+			dataType:"json",
+			xhrFields:{withCredentials:true},
+			contentType: "application/x-www-form-urlencoded",
+			async:false,
 			success:function (data){
 				if(data.success){
 					var list = data.data;
@@ -404,6 +440,10 @@
 		$.ajax({
 			url:baseUrl+"statistics/fastStatistics",
 			type:"get",
+			dataType:"json",
+			xhrFields:{withCredentials:true},
+			contentType: "application/x-www-form-urlencoded",
+			async:false,
 			success:function (data){
 				if(data.success){
 					console.info(data.data);
@@ -423,6 +463,10 @@
 		$.ajax({
 			url: baseUrl + "/statistics/drawCount",
 			type: "get",
+			dataType:"json",
+			xhrFields:{withCredentials:true},
+			contentType: "application/x-www-form-urlencoded",
+			async:false,
 			success: function (data) {
 				console.info(data);
 				var value1 = parseInt(data.data[0]);
@@ -475,6 +519,10 @@
 		$.ajax({
 			url: baseUrl + "/statistics/drawPay",
 			type: "get",
+			dataType:"json",
+			xhrFields:{withCredentials:true},
+			contentType: "application/x-www-form-urlencoded",
+			async:false,
 			success: function (data) {
 				var value1 = parseFloat(data.data[0]);
 				var value2 = parseFloat(data.data[1]);
@@ -520,14 +568,18 @@
 		$.ajax({
 			url:baseUrl+"/statistics/drawCicle",
 			type:"get",
+			dataType:"json",
+			xhrFields:{withCredentials:true},
+			contentType: "application/x-www-form-urlencoded",
+			async:false,
 			success:function (data){
 				if(data.success){
 					// morris donut charts
 					if($("#donutMorris").length == 1){
 						var $donutData = [
-							{ label: "在途中", value: data.data.ing },
+							{ label: "开全票", value: data.data.ing },
 							{ label: "待发货", value: data.data.cre },
-							{ label: "已完成", value: data.data.fin }
+							{ label: "付全款", value: data.data.fin }
 						];
 						Morris.Donut({
 							element: 'donutMorris',

@@ -129,6 +129,7 @@
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#" onclick="exportTemplate(4)">导出订单模板</a>
 								<a class="dropdown-item" href="add-order.html">添加采购订单</a>
 								<a class="dropdown-item" href="orders.html">订单列表</a>
 								<a class="dropdown-item" href="his-orders.html">已完成订单信息</a>
@@ -154,6 +155,27 @@
 								<a class="dropdown-item" href="record_fin.html">手动录入</a>
 							</div>
 						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+							   aria-expanded="false"><span class="ti-key"></span> 仓库数据导入导出</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#" onclick="exportTemplate(2)">导出仓库模板</a>
+								<a class="dropdown-item" href="depository.html">导入仓库数据</a>
+								<a class="dropdown-item" href="depository_fin.html">手动录入仓库信息</a>
+							</div>
+						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+							   aria-expanded="false"><span class="ti-key"></span> 客户数据导入导出</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#" onclick="exportTemplate(3)">导出客户模板</a>
+								<a class="dropdown-item" href="cus.html">导入客户数据</a>
+								<a class="dropdown-item" href="cus_fin.html">手动录入客户信息</a>
+							</div>
+						</li>
+
 					</ul>
 				</div>
 			</nav>
@@ -164,7 +186,7 @@
 				<div class="container mt-0">
 					<div class="row breadcrumb-bar">
 						<div class="col-md-6">
-							<h3 class="block-title">Add Room Allotment</h3>
+							<h3 class="block-title">手动录入</h3>
 						</div>
 						<div class="col-md-6">
 							<ol class="breadcrumb">
@@ -173,8 +195,8 @@
 										<span class="ti-home"></span>
 									</a>
 								</li>
-								<li class="breadcrumb-item">Room Allotments</li>
-								<li class="breadcrumb-item active">Add Room Allotment</li>
+								<li class="breadcrumb-item">客户数据导入导出</li>
+								<li class="breadcrumb-item active">手动录入</li>
 							</ol>
 						</div>
 					</div>
@@ -189,64 +211,36 @@
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">Add Room Allotment</h3>
+							<h3 class="widget-title">录入客户数据</h3>
 							<form>
 								<div class="form-row">
 									<div class="form-group col-md-6">
-										<label for="room-number">Room Number</label>
-										<input type="text" class="form-control" placeholder="Room Number" id="room-number">
+										<label for="name">客户名称</label>
+										<input  type="text" class="form-control" placeholder="请输入客户名称" id="name">
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="phone">客户电话</label>
+										<input  type="text" class="form-control" placeholder="请输入客户电话" id="phone">
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="cusName">客户负责人</label>
+										<input  type="text" class="form-control" placeholder="请输入客户负责人名称" id="cusName">
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="address">客户地址</label>
+										<input  type="text" class="form-control" placeholder="请输入客户地址" id="address">
+
 									</div>
 									<div class="form-group col-md-6">
-										<label for="room-type">Room Type</label>
-										<select class="form-control" id="room-type">
-											<option>ICU</option>
-											<option>General</option>
-											<option>AC Room</option>
-										</select>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="patient-name">名人姓名</label>
-										<input type="text" placeholder="名人姓名" class="form-control" id="patient-name">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="allot-date">Allotment Date</label>
-										<input type="date" placeholder="Allotment Date" class="form-control" id="allot-date">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="discharge-date">Discharge Date</label>
-										<input type="date" placeholder="Discharge Date" class="form-control" id="discharge-date">
-									</div>
-									<div class="form-group col-md-6">
-										<label for="doctor-name">医生 Name</label>
-										<input type="text" placeholder="医生 Name" class="form-control" id="doctor-name">
-									</div>
-																		
-									<div class="form-check col-md-12 mb-2">
-										<div class="text-left">
-											<div class="custom-control custom-checkbox">
-												<input class="custom-control-input" type="checkbox" id="ex-check-2">
-												<label class="custom-control-label" for="ex-check-2">Please Confirm</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group col-md-6 mb-3">
-										<button type="submit" class="btn btn-primary btn-lg">Allot Room</button>
+										<button type="button" class="btn btn-primary btn-lg" onclick="subInfomation()">提交</button>
 									</div>
 								</div>
 							</form>
 							<!-- Alerts-->
-							<div class="alert alert-success alert-dismissible fade show" role="alert">
-								<strong>Successfully Done!</strong> Please check in Allotment list
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
-							<div class="alert alert-warning alert-dismissible fade show" role="alert">
-								<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
+
 							<!-- /Alerts-->
 						</div>
 					</div>
@@ -255,11 +249,7 @@
 			</div>
 			<!-- /Main Content -->
 			<!--Copy Rights-->
-			<div class="container">
-				<div class="d-sm-flex justify-content-center">
-				  <span class="text-muted text-center d-block d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">konnectcode</a>. All rights reserved.</span> 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
-				</div>
-			</div>
+
 			<!-- /Copy Rights-->
 		</div>
 		<!-- /Page Content -->
@@ -282,7 +272,64 @@
     
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
+<script src="js/common.js"></script>
 
 </body>
+<script>
 
+
+
+	function subInfomation(){
+		const name = $("#name").val();
+		const phone = $("#phone").val();
+		const address = $("#address").val();
+		const cusName = $("#cusName").val();
+
+		if(name==''){
+			alert("请输入客户名称！");
+			return false;
+				}
+
+		if(phone==''){
+			alert("请输入客户电话！");
+			return false;
+		}
+		if(address==''){
+			alert("请输入客户地址！");
+			return false;
+		}
+		if(cusName==''){
+			alert("请输入负责人名称！");
+			return false;
+		}
+		$.ajax({
+			type:"post",
+			url:baseUrl+"/cus/saveCus",
+			data:{"name":name,"phone":phone,"address":address,"cusName":cusName},
+			dataType:"json",
+			xhrFields:{withCredentials:true},
+			contentType: "application/x-www-form-urlencoded",
+			async:false,
+			beforeSend:function (request){
+				request.setRequestHeader("token",userId);
+			},
+			success:function (data){
+				if(data.success){
+					alert("保存成功！");
+					location.href="cus.html";
+				}
+			}
+		});
+	}
+
+	// function ValnotNull(name){
+	// 	if(name==""||name="请输入仓库名称"){
+	// 			alert("页面所有元素都不能为空，请继续填写！");
+	// 			return false;
+	// 	}
+	// }
+
+
+
+</script>
 </html>

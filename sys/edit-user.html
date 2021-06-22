@@ -133,6 +133,7 @@
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#" onclick="exportTemplate(4)">导出订单模板</a>
 								<a class="dropdown-item" href="add-order.html">添加采购订单</a>
 								<a class="dropdown-item" href="orders.html">订单列表</a>
 								<a class="dropdown-item" href="his-orders.html">已完成订单信息</a>
@@ -158,6 +159,27 @@
 								<a class="dropdown-item" href="record_fin.html">手动录入</a>
 							</div>
 						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+							   aria-expanded="false"><span class="ti-key"></span> 仓库数据导入导出</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#" onclick="exportTemplate(2)">导出仓库模板</a>
+								<a class="dropdown-item" href="depository.html">导入仓库数据</a>
+								<a class="dropdown-item" href="depository_fin.html">手动录入仓库信息</a>
+							</div>
+						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+							   aria-expanded="false"><span class="ti-key"></span> 客户数据导入导出</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#" onclick="exportTemplate(3)">导出客户模板</a>
+								<a class="dropdown-item" href="cus.html">导入客户数据</a>
+								<a class="dropdown-item" href="cus_fin.html">手动录入客户信息</a>
+							</div>
+						</li>
+
 					</ul>
 				</div>
 			</nav>
@@ -308,8 +330,12 @@
 		}
 		$.ajax({
 			url:baseUrl+"login/findById",
-			type:"get",
+			type:"post",
 			data:{id:id},
+			dataType:"json",
+			xhrFields:{withCredentials:true},
+			contentType: "application/x-www-form-urlencoded",
+			async:false,
 			success:function (data){
 				//填充信息
 				 $("#id").val(data.data.id);
@@ -318,6 +344,9 @@
 				 $("#account").val(data.data.account);
 				 $("#phone").val(data.data.phone);
 				$("#role").select().val(data.data.role);
+			},
+			beforeSend:function(request){
+				request.setRequestHeader("token",userId);
 			}
 		});
 	}
@@ -350,6 +379,10 @@
 			url:baseUrl+"login/update",
 			type:"get",
 			data:{id:id,name:name,pwd:pwd,account:account,phone:phone,role:role},
+			dataType:"json",
+			xhrFields:{withCredentials:true},
+			contentType: "application/x-www-form-urlencoded",
+			async:false,
 			success:function (data){
 				if(data.success){
 					jsWindow("修改成功",$("#sub"),0);
