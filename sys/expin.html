@@ -23,6 +23,39 @@
 	<link rel="stylesheet" href="css/jquery-jvectormap.css">
 
 	<script src="js/modernizr.min.js"></script>
+	<style>
+
+		.loadingModal {
+			position: absolute;
+			top: 20%;
+			left: -45%;
+			/*transform: translateX(-50%) translateY(-50%);*/
+		}
+
+		.file {
+			position: relative;
+			text-decoration: none;
+			text-indent: 0;
+			line-height: 20px;
+			float: left;
+			width: 23px;
+			height: 18px;
+			margin-left: 10px;
+		}
+		.file input {
+			position: absolute;
+			font-size: 100px;
+			right: 0;
+			top: 0;
+			opacity: 0;
+			width: 23px;
+			height: 18px;
+			margin-left: 10px;
+		}
+		.file:hover {
+			text-decoration: none;
+		}
+	</style>
 </head>
 
 <body>
@@ -36,9 +69,9 @@
 <!--/Pre Loader -->
 <!-- Color Changer -->
 <div class="theme-settings" id="switcher">
-		<span class="theme-click">
-			<span class="ti-settings"></span>
-		</span>
+<!--		<span class="theme-click">-->
+<!--			<span class="ti-settings"></span>-->
+<!--		</span>-->
 	<span class="theme-color theme-default theme-active" data-color="green"></span>
 	<span class="theme-color theme-blue" data-color="blue"></span>
 	<span class="theme-color theme-red" data-color="red"></span>
@@ -72,11 +105,11 @@
 							<!--								<a class="dropdown-item" href="#" onclick="">-->
 							<!--									<span class="ti-wheelchair"></span> 新消息</a>-->
 							<a class="dropdown-item" href="his-orders.html">
-								<span class="ti-money"></span> 已收款订单</a>
-							<a class="dropdown-item" href="ing-orders.html">
-								<span class="ti-time"></span>在途订单</a>
-							<a class="dropdown-item" href="cre-orders.html">
-								<span class="ti-wheelchair"></span> 未安排订单</a>
+								<span class="ti-money"></span> 订单信息</a>
+<!--							<a class="dropdown-item" href="ing-orders.html">-->
+<!--								<span class="ti-time"></span>在途订单</a>-->
+<!--							<a class="dropdown-item" href="cre-orders.html">-->
+<!--								<span class="ti-wheelchair"></span> 未安排订单</a>-->
 						</div>
 					</li>
 					<li class="nav-item">
@@ -129,23 +162,23 @@
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="#" onclick="exportTemplate(4)">导出订单模板</a>
+<!--								<a class="dropdown-item" href="#" onclick="exportTemplate(4)">导出订单模板</a>-->
 								<a class="dropdown-item" href="add-order.html">添加采购订单</a>
 								<a class="dropdown-item" href="orders.html">订单列表</a>
-								<a class="dropdown-item" href="his-orders.html">已完成订单信息</a>
-								<a class="dropdown-item" href="ing-orders.html">在途订单信息</a>
-								<a class="dropdown-item" href="cre-orders.html">未发货订单信息</a>
+								<a class="dropdown-item" href="his-orders.html">订单信息展示及导出</a>
+<!--								<a class="dropdown-item" href="ing-orders.html">在途订单信息</a>-->
+<!--								<a class="dropdown-item" href="cre-orders.html">未发货订单信息</a>-->
 							</div>
 						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-							   aria-expanded="false"><span class="ti-money"></span> 统计及其他</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="payment-year.html">收入对比统计</a>
-								<a class="dropdown-item" href="payment-quart.html">客户列表</a>
-								<!--								<a class="dropdown-item" href="payment-month.html">月度统计</a>-->
-							</div>
-						</li>
+<!--						<li class="nav-item dropdown">-->
+<!--							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"-->
+<!--							   aria-expanded="false"><span class="ti-money"></span> 统计及其他</a>-->
+<!--							<div class="dropdown-menu">-->
+<!--								<a class="dropdown-item" href="payment-year.html">收入对比统计</a>-->
+<!--								<a class="dropdown-item" href="payment-quart.html">客户列表</a>-->
+<!--								&lt;!&ndash;								<a class="dropdown-item" href="payment-month.html">月度统计</a>&ndash;&gt;-->
+<!--							</div>-->
+<!--						</li>-->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-key"></span> 药品数据导入导出</a>
@@ -210,10 +243,13 @@
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">药品目录</h3>
 							<form  method="post" enctype="multipart/form-data">
-							<input type="file" id="upfile" name="upfile">
-							<input type="button" value = "上传文件" onclick="subFile()">
+								<span class="file"><i
+										class="ti-export" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="file" id="upfile" name="upfile"  />
+               				 </span>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" value = "上传文件" class="btn-primary btn" onclick="subFile()">
 							</form>
 							<div class="table-responsive mb-3">
 								<table id="tableId" class="table table-bordered table-striped">
@@ -254,6 +290,34 @@
 	<script src="js/common.js"></script>
 
 <!--	<script src="js/custom-datatables.js"></script>-->
+
+<!-- 模态框（Modal） -->
+<div class="modal fade loadingModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: left">
+	<div class="modal-dialog">
+		<div class="modal-content" style="width: 1200px;">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<!--				<h4 class="modal-title" id="myModalLabel">-->
+				<!--					订单明细-->
+				<!--				</h4>-->
+			</div>
+			<div class="modal-body" >
+				<table id="detail" style="width: 100%">
+
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-dark" data-dismiss="modal">关闭
+				</button>
+				<!--				<button type="button" class="btn btn-primary">-->
+				<!--					提交更改-->
+				<!--				</button>-->
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
 </body>
 <script>
 	window.onload=initData;
@@ -301,10 +365,11 @@
 				{"sTitle":"容量单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "100"},
 				{"sTitle":"生产单位", "mDataProp": "product","sClass": "center", "bSortable": false, "sWidth": "200"},
 				{"sTitle":"供应商", "mDataProp": "privide","sClass": "center", "bSortable": false, "sWidth": "200"},
-				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "50",mRender:function (data){
+				{"sTitle":"操作", "mDataProp": "merch_id","sClass": "center", "bSortable": false, "sWidth": "50",mRender:function (data){
 						var html ="";
 						// html+="<input type='button' onclick='editOne("+data+")' value='修改'></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-						html+="<input type='button' onclick='deleteInfo(\""+data+"\")' value='删除' />";
+						html+="<input type='button' class=\"btn-danger btn\" onclick='deleteInfo(\""+data+"\")' value='删除' />";
+						html+="<input type='button' class=\"btn-dark btn\" data-toggle=\"modal\" data-target=\"#myModal\" onclick='showDetail(\""+data+"\")' value='查看详情' />";
 						return html;
 					}},
 				// {"data": ''}
@@ -312,9 +377,191 @@
 		});
 	}
 
+	function showDetail(id){
+		$('#detail').DataTable({
+			// "destroy":true,
+			"bDestroy":true,
+			"processing": false,
+			"searching": false,
+			// "serverSide": true,
+			"bPaginate":false,
+			"bLengthChange":false,
+			"edit":false,
+			"bFilter":false,
+			"bSort":true,
+			"bAutoWidth": true,
+			language: {
+				"sProcessing": "处理中...",
+				"sLengthMenu": "显示 _MENU_ 项结果",
+				"sZeroRecords": "没有匹配结果",
+				"sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+				"sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+				"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+				"sInfoPostFix": "",
+				"sSearch": "搜索:",
+				"sUrl": "",
+				"sEmptyTable": "表中数据为空",
+				"sLoadingRecords": "载入中...",
+				"oPaginate": {
+					"sFirst": "首页",
+					"sPrevious": "上页",
+					"sNext": "下页",
+					"sLast": "末页"
+				}},
+			"ajax": {//ajax请求数据源
+				"url": baseUrl+"/option/getBeachByMechId",
+				data:{
+					id:id
+				},
+				"type": "post",
+			},
+			"order": [],
+			"columns": [
+				{"sTitle":"批次id", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"批号", "mDataProp": "beach_num","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"药名", "mDataProp": "meachName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"数量", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"规格", "mDataProp": "type","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"剂量", "mDataProp": "type2","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"容量单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"商业公司", "mDataProp": "depositoryName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"开始时间", "mDataProp": "startTime","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,mRender:function (data){
+						var date = new Date(data);
+						date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
+						return date;
+					}},
+				{"sTitle":"有效期至", "mDataProp": "endTime","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,mRender:function (data){
+						var date = new Date(data);
+						date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
+						return date;
+					}},
+				{"sTitle":"生产厂家", "mDataProp": "product","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "50",mRender:function (data,cell){
+						var html ="";
+						// html+="<input type='button' onclick='editOne("+data+")' value='修改'></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+						html+="<input type='button' class='btn btn-danger'  onclick='deleteBeach(\""+data+"\")' value='删除批次' /></br>";
+						return html;
+					}},
+			],"createdRow": function( row, data, dataIndex ) {
+				if(data.id.length > 3){//只有超长，才有td点击事件
+					$(row).children('td').eq(0).attr('onclick','javascript:changeShowRemarks2(this);');
+				}
+				$(row).children('td').eq(0).attr('content',data.id);
+
+				if(data.beach_num.length > 3){//只有超长，才有td点击事件
+					$(row).children('td').eq(1).attr('onclick','javascript:changeShowRemarks2(this);');
+				}
+				$(row).children('td').eq(1).attr('content',data.beach_num);
+				if(data.depositoryName.length > 3){//只有超长，才有td点击事件
+					$(row).children('td').eq(7).attr('onclick','javascript:changeShowRemarks(this);');
+				}
+				$(row).children('td').eq(7).attr('content',data.depositoryName);
+
+			},
+			"columnDefs" : [
+				{
+					"type": "date",
+					"targets": 7,
+					"render": function (data, type, full, meta) {
+						if (full.depositoryName.length > 3) {
+							return getPartialRemarksHtml(full.depositoryName);//显示部分信息
+						} else {
+							return full.depositoryName;//显示原始全部信息 }
+						}
+					}},
+				{
+					"type": "date",
+					"targets": 0,
+					"render": function (data, type, full, meta) {
+						if (full.id.length > 6) {
+							return getPartialRemarksHtml2(full.id);//显示部分信息
+						} else {
+							return full.id;//显示原始全部信息 }
+						}
+					}},
+				{
+					"type": "date",
+					"targets": 1,
+					"render": function (data, type, full, meta) {
+						if (full.beach_num.length > 3) {
+							return getPartialRemarksHtml2(full.beach_num);//显示部分信息
+						} else {
+							return full.beach_num;//显示原始全部信息 }
+						}
+					}}
+
+
+			]
+		});
+	}
+
+
+	function deleteBeach(id){
+		var confirm = window.confirm("是否删除当前批次？");
+		if(!confirm){
+			return false;
+		}
+		$.ajax({
+			"url": baseUrl+"/option/deleteBeachByid",
+			data:{
+				id:id
+			},
+			"type": "post",
+			success:function (data){
+				alert("删除成功");
+				location.href = "expin.html";
+			}
+		});
+	}
+
+
+	//切换显示备注信息，显示部分或者全部
+	function changeShowRemarks(obj){//obj是td
+		var content = $(obj).attr("content");
+		if(content != null && content != ''){
+			if($(obj).attr("isDetail") == 'true'){//当前显示的是详细备注，切换到显示部分
+				//$(obj).removeAttr('isDetail');//remove也可以
+				$(obj).attr('isDetail',false);
+				$(obj).html(getPartialRemarksHtml(content));
+			}else{//当前显示的是部分备注信息，切换到显示全部
+				$(obj).attr('isDetail',true);
+				$(obj).html(getTotalRemarksHtml(content));
+			}
+		}
+	}
+
+	//切换显示备注信息，显示部分或者全部
+	function changeShowRemarks2(obj){//obj是td
+		var content = $(obj).attr("content");
+		if(content != null && content != ''){
+			if($(obj).attr("isDetail") == 'true'){//当前显示的是详细备注，切换到显示部分
+				//$(obj).removeAttr('isDetail');//remove也可以
+				$(obj).attr('isDetail',false);
+				$(obj).html(getPartialRemarksHtml2(content));
+			}else{//当前显示的是部分备注信息，切换到显示全部
+				$(obj).attr('isDetail',true);
+				$(obj).html(getTotalRemarksHtml2(content));
+			}
+		}
+	}
+	//部分备注信息
+	function getPartialRemarksHtml(remarks){
+		return remarks.substr(0,6) + '&nbsp<a href="javascript:void(0);"><b>[详情...]</b></a>';
+	}
+	function getPartialRemarksHtml2(remarks){
+		return remarks.substr(0,3) + '&nbsp<a href="javascript:void(0);"><b>[详情...]</b></a>';
+	}
+	//全部备注信息
+	function getTotalRemarksHtml(remarks){
+		return remarks + '&nbsp;<a href="javascript:void(0);" ><b>[收起]</b></a>';
+	}
+	//全部备注信息
+	function getTotalRemarksHtml2(remarks){
+		return remarks + '&nbsp;<a href="javascript:void(0);" ><b>[收起]</b></a>';
+	}
+
 	function subFile(){
 		var val = $("#upfile").val();
-		alert(val);
 		if(val==''||val=='undefined'){
 			alert("请先上传文件");
 			return false;

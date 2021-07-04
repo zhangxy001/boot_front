@@ -1,6 +1,6 @@
-var baseUrl = "http://localhost:8080/medical/";
+//var baseUrl = "http://localhost:8080/medical/";
 
-//var baseUrl = "http://49.232.83.75/medical/"
+var baseUrl = "http://49.232.83.75/medical/"
 const userId = window.localStorage.getItem("userId");
 const userName = window.localStorage.getItem("name");
 const userRole = window.localStorage.getItem("role");

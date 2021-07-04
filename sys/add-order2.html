@@ -23,7 +23,6 @@
 	<script src="js/modernizr.min.js"></script>
 	<style>
 		.table{text-align: center;}
-
 		.ui-autocomplete{
 			background-color: aliceblue;
 			width: 500px;
@@ -63,7 +62,7 @@
 			<div class="container top-brand">
 				<nav class="navbar navbar-default">
 					<div class="navbar-header">
-						<div class="sidebar-header"> <a href="main.html"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
+						<div class="sidebar-header"> <a href="main2.html"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 						</div>
 					</div>
 					<ul class="nav justify-content-end">
@@ -81,12 +80,12 @@
 								<h5>订单通知</h5>
 								<!--								<a class="dropdown-item" href="#" onclick="">-->
 								<!--									<span class="ti-wheelchair"></span> 新消息</a>-->
-								<a class="dropdown-item" href="his-orders.html">
-									<span class="ti-money"></span> 已收款订单</a>
-								<a class="dropdown-item" href="ing-orders.html">
-									<span class="ti-time"></span>在途订单</a>
-								<a class="dropdown-item" href="cre-orders.html">
-									<span class="ti-wheelchair"></span> 未安排订单</a>
+<!--								<a class="dropdown-item" href="his-orders.html">-->
+<!--									<span class="ti-money"></span> 已收款订单</a>-->
+<!--								<a class="dropdown-item" href="ing-orders.html">-->
+<!--									<span class="ti-time"></span>在途订单</a>-->
+<!--								<a class="dropdown-item" href="cre-orders.html">-->
+<!--									<span class="ti-wheelchair"></span> 未安排订单</a>-->
 							</div>
 						</li>
 						<li class="nav-item">
@@ -123,29 +122,38 @@
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 								   aria-expanded="false"><span class="ti-home"></span> 主页</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="main.html">回到主页</a>
+									<a class="dropdown-item" href="main2.html">回到主页</a>
 								</div>
 							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								   aria-expanded="false"><span class="ti-user"></span> 人员管理</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="add-user.html">添加用户信息</a>
-									<a class="dropdown-item" href="users.html">管理用户信息</a>
-									<a class="dropdown-item" href="edit-user.html">编辑我的个人信息</a>
-								</div>
-							</li>
+<!--							<li class="nav-item dropdown">-->
+<!--								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"-->
+<!--								   aria-expanded="false"><span class="ti-user"></span> 人员管理</a>-->
+<!--								<div class="dropdown-menu">-->
+<!--									<a class="dropdown-item" href="add-user.html">添加用户信息</a>-->
+<!--									<a class="dropdown-item" href="users.html">管理用户信息</a>-->
+<!--									<a class="dropdown-item" href="edit-user.html">编辑我的个人信息</a>-->
+<!--								</div>-->
+<!--							</li>-->
 
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 								   aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 								<div class="dropdown-menu">
 <!--									<a class="dropdown-item" href="#" onclick="exportTemplate(4)">导出订单模板</a>-->
-									<a class="dropdown-item" href="add-order.html">添加采购订单</a>
-									<a class="dropdown-item" href="orders.html">订单列表</a>
-									<a class="dropdown-item" href="his-orders.html">订单信息展示及导出</a>
+									<a class="dropdown-item" href="add-order2.html">添加采购订单</a>
+									<a class="dropdown-item" href="orders2.html">订单列表</a>
+<!--									<a class="dropdown-item" href="his-orders.html">已完成订单信息</a>-->
 <!--									<a class="dropdown-item" href="ing-orders.html">在途订单信息</a>-->
 <!--									<a class="dropdown-item" href="cre-orders.html">未发货订单信息</a>-->
+								</div>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+								   aria-expanded="false"><span class="ti-key"></span> 客户数据录入</a>
+								<div class="dropdown-menu">
+									<!--								<a class="dropdown-item" href="#" onclick="exportTemplate(3)">导出客户模板</a>-->
+									<a class="dropdown-item" href="cus2.html">客户列表</a>
+									<a class="dropdown-item" href="cus_fin2.html">手动录入客户信息</a>
 								</div>
 							</li>
 <!--							<li class="nav-item dropdown">-->
@@ -157,35 +165,35 @@
 <!--									&lt;!&ndash;								<a class="dropdown-item" href="payment-month.html">月度统计</a>&ndash;&gt;-->
 <!--								</div>-->
 <!--							</li>-->
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								   aria-expanded="false"><span class="ti-key"></span> 药品数据导入导出</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#" onclick="exportTemplate()">导出模板</a>
-									<a class="dropdown-item" href="expin.html">excle导入数据</a>
-									<a class="dropdown-item" href="record_fin.html">手动录入</a>
-								</div>
-							</li>
+<!--							<li class="nav-item dropdown">-->
+<!--								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"-->
+<!--								   aria-expanded="false"><span class="ti-key"></span> 药品数据导入导出</a>-->
+<!--								<div class="dropdown-menu">-->
+<!--									<a class="dropdown-item" href="#" onclick="exportTemplate()">导出模板</a>-->
+<!--									<a class="dropdown-item" href="expin.html">excle导入数据</a>-->
+<!--									<a class="dropdown-item" href="record_fin.html">手动录入</a>-->
+<!--								</div>-->
+<!--							</li>-->
 
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								   aria-expanded="false"><span class="ti-key"></span> 仓库数据导入导出</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#" onclick="exportTemplate(2)">导出仓库模板</a>
-									<a class="dropdown-item" href="depository.html">导入仓库数据</a>
-									<a class="dropdown-item" href="depository_fin.html">手动录入仓库信息</a>
-								</div>
-							</li>
+<!--							<li class="nav-item dropdown">-->
+<!--								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"-->
+<!--								   aria-expanded="false"><span class="ti-key"></span> 仓库数据导入导出</a>-->
+<!--								<div class="dropdown-menu">-->
+<!--									<a class="dropdown-item" href="#" onclick="exportTemplate(2)">导出仓库模板</a>-->
+<!--									<a class="dropdown-item" href="depository.html">导入仓库数据</a>-->
+<!--									<a class="dropdown-item" href="depository_fin.html">手动录入仓库信息</a>-->
+<!--								</div>-->
+<!--							</li>-->
 
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								   aria-expanded="false"><span class="ti-key"></span> 客户数据导入导出</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#" onclick="exportTemplate(3)">导出客户模板</a>
-									<a class="dropdown-item" href="cus.html">导入客户数据</a>
-									<a class="dropdown-item" href="cus_fin.html">手动录入客户信息</a>
-								</div>
-							</li>
+<!--							<li class="nav-item dropdown">-->
+<!--								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"-->
+<!--								   aria-expanded="false"><span class="ti-key"></span> 客户数据导入导出</a>-->
+<!--								<div class="dropdown-menu">-->
+<!--									<a class="dropdown-item" href="#" onclick="exportTemplate(3)">导出客户模板</a>-->
+<!--									<a class="dropdown-item" href="cus.html">导入客户数据</a>-->
+<!--									<a class="dropdown-item" href="cus_fin.html">手动录入客户信息</a>-->
+<!--								</div>-->
+<!--							</li>-->
 
 						</ul>
 					</div>
@@ -227,7 +235,7 @@
 								<div class="form-row">
 									<div class="form-group col-md-6">
 										<label for="cusName">客户</label>
-										<input class="form-control" id="cusName" placeholder="请填写客户名称"  onkeyup="catch_keyword(this.value)" />
+										<input class="form-control" id="cusName"  placeholder="请填写客户名称" onkeyup="catch_keyword(this.value)" />
 									</div>
 									<div class="form-group col-md-6">
 										<label for="sellway">支付方式</label>
@@ -241,7 +249,7 @@
 												<option value="5">抵返利，不回款</option>
 										</select>
 									</div>
-									<hr/>
+
 
 									<div><div style="display: block;float: left"><label for="framPage">订单</label></div><div style="float: right;display: block;text-align: right;margin-left: 800px;"></div></div>
 
@@ -327,7 +335,6 @@
 					}
 				}
 			});
-
 	}
 	//请求后端获取数据源
 	function get_source(word) {
@@ -343,12 +350,12 @@
 			}
 		});
 	}
-
+	$("#availableTags").css("background-color","blue")//每次刷新页面都将
 	function save(){
 		// validate();
 		var cus = $("#cusName").val();
 		var sell = $("#sellway option:selected").val();
-		if(cus == "" ||cus =='请填写客户名称'){
+		if(cus == ""||cus =='请填写客户名称'){
 			alert("请填写客户名称");
 			return false;
 		}
@@ -411,7 +418,7 @@
 				data:{ordersId:dat},
 				success:function(data){
 					if(data.success){
-						window.location.href="orders.html";
+						window.location.href="orders2.html";
 					}
 				}
 			});

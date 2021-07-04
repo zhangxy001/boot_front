@@ -46,353 +46,353 @@
 </head>
 
 <body>
-	<!-- Pre Loader -->
-	<div class="loading">
-		<div class="spinner">
-			<div class="double-bounce1"></div>
-			<div class="double-bounce2"></div>
-		</div>
+<!-- Pre Loader -->
+<div class="loading">
+	<div class="spinner">
+		<div class="double-bounce1"></div>
+		<div class="double-bounce2"></div>
 	</div>
-	<!--/Pre Loader -->
-	<!-- Color Changer -->
-	<div class="theme-settings" id="switcher">
+</div>
+<!--/Pre Loader -->
+<!-- Color Changer -->
+<div class="theme-settings" id="switcher">
 <!--		<span class="theme-click">-->
 <!--			<span class="ti-settings"></span>-->
 <!--		</span>-->
-		<span class="theme-color theme-default theme-active" data-color="green"></span>
-		<span class="theme-color theme-blue" data-color="blue"></span>
-		<span class="theme-color theme-red" data-color="red"></span>
-		<span class="theme-color theme-violet" data-color="violet"></span>
-		<span class="theme-color theme-yellow" data-color="yellow"></span>
-	</div>
-	<!-- /Color Changer -->
-	<div class="wrapper">		
-		<!-- Page Content -->
-		<div id="content">
-			<!-- Top Navigation -->
-			<div class="container top-brand">
-				<nav class="navbar navbar-default">			
-					<div class="navbar-header">
-						<div class="sidebar-header"> <a href="main.html"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
-						</div>
-					</div>
-					<ul class="nav justify-content-end">
-						<li class="nav-item">
-							<a class="nav-link">
-								<span title="Fullscreen" class="ti-fullscreen fullscreen"></span>
-							</a>							
-						</li>
-						<li class="nav-item">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-							 aria-expanded="false">
-								<span class="ti-announcement"></span>
-							</a>
-							<div class="dropdown-menu lochana-box-shadow2 notifications animated flipInY">
-								<h5>订单通知</h5>
-<!--								<a class="dropdown-item" href="#" onclick="">-->
-<!--									<span class="ti-wheelchair"></span> 新消息</a>-->
-								<a class="dropdown-item" href="his-orders.html">
-									<span class="ti-money"></span> 订单信息</a>
-<!--								<a class="dropdown-item" href="ing-orders.html">-->
-<!--									<span class="ti-time"></span>在途订单</a>-->
-<!--								<a class="dropdown-item" href="cre-orders.html">-->
-<!--									<span class="ti-wheelchair"></span> 未安排订单</a>-->
-							</div>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-							 aria-expanded="false">
-								<span class="ti-user"></span>
-							</a>
-							<div class="dropdown-menu lochana-box-shadow2 profile animated flipInY">
-								<h5>个人信息</h5>
-<!--								<a class="dropdown-item" href="#">-->
-<!--									<span class="ti-settings"></span> 设置</a>-->
-								<a class="dropdown-item" href="#" onclick="help()">
-									<span class="ti-help-alt"></span> 帮助</a>
-								<a class="dropdown-item" href="../index.html">
-									<span class="ti-power-off"></span> 退出</a>
-							</div>
-						</li>
-					</ul>
-			
-				</nav>
-			</div>
-			<!-- /Top Navigation -->
-			<!-- Menu -->
-			<div class="container menu-nav">
-				<nav class="navbar navbar-expand-lg lochana-bg text-white">
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="ti-menu text-white"></span>
-					</button>
-			
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav mr-auto">
-							<li class="nav-item dropdown active">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"><span class="ti-home"></span> 主页</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="main.html">回到主页</a>
-								</div>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"><span class="ti-user"></span> 人员管理</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="add-user.html">添加用户信息</a>
-									<a class="dropdown-item" href="users.html">管理用户信息</a>
-									<a class="dropdown-item" href="edit-user.html">编辑我的个人信息</a>
-								</div>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
-								<div class="dropdown-menu">
-<!--									<a class="dropdown-item" href="#" onclick="exportTemplate(4)">导出订单模板</a>-->
-									<a class="dropdown-item" href="add-order.html">添加采购订单</a>
-									<a class="dropdown-item" href="orders.html">订单列表</a>
-									<a class="dropdown-item" href="his-orders.html">订单信息展示及导出</a>
-<!--									<a class="dropdown-item" href="ing-orders.html">在途订单信息</a>-->
-<!--									<a class="dropdown-item" href="cre-orders.html">未发货订单信息</a>-->
-								</div>
-							</li>
-<!--							<li class="nav-item dropdown">-->
-<!--								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"-->
-<!--								   aria-expanded="false"><span class="ti-money"></span> 统计及其他</a>-->
-<!--								<div class="dropdown-menu">-->
-<!--									<a class="dropdown-item" href="payment-year.html">收入对比统计</a>-->
-<!--									<a class="dropdown-item" href="payment-quart.html">客户列表</a>-->
-<!--									&lt;!&ndash;								<a class="dropdown-item" href="payment-month.html">月度统计</a>&ndash;&gt;-->
-<!--								</div>-->
-<!--							</li>-->
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"><span class="ti-key"></span> 药品数据导入导出</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#" onclick="exportTemplate()">导出模板</a>
-									<a class="dropdown-item" href="expin.html">excle导入数据</a>
-									<a class="dropdown-item" href="record_fin.html">手动录入</a>
-								</div>
-							</li>
-
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								   aria-expanded="false"><span class="ti-key"></span> 仓库数据导入导出</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#" onclick="exportTemplate(2)">导出仓库模板</a>
-									<a class="dropdown-item" href="depository.html">导入仓库数据</a>
-									<a class="dropdown-item" href="depository_fin.html">手动录入仓库信息</a>
-								</div>
-							</li>
-
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								   aria-expanded="false"><span class="ti-key"></span> 客户数据导入导出</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#" onclick="exportTemplate(3)">导出客户模板</a>
-									<a class="dropdown-item" href="cus.html">导入客户数据</a>
-									<a class="dropdown-item" href="cus_fin.html">手动录入客户信息</a>
-								</div>
-							</li>
-
-						</ul>
-					</div>
-				</nav>
-			</div>
-			<!-- /Menu -->
-			<!-- Breadcrumb -->
-			<!-- Page Title -->
-			<div class="container mt-0">
-				<div class="row breadcrumb-bar">
-					<div class="col-md-6">
-						<a href="add-order.html"><h3 class="block-title">快速添加订单 <font style="font-size: 22pt"><strong>+</strong></font></h3></a>
-					</div>
-					<div class="col-md-6">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item">
-								<a href="main.html">
-									<span class="ti-home"></span>
-								</a>
-							</li>
-							<li class="breadcrumb-item active">控制面板</li>
-						</ol>
+	<span class="theme-color theme-default theme-active" data-color="green"></span>
+	<span class="theme-color theme-blue" data-color="blue"></span>
+	<span class="theme-color theme-red" data-color="red"></span>
+	<span class="theme-color theme-violet" data-color="violet"></span>
+	<span class="theme-color theme-yellow" data-color="yellow"></span>
+</div>
+<!-- /Color Changer -->
+<div class="wrapper">
+	<!-- Page Content -->
+	<div id="content">
+		<!-- Top Navigation -->
+		<div class="container top-brand">
+			<nav class="navbar navbar-default">
+				<div class="navbar-header">
+					<div class="sidebar-header"> <a href="main2.html"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
 					</div>
 				</div>
-			</div>
-			<!-- /Page Title -->
-			<!-- /Breadcrumb -->
-			<!-- Main Content -->
-			<div class="container home">
-				<div class="row">
-					<!-- Widget Item -->
-					<div class="col-md-4">
-						<div class="widget-area lochana-box-shadow color-red">
-							<div class="widget-left">
-								<span class="ti-user"></span>
-							</div>
-							<div class="widget-right" onclick="jump()">
-								<h4 class="wiget-title">合作厂商</h4>
-								<span class="numeric color-red" id ="partner">348</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-up" id="partner_increase"></span>增长</p>
-							</div>
+				<ul class="nav justify-content-end">
+					<li class="nav-item">
+						<a class="nav-link">
+							<span title="Fullscreen" class="ti-fullscreen fullscreen"></span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+						   aria-expanded="false">
+							<span class="ti-announcement"></span>
+						</a>
+						<div class="dropdown-menu lochana-box-shadow2 notifications animated flipInY">
+							<h5>订单通知</h5>
+							<!--								<a class="dropdown-item" href="#" onclick="">-->
+							<!--									<span class="ti-wheelchair"></span> 新消息</a>-->
+<!--							<a class="dropdown-item" href="his-orders.html">-->
+<!--								<span class="ti-money"></span> 订单信息</a>-->
+							<!--								<a class="dropdown-item" href="ing-orders.html">-->
+							<!--									<span class="ti-time"></span>在途订单</a>-->
+							<!--								<a class="dropdown-item" href="cre-orders.html">-->
+							<!--									<span class="ti-wheelchair"></span> 未安排订单</a>-->
 						</div>
-					</div>
-					<!-- /Widget Item -->
-					<!-- Widget Item -->
-					<div class="col-md-4">
-						<div class="widget-area lochana-box-shadow color-green">
-							<div class="widget-left">
-								<span class="ti-bar-chart"></span>
-							</div>
-							<div class="widget-right" onclick="jump2()">
-								<h4 class="wiget-title">订单</h4>
-								<span class="numeric color-green" id="order">1585</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-up" id="order_increase"></span>增长</p>
-							</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+						   aria-expanded="false">
+							<span class="ti-user"></span>
+						</a>
+						<div class="dropdown-menu lochana-box-shadow2 profile animated flipInY">
+							<h5>个人信息</h5>
+							<!--								<a class="dropdown-item" href="#">-->
+							<!--									<span class="ti-settings"></span> 设置</a>-->
+							<a class="dropdown-item" href="#" onclick="help()">
+								<span class="ti-help-alt"></span> 帮助</a>
+							<a class="dropdown-item" href="../index.html">
+								<span class="ti-power-off"></span> 退出</a>
 						</div>
-					</div>
-					<!-- /Widget Item -->
-					<!-- Widget Item -->
-					<div class="col-md-4">
-						<div class="widget-area lochana-box-shadow color-yellow">
-							<div class="widget-left">
-								<span class="ti-money"></span>
-							</div>
-							<div class="widget-right" onclick="jump2()">
-								<h4 class="wiget-title">收入</h4>
-								<span class="numeric color-yellow" id="payment">$7300</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-up" id="payment_increase"></span>增长</p>
-							</div>
-						</div>
-					</div>
-					<!-- /Widget Item -->
-				</div>
+					</li>
+				</ul>
 
-<!--				<div class="row">-->
-<!--					&lt;!&ndash; Widget Item &ndash;&gt;-->
-<!--					<div class="col-md-6">-->
-<!--						<div class="widget-area-2 lochana-box-shadow">-->
-<!--							<h3 class="widget-title">订单按年统计</h3>-->
-<!--							<div id="lineMorris" class="chart-home"></div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					&lt;!&ndash; /Widget Item &ndash;&gt;-->
-<!--					&lt;!&ndash; Widget Item &ndash;&gt;-->
-<!--					<div class="col-md-6">-->
-<!--						<div class="widget-area-2 lochana-box-shadow">-->
-<!--							<h3 class="widget-title"> 收入按季度统计</h3>-->
-<!--							<div id="barMorris" class="chart-home"></div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					&lt;!&ndash; /Widget Item &ndash;&gt;-->
-<!--				</div>-->
-
-				<div class="row">
-					<!-- Widget Item -->
-					<div class="col-md-12">
-						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">药品排行</h3>
-							<div class="table-responsive">
-								<table class="table table-bordered table-striped" id="rankingList">
-
-								</table>
-							</div>
-						</div>
-					</div>
-					<!-- /Widget Item -->
-				</div>
-
-
-					<!-- Widget Item -->
-<!--					<div class="col-sm-6">-->
-<!--						<div class="widget-area-2 lochana-box-shadow">-->
-<!--							<h3 class="widget-title">订单 状态</h3>-->
-<!--							<div id="donutMorris" class="chart-home"></div>-->
-<!--						</div>-->
-<!--					</div>-->
-					<!-- /Widget Item -->
-					<!-- Widget Item -->
-					<div class="col-md-12">
-						<div class="widget-area-2  lochana-box-shadow">
-							<h3 class="widget-title">库存情况</h3>
-							<div class="table-responsive">
-								<table class="table table-bordered" id="storm">
-
-								</table>
-							</div>
-
-						</div>
-					</div>
-					<!-- /Widget Item -->
-
-
-
-			</div>
-			<!-- /Main Content -->
-			<!--Copy Rights-->
-			<!-- /Copy Rights-->
+			</nav>
 		</div>
-		<!-- /Page Content -->
+		<!-- /Top Navigation -->
+		<!-- Menu -->
+		<div class="container menu-nav">
+			<nav class="navbar navbar-expand-lg lochana-bg text-white">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="ti-menu text-white"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item dropdown active">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+							   aria-expanded="false"><span class="ti-home"></span> 主页</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="main2.html">回到主页</a>
+							</div>
+						</li>
+<!--						<li class="nav-item dropdown">-->
+<!--							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"-->
+<!--							   aria-expanded="false"><span class="ti-user"></span> 人员管理</a>-->
+<!--							<div class="dropdown-menu">-->
+<!--								<a class="dropdown-item" href="add-user.html">添加用户信息</a>-->
+<!--								<a class="dropdown-item" href="users.html">管理用户信息</a>-->
+<!--								<a class="dropdown-item" href="edit-user.html">编辑我的个人信息</a>-->
+<!--							</div>-->
+<!--						</li>-->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+							   aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
+							<div class="dropdown-menu">
+<!--								<a class="dropdown-item" href="#" onclick="exportTemplate(4)">导出订单模板</a>-->
+								<a class="dropdown-item" href="add-order2.html">添加采购订单</a>
+								<a class="dropdown-item" href="orders2.html">订单列表</a>
+<!--								<a class="dropdown-item" href="his-orders.html">订单信息展示及导出</a>-->
+								<!--									<a class="dropdown-item" href="ing-orders.html">在途订单信息</a>-->
+								<!--									<a class="dropdown-item" href="cre-orders.html">未发货订单信息</a>-->
+							</div>
+						</li>
+						<!--							<li class="nav-item dropdown">-->
+						<!--								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"-->
+						<!--								   aria-expanded="false"><span class="ti-money"></span> 统计及其他</a>-->
+						<!--								<div class="dropdown-menu">-->
+						<!--									<a class="dropdown-item" href="payment-year.html">收入对比统计</a>-->
+						<!--									<a class="dropdown-item" href="payment-quart.html">客户列表</a>-->
+						<!--									&lt;!&ndash;								<a class="dropdown-item" href="payment-month.html">月度统计</a>&ndash;&gt;-->
+						<!--								</div>-->
+						<!--							</li>-->
+<!--						<li class="nav-item dropdown">-->
+<!--							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"-->
+<!--							   aria-expanded="false"><span class="ti-key"></span> 药品数据导入导出</a>-->
+<!--							<div class="dropdown-menu">-->
+<!--								<a class="dropdown-item" href="#" onclick="exportTemplate()">导出模板</a>-->
+<!--								<a class="dropdown-item" href="expin.html">excle导入数据</a>-->
+<!--								<a class="dropdown-item" href="record_fin.html">手动录入</a>-->
+<!--							</div>-->
+<!--						</li>-->
+
+<!--						<li class="nav-item dropdown">-->
+<!--							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"-->
+<!--							   aria-expanded="false"><span class="ti-key"></span> 仓库数据导入导出</a>-->
+<!--							<div class="dropdown-menu">-->
+<!--								<a class="dropdown-item" href="#" onclick="exportTemplate(2)">导出仓库模板</a>-->
+<!--								<a class="dropdown-item" href="depository.html">导入仓库数据</a>-->
+<!--								<a class="dropdown-item" href="depository_fin.html">手动录入仓库信息</a>-->
+<!--							</div>-->
+<!--						</li>-->
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+							   aria-expanded="false"><span class="ti-key"></span> 客户数据录入</a>
+							<div class="dropdown-menu">
+<!--								<a class="dropdown-item" href="#" onclick="exportTemplate(3)">导出客户模板</a>-->
+								<a class="dropdown-item" href="cus2.html">客户列表</a>
+								<a class="dropdown-item" href="cus_fin2.html">手动录入客户信息</a>
+							</div>
+						</li>
+
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!-- /Menu -->
+		<!-- Breadcrumb -->
+		<!-- Page Title -->
+		<div class="container mt-0">
+			<div class="row breadcrumb-bar">
+				<div class="col-md-6">
+					<a href="add-order2.html"><h3 class="block-title">快速添加订单 <font style="font-size: 22pt"><strong>+</strong></font></h3></a>
+				</div>
+				<div class="col-md-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="main.html">
+								<span class="ti-home"></span>
+							</a>
+						</li>
+						<li class="breadcrumb-item active">控制面板</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<!-- /Page Title -->
+		<!-- /Breadcrumb -->
+		<!-- Main Content -->
+		<div class="container home">
+			<div class="row">
+				<!-- Widget Item -->
+				<div class="col-md-4">
+					<div class="widget-area lochana-box-shadow color-red">
+						<div class="widget-left">
+							<span class="ti-user"></span>
+						</div>
+						<div class="widget-right" onclick="jump()">
+							<h4 class="wiget-title">合作厂商</h4>
+							<span class="numeric color-red" id ="partner">348</span>
+							<p class="inc-dec mb-0"><span class="ti-angle-up" id="partner_increase"></span>增长</p>
+						</div>
+					</div>
+				</div>
+				<!-- /Widget Item -->
+				<!-- Widget Item -->
+				<div class="col-md-4">
+					<div class="widget-area lochana-box-shadow color-green">
+						<div class="widget-left">
+							<span class="ti-bar-chart"></span>
+						</div>
+						<div class="widget-right" onclick="jump2()">
+							<h4 class="wiget-title">订单</h4>
+							<span class="numeric color-green" id="order">1585</span>
+							<p class="inc-dec mb-0"><span class="ti-angle-up" id="order_increase"></span>增长</p>
+						</div>
+					</div>
+				</div>
+				<!-- /Widget Item -->
+				<!-- Widget Item -->
+				<div class="col-md-4">
+					<div class="widget-area lochana-box-shadow color-yellow">
+						<div class="widget-left">
+							<span class="ti-money"></span>
+						</div>
+						<div class="widget-right" onclick="jump2()">
+							<h4 class="wiget-title">收入</h4>
+							<span class="numeric color-yellow" id="payment">$7300</span>
+							<p class="inc-dec mb-0"><span class="ti-angle-up" id="payment_increase"></span>增长</p>
+						</div>
+					</div>
+				</div>
+				<!-- /Widget Item -->
+			</div>
+
+			<!--				<div class="row">-->
+			<!--					&lt;!&ndash; Widget Item &ndash;&gt;-->
+			<!--					<div class="col-md-6">-->
+			<!--						<div class="widget-area-2 lochana-box-shadow">-->
+			<!--							<h3 class="widget-title">订单按年统计</h3>-->
+			<!--							<div id="lineMorris" class="chart-home"></div>-->
+			<!--						</div>-->
+			<!--					</div>-->
+			<!--					&lt;!&ndash; /Widget Item &ndash;&gt;-->
+			<!--					&lt;!&ndash; Widget Item &ndash;&gt;-->
+			<!--					<div class="col-md-6">-->
+			<!--						<div class="widget-area-2 lochana-box-shadow">-->
+			<!--							<h3 class="widget-title"> 收入按季度统计</h3>-->
+			<!--							<div id="barMorris" class="chart-home"></div>-->
+			<!--						</div>-->
+			<!--					</div>-->
+			<!--					&lt;!&ndash; /Widget Item &ndash;&gt;-->
+			<!--				</div>-->
+
+			<div class="row">
+				<!-- Widget Item -->
+				<div class="col-md-12">
+					<div class="widget-area-2 lochana-box-shadow">
+						<h3 class="widget-title">药品排行</h3>
+						<div class="table-responsive">
+							<table class="table table-bordered table-striped" id="rankingList">
+
+							</table>
+						</div>
+					</div>
+				</div>
+				<!-- /Widget Item -->
+			</div>
+
+
+			<!-- Widget Item -->
+			<!--					<div class="col-sm-6">-->
+			<!--						<div class="widget-area-2 lochana-box-shadow">-->
+			<!--							<h3 class="widget-title">订单 状态</h3>-->
+			<!--							<div id="donutMorris" class="chart-home"></div>-->
+			<!--						</div>-->
+			<!--					</div>-->
+			<!-- /Widget Item -->
+			<!-- Widget Item -->
+			<div class="col-md-12">
+				<div class="widget-area-2  lochana-box-shadow">
+					<h3 class="widget-title">库存情况</h3>
+					<div class="table-responsive">
+						<table class="table table-bordered" id="storm">
+
+						</table>
+					</div>
+
+				</div>
+			</div>
+			<!-- /Widget Item -->
+
+
+
+		</div>
+		<!-- /Main Content -->
+		<!--Copy Rights-->
+		<!-- /Copy Rights-->
 	</div>
-	<!-- Back to Top -->
-	<a id="back-to-top" href="#" class="back-to-top">
-		<span class="ti-angle-up"></span>
-	</a>
-	<!-- /Back to Top -->
-	<!-- Jquery Library-->
+	<!-- /Page Content -->
+</div>
+<!-- Back to Top -->
+<a id="back-to-top" href="#" class="back-to-top">
+	<span class="ti-angle-up"></span>
+</a>
+<!-- /Back to Top -->
+<!-- Jquery Library-->
 <!--	<script src="js/jquery-3.2.1.min.js"></script>-->
 <!--	&lt;!&ndash; Popper Library&ndash;&gt;-->
 <!--	<script src="js/popper.min.js"></script>-->
 <!--	&lt;!&ndash; Bootstrap Library&ndash;&gt;-->
 <!--	<script src="js/bootstrap.min.js"></script>-->
-	<!-- morris charts -->
+<!-- morris charts -->
 <!--	<script src="charts/js/raphael-min.js"></script>-->
 <!--	<script src="charts/js/morris.min.js"></script>-->
 <!--	<script src="js/custom-morris.js"></script>-->
 
-	<!-- Custom Script-->
+<!-- Custom Script-->
 <!--	<script src="js/custom.js"></script>-->
 
 
-	<!-- 模态框（Modal） -->
-	<div class="modal fade loadingModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: left">
-		<div class="modal-dialog">
-			<div class="modal-content" style="width: 1200px;">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-						&times;
-					</button>
-					<!--				<h4 class="modal-title" id="myModalLabel">-->
-					<!--					订单明细-->
-					<!--				</h4>-->
-				</div>
-				<div class="modal-body" >
-					<table id="detail" style="width: 100%">
+<!-- 模态框（Modal） -->
+<div class="modal fade loadingModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: left">
+	<div class="modal-dialog">
+		<div class="modal-content" style="width: 1200px;">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<!--				<h4 class="modal-title" id="myModalLabel">-->
+				<!--					订单明细-->
+				<!--				</h4>-->
+			</div>
+			<div class="modal-body" >
+				<table id="detail" style="width: 100%">
 
-					</table>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-dark" data-dismiss="modal">关闭
-					</button>
-					<!--				<button type="button" class="btn btn-primary">-->
-					<!--					提交更改-->
-					<!--				</button>-->
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal -->
-	</div>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-dark" data-dismiss="modal">关闭
+				</button>
+				<!--				<button type="button" class="btn btn-primary">-->
+				<!--					提交更改-->
+				<!--				</button>-->
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
 
 </body>
 <script>
 	// function exportTemplate(){
 	// 	window.location.href=baseUrl+"export/exportFile";
 	// }
-	function jump(){
-		window.location.href="cus.html";
-	}
+	// function jump(){
+	// 	window.location.href="cus.html";
+	// }
 	function jump2(){
-		window.location.href="orders.html";
+		window.location.href="orders2.html";
 	}
 
 	window.onload = initData;
@@ -483,10 +483,7 @@
 				{"sTitle":"剂量", "mDataProp": "type2","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"生产厂家", "mDataProp": "product","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"库存数量", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"单价", "mDataProp": "prize","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,mRender:function (data,cell){
-					return data+"￥";
-					}}
+				{"sTitle":"单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "200",editable:true}
 			],"createdRow": function( row, data, dataIndex ) {
 				if(data.id.length > 6){//只有超长，才有td点击事件
 					$(row).children('td').eq(0).attr('onclick','javascript:changeShowRemarks(this);');
@@ -890,53 +887,53 @@
 
 
 
-// 	function payment(){
-// 		$.ajax({
-// 			url: baseUrl + "/statistics/drawPay",
-// 			type: "get",
-// 			dataType:"json",
-// 			xhrFields:{withCredentials:true},
-// 			contentType: "application/x-www-form-urlencoded",
-// 			async:false,
-// 			success: function (data) {
-// 				var value1 = parseFloat(data.data[0]);
-// 				var value2 = parseFloat(data.data[1]);
-// 				var value3 = parseFloat(data.data[2]);
-// 				var value4 = parseFloat(data.data[3]);
-// 				var value = 10;
-// 				var data = [{
-// 					y: '2018',
-// 					a: value1
-// 				}, {
-// 					y: '2019',
-// 					a: value2
-// 				}, {
-// 					y: '2020',
-// 					a: value3
-// 				}, {
-// 					y: '2021',
-// 					a: value4
-// 				}];
-// //barmorris
-// 				var ctx = document.getElementById("barMorris");
-// 				if (ctx === null) return;
-// 				var chart = Morris.Bar({
-// 					element: 'barMorris',
-// 					data: data,
-// 					xkey: 'y',
-// 					ykeys: ['a'],
-// 					labels: ['Patients'],
-// 					barColors: ['#FF7D00'],
-// 					barOpacity: 1,
-// 					barSizeRatio: 0.5,
-// 					hideHover: 'auto',
-// 					gridLineColor: '#eef0f2',
-// 					resize: true
-// 				});
-//
-// 			}
-// 		});
-// 	}
+	// 	function payment(){
+	// 		$.ajax({
+	// 			url: baseUrl + "/statistics/drawPay",
+	// 			type: "get",
+	// 			dataType:"json",
+	// 			xhrFields:{withCredentials:true},
+	// 			contentType: "application/x-www-form-urlencoded",
+	// 			async:false,
+	// 			success: function (data) {
+	// 				var value1 = parseFloat(data.data[0]);
+	// 				var value2 = parseFloat(data.data[1]);
+	// 				var value3 = parseFloat(data.data[2]);
+	// 				var value4 = parseFloat(data.data[3]);
+	// 				var value = 10;
+	// 				var data = [{
+	// 					y: '2018',
+	// 					a: value1
+	// 				}, {
+	// 					y: '2019',
+	// 					a: value2
+	// 				}, {
+	// 					y: '2020',
+	// 					a: value3
+	// 				}, {
+	// 					y: '2021',
+	// 					a: value4
+	// 				}];
+	// //barmorris
+	// 				var ctx = document.getElementById("barMorris");
+	// 				if (ctx === null) return;
+	// 				var chart = Morris.Bar({
+	// 					element: 'barMorris',
+	// 					data: data,
+	// 					xkey: 'y',
+	// 					ykeys: ['a'],
+	// 					labels: ['Patients'],
+	// 					barColors: ['#FF7D00'],
+	// 					barOpacity: 1,
+	// 					barSizeRatio: 0.5,
+	// 					hideHover: 'auto',
+	// 					gridLineColor: '#eef0f2',
+	// 					resize: true
+	// 				});
+	//
+	// 			}
+	// 		});
+	// 	}
 
 
 	// function cicle(){

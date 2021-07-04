@@ -23,6 +23,32 @@
 	<link rel="stylesheet" href="css/jquery-jvectormap.css">
 
 	<script src="js/modernizr.min.js"></script>
+	<style>
+
+		.file {
+			position: relative;
+			text-decoration: none;
+			text-indent: 0;
+			line-height: 20px;
+			float: left;
+			width: 23px;
+			height: 18px;
+			margin-left: 10px;
+		}
+		.file input {
+			position: absolute;
+			font-size: 100px;
+			right: 0;
+			top: 0;
+			opacity: 0;
+			width: 23px;
+			height: 18px;
+			margin-left: 10px;
+		}
+		.file:hover {
+			text-decoration: none;
+		}
+	</style>
 </head>
 
 <body>
@@ -36,9 +62,9 @@
 <!--/Pre Loader -->
 <!-- Color Changer -->
 <div class="theme-settings" id="switcher">
-		<span class="theme-click">
-			<span class="ti-settings"></span>
-		</span>
+<!--		<span class="theme-click">-->
+<!--			<span class="ti-settings"></span>-->
+<!--		</span>-->
 	<span class="theme-color theme-default theme-active" data-color="green"></span>
 	<span class="theme-color theme-blue" data-color="blue"></span>
 	<span class="theme-color theme-red" data-color="red"></span>
@@ -72,11 +98,11 @@
 							<!--								<a class="dropdown-item" href="#" onclick="">-->
 							<!--									<span class="ti-wheelchair"></span> 新消息</a>-->
 							<a class="dropdown-item" href="his-orders.html">
-								<span class="ti-money"></span> 已收款订单</a>
-							<a class="dropdown-item" href="ing-orders.html">
-								<span class="ti-time"></span>在途订单</a>
-							<a class="dropdown-item" href="cre-orders.html">
-								<span class="ti-wheelchair"></span> 未安排订单</a>
+								<span class="ti-money"></span> 订单信息</a>
+<!--							<a class="dropdown-item" href="ing-orders.html">-->
+<!--								<span class="ti-time"></span>在途订单</a>-->
+<!--							<a class="dropdown-item" href="cre-orders.html">-->
+<!--								<span class="ti-wheelchair"></span> 未安排订单</a>-->
 						</div>
 					</li>
 					<li class="nav-item">
@@ -129,23 +155,23 @@
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-pencil-alt"></span> 订单管理</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="#" onclick="exportTemplate(4)">导出订单模板</a>
+<!--								<a class="dropdown-item" href="#" onclick="exportTemplate(4)">导出订单模板</a>-->
 								<a class="dropdown-item" href="add-order.html">添加采购订单</a>
 								<a class="dropdown-item" href="orders.html">订单列表</a>
-								<a class="dropdown-item" href="his-orders.html">已完成订单信息</a>
-								<a class="dropdown-item" href="ing-orders.html">在途订单信息</a>
-								<a class="dropdown-item" href="cre-orders.html">未发货订单信息</a>
+								<a class="dropdown-item" href="his-orders.html">订单信息展示及导出</a>
+<!--								<a class="dropdown-item" href="ing-orders.html">在途订单信息</a>-->
+<!--								<a class="dropdown-item" href="cre-orders.html">未发货订单信息</a>-->
 							</div>
 						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-							   aria-expanded="false"><span class="ti-money"></span> 统计及其他</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="payment-year.html">收入对比统计</a>
-								<a class="dropdown-item" href="payment-quart.html">客户列表</a>
-								<!--								<a class="dropdown-item" href="payment-month.html">月度统计</a>-->
-							</div>
-						</li>
+<!--						<li class="nav-item dropdown">-->
+<!--							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"-->
+<!--							   aria-expanded="false"><span class="ti-money"></span> 统计及其他</a>-->
+<!--							<div class="dropdown-menu">-->
+<!--								<a class="dropdown-item" href="payment-year.html">收入对比统计</a>-->
+<!--								<a class="dropdown-item" href="payment-quart.html">客户列表</a>-->
+<!--								&lt;!&ndash;								<a class="dropdown-item" href="payment-month.html">月度统计</a>&ndash;&gt;-->
+<!--							</div>-->
+<!--						</li>-->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 							   aria-expanded="false"><span class="ti-key"></span> 药品数据导入导出</a>
@@ -210,11 +236,16 @@
 					<!-- Widget Item -->
 					<div class="col-md-12">
 						<div class="widget-area-2 lochana-box-shadow">
-							<h3 class="widget-title">导入数据</h3>
-							<button class="block-title"><a onclick="exportThisExcle()">导出数据</a></button>
+<!--							<h3 class="widget-title">导入数据</h3>-->
+
 							<form  method="post" enctype="multipart/form-data">
-							<input type="file" id="upfile" name="upfile">
-							<input type="button" value = "上传文件" onclick="subFile()">
+								<span class="file"><i
+										class="ti-export" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="file" id="upfile" name="upfile">
+								</span>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input class="btn-primary btn" type="button" value = "上传文件" onclick="subFile()">
+								<a onclick="exportThisExcle()" class="btn-primary btn" style="color: white">导出数据</a>
 							</form>
 							<div class="table-responsive mb-3">
 								<table id="tableId" class="table table-bordered table-striped">
@@ -313,7 +344,7 @@
 				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "100",mRender:function (data){
 					var html ="";
 						// html+="<input type='button' onclick='editOne("+data+")' value='修改'></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-						html+="<input type='button' onclick='delOne(\""+data+"\")' value='删除'></input>";
+						html+="<input type='button' class='btn btn-danger' onclick='delOne(\""+data+"\")' value='删除'></input>";
 					return html;
 					}},
 

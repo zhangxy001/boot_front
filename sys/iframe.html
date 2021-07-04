@@ -1,0 +1,546 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>药品管理系统</title>
+	<link rel="shortcut icon" type="image/png" href="images/fav.png">
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- themify icons CSS -->
+	<link rel="stylesheet" href="css/themify-icons.css">
+	<!-- Animations CSS -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/green.css" id="style_theme">
+	<link rel="stylesheet" href="css/responsive.css">
+	<!-- morris charts -->
+	<link rel="stylesheet" href="charts/css/morris.css">
+	<!-- jvectormap -->
+	<link rel="stylesheet" href="css/jquery-jvectormap.css">
+<!--	<script src="js/jquery.min.js"></script>-->
+<!--	<link rel="stylesheet" href="css/bootstrap.css">-->
+	<script src="js/modernizr.min.js"></script>
+	<style>
+		.table{text-align: center;}
+		.border-line { border-radius: 0px;
+			border-color:#fff;
+			box-shadow:none;
+			}
+		.border-line:focus {
+			border-color: transparent;
+			outline: 0;
+			-webkit-box-shadow:none;
+			box-shadow: none;
+		}
+
+		.ui-autocomplete{
+			background-color: aliceblue;
+			width: 500px;
+		}
+		/*.border-line::-webkit-input-placeholder{color:#6c757d;}*/
+		/*.border-line::-webkit-input-placeholder{color:#6c757d;}*/
+		/*.border-line:focus{color:#495057;background-color:#fff;border-color:#80bdff;outline:0;box-shadow:0 0 0 .2rem rgba(0,123,255,.25)}*/
+		/*.border-line::-ms-expand{background-color:transparent;border:0}*/
+		/*.border-line::-moz-placeholder{color:#6c757d;opacity:1}*/
+		/*.border-line:-ms-input-placeholder{color:#6c757d;opacity:1}*/
+		/*.border-line::-ms-input-placeholder{color:#6c757d;opacity:1}*/
+		/*.border-line::placeholder{color:#6c757d;opacity:1}*/
+		/*.border-line:disabled,*/
+		/*.border-line[readonly]{background-color:#e9ecef;opacity:1}*/
+	</style>
+</head>
+
+<body style="background-color: white;">
+
+<hr/>
+<div>
+
+	<form style="" method="post" action="baseUrl" >
+		<input type="hidden" id="max">
+				<table style="width: 100%;">
+					<tr >
+						<td>
+							<div class="form-row"  style="padding-left: 10px;">
+								<label for="merchName" class="form-inline">药品名称:</label>
+							<input class="form-control" style="width: 120px;"  onblur="changeAll()"  onkeyup="catch_keyword(this.value)" name="merchName" id="merchName" placeholder="请填写药品名称"/>
+<!--							药品名称:<select style="width: 120px;border: none;" onchange="changeAll()" name="merchName" id="merchName"><option value="">请选择</option></select>-->
+							</div>
+						</td>
+						<td>
+							<div class="form-row">
+								<label for="merchName" class="form-inline">药品类型:</label>
+								<select class="form-control" style="width: 120px;" name="type" id="type" onchange="changeName()"  ><option value="">请选择</option></select>
+							</div>
+						</td>
+
+                         <td>
+							 <div class="form-row">
+								 <label for="depositoryName" class="form-inline">商业公司:</label>
+								 <select class="form-control" style="width: 120px;" name="depositoryName" onchange="changeName()" id="depositoryName" ><option value="">请选择</option></select>
+							 </div>
+						 </td>
+
+						<td>
+							<div class="form-row" style="padding-left: 25px;">
+								<label for="beachNum" class="form-inline">批&nbsp;号:</label>
+								<select class='form-control'  style="width: 120px;" id="beachNum" name="beachNum" onchange="changeName()" ><option value="">请选择</option></select>
+							</div>
+						</td>
+						<td>
+							<div class="form-row" style="padding-left: 10px;">
+								<label for="xsWay" class="form-inline">销售方式:</label>
+								<select name="xsWay" id ="xsWay" class='form-control' style="width: 120px;"><option value="">请选择</option><option value="0">自提</option><option value="1">邮寄</option></select>
+							</div>
+						</td>
+						</tr>
+						<tr>
+						<td>
+							<div class="form-row"  style="padding-left: 35px;">
+								<label for="liter" class="form-inline">单&nbsp;位:</label>
+								<select class='form-control' style="width: 120px;" name="liter" id="liter" onchange="changeName()" ><option value="">请选择</option></select>
+							</div>
+						</td>
+
+							<td>
+								<div class="form-row" style="padding-left: 15px;">
+									<label for="type2" class="form-inline">包装量:</label>
+									<select style="width: 120px;" class="form-control" name="type2" id="type2" onchange="changeName()"><option value="">请选择</option></select>
+								</div>
+							</td>
+						<td>
+							<div class="form-row">
+								<label for="startTime" class="form-inline">生产日期:</label>
+								<input  type="text" class='form-control' readonly="readonly" style="width: 120px;" name="startTime" id="startTime" />
+							</div>
+						</td>
+
+
+							<td>
+								<div class="form-row">
+									<label for="endTime" class="form-inline">有效期至:</label>
+									<input  type="text" class="form-control" readonly="readonly" style="width: 120px;" name="endTime" id="endTime"/>
+								</div>
+							</td>
+							<td >
+								<div class="form-row" style="padding-left: 10px;">
+									<label for="product" class="form-inline">生产单位:</label>
+									<input  class="form-control" type="text" style="width: 120px;"  id="product" name="product" readonly="readonly" />
+								</div>
+							</td>
+					</tr>
+					<tr>
+
+
+						<td >
+							<div class="form-row"  style="padding-left: 35px;" >
+								<label for="count" class="form-inline">数&nbsp;量:</label>
+								<input  type="text" class="form-control"  style="width: 120px;" id="count" name="count" onblur="calulater()" />
+							</div>
+							</td>
+						<td >
+							<div class="form-row" style="padding-left: 25px;">
+								<label for="sallAmount" class="form-inline">单&nbsp;价:</label>
+							<input  type="text" class="form-control"  style="width: 120px;"  id="sallAmount" name="sallAmount" />
+							</div>
+						</td>
+						<td >
+							<div class="form-row" style="padding-left: 25px;">
+							<label for="amount" class="form-inline">总&nbsp;价:</label>
+							<input  type="text" class="form-control" style="width: 120px;"  id="amount" name="amount" readonly="readonly"  />
+							</div>
+						</td>
+
+
+
+
+					</tr>
+					<tr>
+
+					</tr>
+				</table>
+			</form>
+
+</div>
+	<!-- Back to Top -->
+	<a id="back-to-top" href="#" class="back-to-top">
+		<span class="ti-angle-up"></span>
+	</a>
+	<!-- /Back to Top -->
+	<!-- Jquery Library-->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<!-- Popper Library-->
+	<script src="js/popper.min.js"></script>
+	<!-- Bootstrap Library-->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- Datatable  -->
+	<script src="datatable/jquery.dataTables.min.js"></script>
+	<script src="datatable/dataTables.bootstrap4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- Custom Script-->
+	<script src="js/custom.js"></script>
+	<script src="js/common.js"></script>
+
+</body>
+<script>
+	window.onload = initData;
+
+	function initData(){
+		initMedicalName();
+		changeName();
+	}
+
+	function initMedicalName(){
+		var sel = $("#merchName");
+		// $.ajax({
+		// 	"url":baseUrl+"/option/merch",
+		// 	"type":"post",
+		// 	success:function (data){
+		// 		var options = "";
+		// 		options += "<option value=''>请选择</option>";
+		// 		for(var i=0;i<data.length;i++){
+		// 			options+="<option value='"+data[i]+"'>"+data[i]+" </option>";
+		// 		}
+		// 		sel.html(options)
+		// 			}
+		// });
+	}
+
+	function catch_keyword(word){
+		get_source(word);
+		$("#merchName").autocomplete({
+			source: availableTags, //数据源
+			messages: {
+				noResults: '',
+				results: function(){
+				}
+			}
+		});
+
+	}
+	//请求后端获取数据源
+	function get_source(word) {
+		var url = baseUrl+"option/getMechNames?keyword=" + word;
+		$.get({
+			type: 'GET',
+			url: url,
+			async: false,//改为同步
+			dataType: 'json',
+			success: function (response) {
+				console.log('1');
+				availableTags = response;
+			}
+		});
+	}
+
+	function calulater(){
+		var sallAmount = $("#sallAmount").val();
+		//alert(sallAmount);
+		var count = $("#count").val();
+		//alert(count);
+		var amount = parseFloat(sallAmount)*parseInt(count);
+		if(isNaN(amount)){
+			amount = 0;
+		}
+		$("#amount").val(amount);
+	}
+
+	function initType(merchName,type,type2,beachNum,depositoryName,liter){
+		var sel = $("#type");
+		$.ajax({
+			"url":baseUrl+"/option/getModel",
+			"type":"post",
+			data:{
+				merchName:merchName,
+				type:type,
+				type2:type2,
+				beachNum:beachNum,
+				depositoryName:depositoryName,
+				liter:liter
+			},
+			success:function (data){
+				var options = "";
+				options += "<option value=''>请选择</option>";
+				for(var i=0;i<data.length;i++){
+					options+="<option value='"+data[i].type+"'>"+data[i].type+" </option>";
+				}
+				sel.html(options)
+			}
+		});
+	}
+
+	function initType2(merchName,type,type2,beachNum,depositoryName,liter){
+		var sel = $("#type2");
+		$.ajax({
+			"url":baseUrl+"/option/getModel",
+			"type":"post",
+			data:{
+				merchName:merchName,
+				type:type,
+				type2:type2,
+				beachNum:beachNum,
+				depositoryName:depositoryName,
+				liter:liter
+			},
+			success:function (data){
+				var options = "";
+				options += "<option value=''>请选择</option>";
+				for(var i=0;i<data.length;i++){
+					options+="<option value='"+data[i].type2+"'>"+data[i].type2+" </option>";
+				}
+				sel.html(options)
+			}
+		});
+	}
+
+	function initbeachNum(merchName,type,type2,beachNum,depositoryName,liter){
+		var sel = $("#beachNum");
+		$.ajax({
+			"url":baseUrl+"/option/getModel",
+			"type":"post",
+			data:{
+				merchName:merchName,
+				type:type,
+				type2:type2,
+				beachNum:beachNum,
+				depositoryName:depositoryName,
+				liter:liter
+			},
+			success:function (data){
+				var options = "";
+				options += "<option value=''>请选择</option>";
+				for(var i=0;i<data.length;i++){
+					options+="<option value='"+data[i].beach_num+"'>"+data[i].beach_num+" </option>";
+				}
+				sel.html(options)
+			}
+		});
+	}
+
+	function initdepositoryName(merchName,type,type2,beachNum,depositoryName,liter){
+		var sel = $("#depositoryName");
+		$.ajax({
+			"url":baseUrl+"/option/getModel",
+			"type":"post",
+			data:{
+				merchName:merchName,
+				type:type,
+				type2:type2,
+				beachNum:beachNum,
+				depositoryName:depositoryName,
+				liter:liter
+			},
+			success:function (data){
+				var options = "";
+				options += "<option value=''>请选择</option>";
+				for(var i=0;i<data.length;i++){
+					options+="<option value='"+data[i].depositoryName+"'>"+data[i].depositoryName+" </option>";
+				}
+				sel.html(options);
+			}
+		});
+	}
+
+	function initliter(merchName,type,type2,beachNum,depositoryName,liter){
+		var sel = $("#liter");
+		$.ajax({
+			"url":baseUrl+"/option/getModel",
+			"type":"post",
+			data:{
+				merchName:merchName,
+				type:type,
+				type2:type2,
+				beachNum:beachNum,
+				depositoryName:depositoryName,
+				liter:liter
+			},
+			success:function (data){
+				var options = "";
+				options += "<option value=''>请选择</option>";
+				for(var i=0;i<data.length;i++){
+					options+="<option value='"+data[i].liter+"'>"+data[i].liter+" </option>";
+				}
+				sel.html(options)
+			}
+		});
+	}
+	function changeName(){
+		// var merchName = $("#merchName option:selected").val();
+		var merchName = $("#merchName").val();
+		var type = $("#type option:selected").val();
+		var type2 = $("#type2 option:selected").val();
+		var beachNum = $("#beachNum option:selected").val();
+		var depositoryName = $("#depositoryName option:selected").val();
+		var liter = $("#liter option:selected").val();
+		if(type==""){
+			initType(merchName,type,type2,beachNum,depositoryName,liter);
+		}
+		if(type2==""){
+			initType2(merchName,type,type2,beachNum,depositoryName,liter);
+		}
+		if(beachNum==""){
+			initbeachNum(merchName,type,type2,beachNum,depositoryName,liter);
+		}
+		if(depositoryName==""){
+			initdepositoryName(merchName,type,type2,beachNum,depositoryName,liter);
+		}
+		if(liter==""){
+			initliter(merchName,type,type2,beachNum,depositoryName,liter);
+		}
+		if(merchName!=""&&merchName!="请选择药品名称"&&type!=""&&type2!=""&&beachNum!=""&&depositoryName!=""&&liter!=""){
+			$.ajax({
+				"url":baseUrl+"/option/getModel",
+				"type":"post",
+				data:{
+					merchName:merchName,
+					type:type,
+					type2:type2,
+					beachNum:beachNum,
+					depositoryName:depositoryName,
+					liter:liter
+				},
+				success:function (data){
+					var obj = data[0];
+					$("#sallAmount").val(obj.shopPrize);
+					$("#startTime").val(obj.startTime);
+					$("#endTime").val(obj.endTime);
+					$("#product").val(obj.product);
+					$("#max").val(obj.amount);
+				}
+			});
+
+		}
+	}
+
+	function changeAll(){
+		//var merchName = $("#merchName option:selected").val();
+		var merchName = $("#merchName").val();
+		var type = $("#type option:selected").val();
+		var type2 = $("#type2 option:selected").val();
+		var beachNum = $("#beachNum option:selected").val();
+		var depositoryName = $("#depositoryName option:selected").val();
+		var liter = $("#liter option:selected").val();
+		initType(merchName,"","","","","");
+		initType2(merchName,"","","","","");
+		initbeachNum(merchName,"","","","","");
+		initdepositoryName(merchName,"","","","","");
+		initliter(merchName,"","","","","");
+	}
+
+
+	function savePage(dat){
+		if(dat==""){
+			return false;
+		}
+		var xsWay = $("#xsWay option:selected").val();
+		var merchName = $("#merchName").val();
+		var type = $("#type option:selected").val();
+		var type2 = $("#type2 option:selected").val();
+		var beachNum = $("#beachNum option:selected").val();
+		var depositoryName = $("#depositoryName option:selected").val();
+		var liter = $("#liter option:selected").val();
+		var count = $("#count").val();
+		var max = $("#max").val();
+		if(xsWay==""){
+			alert("请选择销售方式");
+			delNotTrue(dat);
+			localStorage.setItem("flag",false);
+			return false;
+		}
+		if(type==""){
+			alert("请选择规格");
+			delNotTrue(dat);
+			localStorage.setItem("flag",false);
+			return false;
+		}
+		if(type2==""){
+			alert("请选择剂量");
+			delNotTrue(dat);
+			localStorage.setItem("flag",false);
+			return false;
+		}
+		if(beachNum==""){
+			alert("请选择批号");
+			delNotTrue(dat);
+			localStorage.setItem("flag",false);
+			return false;
+		}
+		if(depositoryName==""){
+			alert("请选择商业公司");
+			delNotTrue(dat);
+			localStorage.setItem("flag",false);
+			return false;
+		}
+		if(liter==""){
+			alert("请选择容量");
+			delNotTrue(dat);
+			localStorage.setItem("flag",false);
+			return false;
+		}
+		if(count==""){
+			alert("请填写数量");
+			delNotTrue(dat);
+			localStorage.setItem("flag",false);
+			return false;
+		}
+		if(parseInt(max)<parseInt(count)){
+			alert("数量不足，最大为"+max);
+			delNotTrue(dat);
+			localStorage.setItem("flag",false);
+			return false;
+		}
+		localStorage.setItem("flag",true);
+		var amount = parseFloat(sallAmount)*parseInt(count);
+		var sallAmount = $("#sallAmount").val();
+		$.ajax({
+			url:baseUrl+"option/saveOrder",
+			type:"post",
+			data:{xsWay:xsWay,merchName:merchName,type:type,type2:type2,beachNum:beachNum,depositoryName:depositoryName,liter:liter,count:count,ordersId:dat,sallAmount:sallAmount,amount:amount},
+			success:function (data){
+				//表单异步提交
+				window.parent.postMessage(dat,'*');
+			},
+			beforeSend:function (request){
+				request.setRequestHeader("token",userId);
+			},
+		});
+
+	}
+
+	addEventListener('message', e => {
+		// e.data为父页面发送的数据
+		// if(e.data=='validate'){
+		// 	validate();
+		// }else{
+			savePage(e.data);
+		// }
+	})
+
+	function delNotTrue(id){
+		$.ajax({
+			url: baseUrl+"order/deleteOrderAllByOrdersId",
+			type:"get",
+			data:{id:id},
+			success:function (data){
+				if(data.success){
+					// window.location.href="orders.html";
+				}
+			}
+		});
+	}
+
+
+</script>
+
+
+
+
+
+
+
+
+</html>
