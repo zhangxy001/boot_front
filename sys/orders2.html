@@ -692,11 +692,16 @@
 				{"sTitle":"药名", "mDataProp": "merchName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"数量", "mDataProp": "count","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,
 					'createdCell': function(nTd, sData, oData, iRow, iCol){
+					var state = oData.state;
 					var prise = oData.sallAmount;
 					var id = oData.id;
 					var count = oData.count;
 					$(nTd).dblclick(
 								function(){
+									if(state!='0'){
+										alert("已发货订单不可更改,请联系管理员");
+										return false;
+									}
 									var td = $(this);
 									// 根据表格文本创建文本框 并加入表表中--文本框的样式自己调整
 									var text = td.text();
@@ -777,11 +782,16 @@
 				{"sTitle":"单价", "mDataProp": "sallAmount","sClass": "center", "bSortable": false, "sWidth": "200",
 					'createdCell': function(nTd, sData, oData, iRow, iCol){
 						// var prise = oData.sallAmount;
+						var state = oData.state;
 						var id = oData.id;
 						var sallAmount = oData.sallAmount;
 						var count = oData.count;
 						$(nTd).dblclick(
 								function(){
+									if(state!='0'){
+										alert("已发货订单不可更改,请联系管理员");
+										return false;
+									}
 									var td = $(this);
 									// 根据表格文本创建文本框 并加入表表中--文本框的样式自己调整
 									var text = td.text();
@@ -818,10 +828,11 @@
 					}
 				},
 				{"sTitle":"总价", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200"},
-				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "100",mRender:function (data,cell){
+				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "100",mRender:function (data,type,full){
+						var state = full.state;
 						var html ="";
 						// html+="<input type='button' onclick='editOne("+data+")' value='修改'></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-						html+="<input type='button' class='btn-danger btn' onclick='deleteSonInfo(\""+data+"\")' value='删除子订单' /></br>";
+						html+="<input type='button' class='btn-danger btn' onclick='deleteSonInfo(\""+data+"\",\""+state+"\")' value='删除子订单' /></br>";
 						// html+="<input type='button' class='btn-success btn' onclick='allPay(\""+data+"\")' value='开全款票据' /></br>";
 						// html+="<input type='button' class='btn-dark btn'  data-toggle=\"modal\" data-target=\"#payModel\"   onclick='unPay(\""+data+"\")' value='开非全款票据' /></br>";
 						// html+="<input type='button' class='btn-primary btn' onclick='payment(\""+data+"\")' value='已收全款' /></br>";
@@ -980,7 +991,11 @@
 	}
 
 
-	function deleteSonInfo(id){
+	function deleteSonInfo(id,state){
+		if(state!='0'){
+			alert("订单已发货不能删除");
+			return false;
+		}
 		var confirm = window.confirm("确定删除本条子订单吗?");
 		if(confirm){
 			$.ajax({
