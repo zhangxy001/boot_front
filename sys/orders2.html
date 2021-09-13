@@ -228,16 +228,10 @@
 				<!-- Widget Item -->
 				<div class="col-md-12">
 					<div class="widget-area-2 lochana-box-shadow">
-						<!--						<h3 class="widget-title">订单列表</h3>-->
-						<!--						<form  method="post" enctype="multipart/form-data">-->
-						<!--							<input type="file" id="upfile" name="upfile">-->
-						<!--							<input type="button" value = "上传文件" onclick="subFile()">-->
-						<!--						</form>-->
+
 						<div class="table-responsive mb-3">
 							<table id="tableId" class="table table-bordered table-striped">
-								<!--                                    <tbody id="tb">-->
 
-								<!--                                    </tbody>-->
 							</table>
 
 						</div>
@@ -273,9 +267,16 @@
 				<!--				</h4>-->
 			</div>
 			<div class="modal-body" >
-				<table id="detail" style="width: 100%">
+				<div class="widget-area-2 lochana-box-shadow">
 
-				</table>
+					<div class="table-responsive mb-3">
+						<table id="detail" style="width: 100%" class="table table-bordered table-striped">
+
+						</table>
+					</div>
+				</div>
+
+
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-dark" data-dismiss="modal">关闭
@@ -409,7 +410,7 @@
 			},
 			"order": [],
 			"columns": [
-				{"sTitle":"订单编号", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+<!--				{"sTitle":"订单编号", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},-->
 				{"sTitle":"客户", "mDataProp": "cusName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"电话", "mDataProp": "phone","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
 				{"sTitle":"地址", "mDataProp": "address","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
@@ -659,7 +660,7 @@
 			"edit":false,
 			"bFilter":false,
 			"bSort":false,
-			"bAutoWidth": true,
+			"bAutoWidth": false,
 			language: {
 				"sProcessing": "处理中...",
 				"sLengthMenu": "显示 _MENU_ 项结果",
@@ -687,10 +688,9 @@
 			},
 			"order": [],
 			"columns": [
-				{"sTitle":"订单编号", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"流水号", "mDataProp": "flowno","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"药名", "mDataProp": "merchName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"数量", "mDataProp": "count","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,
+				{"sTitle":"订单编号", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "12","visible":false},
+				{"sTitle":"产品名称", "mDataProp": "merchName","sClass": "center", "bSortable": false, "sWidth": "80",editable:true},
+				{"sTitle":"数量", "mDataProp": "count","sClass": "center", "bSortable": false, "sWidth": "8",editable:true,
 					'createdCell': function(nTd, sData, oData, iRow, iCol){
 					var state = oData.state;
 					var prise = oData.sallAmount;
@@ -737,9 +737,9 @@
 						);
 						$(nTd).attr('title','双击可修改');
 					}},
-				{"sTitle":"批号", "mDataProp": "beachNum","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"商业公司", "mDataProp": "depositoryName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"状态", "mDataProp": "state","sClass": "center", "bSortable": false, "sWidth": "200",
+				{"sTitle":"批号", "mDataProp": "beachNum","sClass": "center", "bSortable": false, "sWidth": "6",editable:true},
+				{"sTitle":"商业公司", "mDataProp": "depositoryName","sClass": "center", "bSortable": false, "sWidth": "80",editable:true},
+				{"sTitle":"状态", "mDataProp": "state","sClass": "center", "bSortable": false, "sWidth": "7",
 					mRender: function (data) {
 						if (data == "0") {
 							return "未发货";
@@ -760,7 +760,7 @@
 							return "部分回款";
 						}
 					}},
-				{"sTitle":"支付方式", "mDataProp": "sallWay","sClass": "center", "bSortable": false, "sWidth": "200",mRender:function (data,cell){
+				{"sTitle":"支付方式", "mDataProp": "sallWay","sClass": "center", "bSortable": false, "sWidth": "80",mRender:function (data,cell){
 						if(data=='0'){
 							return "对公实销实结";
 						}
@@ -774,12 +774,23 @@
 							return "效期换货不回款";
 						}if(data=='5'){
 							return "抵返利，不回款";
+						}if(data=='6'){
+							return "销毁";
 						}
-
 					}},
-				{"sTitle":"已开票数", "mDataProp": "pjc","sClass": "center", "bSortable": false, "sWidth": "200"},
-				{"sTitle":"已回款数", "mDataProp": "moneyCount","sClass": "center", "bSortable": false, "sWidth": "200"},
-				{"sTitle":"单价", "mDataProp": "sallAmount","sClass": "center", "bSortable": false, "sWidth": "200",
+				{"sTitle":"已开票数", "mDataProp": "pjc","sClass": "center", "bSortable": false, "sWidth": "7"},
+				{"sTitle":"已回款数", "mDataProp": "moneyCount","sClass": "center", "bSortable": false, "sWidth": "7"},
+				{"sTitle":"票据种类", "mDataProp": "specialized","sClass": "center", "bSortable": false, "sWidth": "6",mRender:function (data,cell){
+						if(data=='0'){
+							return "普票";
+						}
+						else if(data=='1'){
+							return "专票";
+						}else{
+							return "未开票";
+						}
+					}},
+				{"sTitle":"单价", "mDataProp": "sallAmount","sClass": "center", "bSortable": false, "sWidth": "6",
 					'createdCell': function(nTd, sData, oData, iRow, iCol){
 						// var prise = oData.sallAmount;
 						var state = oData.state;
@@ -827,8 +838,8 @@
 						$(nTd).attr('title','双击可修改');
 					}
 				},
-				{"sTitle":"总价", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200"},
-				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "100",mRender:function (data,type,full){
+				{"sTitle":"总价", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "10"},
+				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "10",mRender:function (data,type,full){
 						var state = full.state;
 						var html ="";
 						// html+="<input type='button' onclick='editOne("+data+")' value='修改'></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -836,23 +847,20 @@
 						// html+="<input type='button' class='btn-success btn' onclick='allPay(\""+data+"\")' value='开全款票据' /></br>";
 						// html+="<input type='button' class='btn-dark btn'  data-toggle=\"modal\" data-target=\"#payModel\"   onclick='unPay(\""+data+"\")' value='开非全款票据' /></br>";
 						// html+="<input type='button' class='btn-primary btn' onclick='payment(\""+data+"\")' value='已收全款' /></br>";
-						// html+="<input type='button'  class='btn-dark btn' data-toggle=\"modal\" data-target=\"#moneyModel\"  onclick='unpayment(\""+data+"\")' value='部分收款' /><hr/>";
+						// html+="<input type='button'  class='btn-dark btn' data-toggle=\"modal\" data-target=\"#moneyModel\"  onclick='unpayment(\""+data+"\")' value='部分收款' />";
 						return html;
 					}},
 			],"createdRow": function( row, data, dataIndex ) {
-				if(data.depositoryName.length > 3){//只有超长，才有td点击事件
-					$(row).children('td').eq(5).attr('onclick','javascript:changeShowRemarks(this);');
-				}
-				$(row).children('td').eq(5).attr('content',data.depositoryName);
+<!--				if(data.depositoryName.length > 3){//只有超长，才有td点击事件-->
+<!--					$(row).children('td').eq(5).attr('onclick','javascript:changeShowRemarks(this);');-->
+<!--				}-->
+<!--				$(row).children('td').eq(5).attr('content',data.depositoryName);-->
 
 				if(data.id.length > 6){//只有超长，才有td点击事件
 					$(row).children('td').eq(0).attr('onclick','javascript:changeShowRemarks(this);');
 				}
 				$(row).children('td').eq(0).attr('content',data.id);
-				if(data.flowno.length > 6){//只有超长，才有td点击事件
-					$(row).children('td').eq(1).attr('onclick','javascript:changeShowRemarks(this);');
-				}
-				$(row).children('td').eq(1).attr('content',data.flowno);
+
 
 			},
 			"columnDefs" : [
@@ -874,16 +882,6 @@
 							return getPartialRemarksHtml(full.id);//显示部分信息
 						} else {
 							return full.id;//显示原始全部信息 }
-						}
-					}},
-				{
-					"type": "date",
-					"targets": 1,
-					"render": function (data, type, full, meta) {
-						if (full.flowno.length > 6) {
-							return getPartialRemarksHtml(full.flowno);//显示部分信息
-						} else {
-							return full.flowno;//显示原始全部信息 }
 						}
 					}}
 

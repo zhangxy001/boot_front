@@ -215,13 +215,15 @@
 							<form>
 								<div class="form-row">
 									<div class="form-group col-md-6">
-										<label for="name">药品名称</label>
+										<label for="name">产品名称</label>
 										<input  type="text" class="form-control" placeholder="请输入药品名称" id="name">
 									</div>
+
 									<div class="form-group col-md-6">
-										<label for="beach_num">药品批号</label>
-										<input  type="text" class="form-control" placeholder="请输入药品批号" id="beach_num">
+										<label for="type">规格</label>
+										<input  type="text" placeholder="请输入规格" class="form-control" id="type">
 									</div>
+
 									<div class="form-group col-md-6">
 										<label for="depositoryName">所属商业公司</label>
 										<select  type="text" class="form-control" id="depositoryName">
@@ -233,10 +235,12 @@
 										<label for="amount">入库数量</label>
 										<input  type="text" placeholder="请输入入库数量" class="form-control" id="amount">
 									</div>
+
 									<div class="form-group col-md-6">
-										<label for="type">规格</label>
-										<input  type="text" placeholder="请输入规格" class="form-control" id="type">
+										<label for="beach_num">批号</label>
+										<input  type="text" class="form-control" placeholder="请输入药品批号" id="beach_num">
 									</div>
+
 									<div class="form-group col-md-6">
 										<label for="type2">包装量</label>
 										<input  type="text" placeholder="请输入包装量" class="form-control" id="type2">
@@ -258,10 +262,12 @@
 									</div>
 
 									<div class="form-group col-md-6">
-										<label for="privide">供应商</label>
-										<input  type="text" placeholder="请输入供应商" class="form-control" id="privide">
+											<label for="flag" class="form-inline">是否特殊商品:</label>
+											<select name="flag" id ="flag" class='form-control' style="width: 120px;">
+												<option value="0">否</option>
+												<option value="1">是</option>
+											</select>
 									</div>
-
 									<div class="form-group col-md-6">
 										<label for="startTime">生产日期</label>
 										<input  type="datetime-local" class="form-control" id="startTime">
@@ -341,8 +347,6 @@
 	}
 
 
-
-
 	function subInfo(){
 		var beach_num = $("#beach_num").val();
 		var depositoryId = $("#depositoryName option:selected").val();
@@ -356,12 +360,13 @@
 		var liter = $("#liter").val();
 		var name = $("#name").val();
 		var product = $("#product").val();
-		var privide = $("#privide").val();
+		var flag = $("#flag option:selected").val();
+<!--		var privide = $("#privide").val();-->
 		var award = $("#award").val();
 		var start = new Date(startTime);
 		var end = new Date(endTime);
 
-		if(amount==""||type==""||type2==""||prize==""||liter==""||name==""||product==""||privide==""||award==""||beach_num==""||depositoryId==""||depositoryName==""||startTime==""||endTime==""){
+		if(amount==""||type==""||type2==""||prize==""||liter==""||name==""||product==""||award==""||beach_num==""||depositoryId==""||depositoryName==""||startTime==""||endTime==""){
 			alert("页面所有元素都不能为空，请继续填写！");
 			return false;
 		}
@@ -372,7 +377,7 @@
 		$.ajax({
 			type:"get",
 			url:baseUrl+"order/saveMerchandise",
-			data:{amount:amount,type:type,type2:type2,prize:prize,liter:liter,name:name,product:product,privide:privide,award:award,beach_num:beach_num,depositoryId:depositoryId,depositoryName:depositoryName,endTime:end,startTime:start},
+			data:{amount:amount,type:type,type2:type2,prize:prize,liter:liter,name:name,product:product,award:award,beach_num:beach_num,depositoryId:depositoryId,depositoryName:depositoryName,privide:depositoryName,endTime:end,startTime:start,flag:flag},
 			dataType:"json",
 			xhrFields:{withCredentials:true},
 			contentType: "application/x-www-form-urlencoded",

@@ -226,49 +226,72 @@
 			<div class="container home">
 				<div class="row">
 					<!-- Widget Item -->
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="widget-area lochana-box-shadow color-red">
 							<div class="widget-left">
 								<span class="ti-user"></span>
 							</div>
 							<div class="widget-right" onclick="jump()">
 								<h4 class="wiget-title">合作厂商</h4>
-								<span class="numeric color-red" id ="partner">348</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-up" id="partner_increase"></span>增长</p>
+								<span class="numeric color-red" id ="partner">0</span>
 							</div>
 						</div>
 					</div>
 					<!-- /Widget Item -->
 					<!-- Widget Item -->
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="widget-area lochana-box-shadow color-green">
 							<div class="widget-left">
 								<span class="ti-bar-chart"></span>
 							</div>
 							<div class="widget-right" onclick="jump2()">
 								<h4 class="wiget-title">订单</h4>
-								<span class="numeric color-green" id="order">1585</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-up" id="order_increase"></span>增长</p>
+								<span class="numeric color-green" id="order">0</span>
 							</div>
 						</div>
 					</div>
 					<!-- /Widget Item -->
 					<!-- Widget Item -->
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="widget-area lochana-box-shadow color-yellow">
 							<div class="widget-left">
 								<span class="ti-money"></span>
 							</div>
 							<div class="widget-right" onclick="jump2()">
 								<h4 class="wiget-title">收入</h4>
-								<span class="numeric color-yellow" id="payment">$7300</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-up" id="payment_increase"></span>增长</p>
+								<span class="numeric color-yellow" id="payment">0</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="widget-area lochana-box-shadow color-blue">
+							<div class="widget-left">
+								<span class="ti-money"></span>
+							</div>
+							<div class="widget-right" onclick="jump2()">
+								<h4 class="wiget-title">成本</h4>
+								<span class="numeric color-blue" id="allto">0</span>
 							</div>
 						</div>
 					</div>
 					<!-- /Widget Item -->
 				</div>
 
+<!--				<div class="row">-->
+<!--					&lt;!&ndash; Widget Item &ndash;&gt;-->
+<!--					<div class="col-md-4">-->
+<!--						<div class="widget-area lochana-box-shadow color-red">-->
+<!--							<div class="widget-left">-->
+<!--								<span class="ti-user"></span>-->
+<!--							</div>-->
+<!--							<div class="widget-right" onclick="jump()">-->
+<!--								<h4 class="wiget-title">合作厂商</h4>-->
+<!--								<span class="numeric color-red" id ="收入">0</span>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
 <!--				<div class="row">-->
 <!--					&lt;!&ndash; Widget Item &ndash;&gt;-->
 <!--					<div class="col-md-6">-->
@@ -303,7 +326,17 @@
 					<!-- /Widget Item -->
 				</div>
 
+				<div class="col-md-12">
+					<div class="widget-area-2  lochana-box-shadow">
+						<h3 class="widget-title">特殊药品</h3>
+						<div class="table-responsive">
+							<table class="table table-bordered" id="spe">
 
+							</table>
+						</div>
+
+					</div>
+				</div>
 					<!-- Widget Item -->
 <!--					<div class="col-sm-6">-->
 <!--						<div class="widget-area-2 lochana-box-shadow">-->
@@ -324,10 +357,6 @@
 
 						</div>
 					</div>
-					<!-- /Widget Item -->
-
-
-
 			</div>
 			<!-- /Main Content -->
 			<!--Copy Rights-->
@@ -368,9 +397,14 @@
 					<!--				</h4>-->
 				</div>
 				<div class="modal-body" >
-					<table id="detail" style="width: 100%">
+<!--					<table id="detail" style="width: 100%">-->
 
-					</table>
+<!--					</table>-->
+					<div class="table-responsive mb-3">
+						<table id="detail" style="width: 100%" class="table table-bordered table-striped">
+
+						</table>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-dark" data-dismiss="modal">关闭
@@ -401,39 +435,10 @@
 		// initRankList();
 		initTab();
 		initShowFast();
+		initspe();
 	}
 
-	function initRankList(){
-		//初始化库存
-		$.ajax({
-			url:baseUrl+"statistics/rankingList",
-			type:"get",
-			dataType:"json",
-			xhrFields:{withCredentials:true},
-			contentType: "application/x-www-form-urlencoded",
-			async:false,
-			success:function (data){
-				var tbody = $("#tb");
-				var list = data.data;
-				console.info(list);
-				var html="";
-				if(data.success){
-					for(var i =0;i<list.length;i++){
-						var obj = list[i];
-						html+="<tr>";
-						html+="<td>"+obj.name+"</td>";
-						html+="<td>"+obj.type+"</td>";
-						html+="<td>"+obj.type2+"</td>";
-						html+="<td>"+obj.product+"</td>";
-						html+="<td>"+obj.liter+"</td>";
-						html+="<td><span className=\"badge badge-success\">"+obj.prize+"￥</span></td>";
-						html+="</tr>";
-					}
-					tbody.append(html);
-				}
-			}
-		});
-	}
+
 
 
 	function initrankingList(){
@@ -445,10 +450,15 @@
 			// "serverSide": true,
 			"bPaginate":false,
 			"bLengthChange":false,
-			"edit":false,
-			"bFilter":false,
-			"bSort":true,
-			"bAutoWidth": true,
+<!--			"edit":false,-->
+<!--			"bFilter":false,-->
+<!--			"bSort":true,-->
+			"bAutoWidth": false,
+			 "fnDrawCallback"    : function(){
+        　　this.api().column(0).nodes().each(function(cell, i) {
+        　　　　cell.innerHTML =  i + 1;
+        　　});
+        },
 			language: {
 				"sProcessing": "处理中...",
 				"sLengthMenu": "显示 _MENU_ 项结果",
@@ -476,47 +486,22 @@
 				"type": "get",
 			},
 			"order": [],
+			 "createdRow": function( row, data, dataIndex ) {
+                    $(row).children('td').eq(3).attr('style', 'text-align: right;')
+                    $(row).children('td').eq(4).attr('style', 'text-align: right;')
+                    $(row).children('td').eq(6).attr('style', 'text-align: right;')
+
+                },
 			"columns": [
-				{"sTitle":"订单编号", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"药品名称", "mDataProp": "name","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle": "排名","sClass":"dt-center","bSortable" : false,"sWidth":"100","data": null,"targets":0},
+				{"sTitle":"订单编号", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200","visible":false},
+				{"sTitle":"产品名称", "mDataProp": "name","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"规格", "mDataProp": "type","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"剂量", "mDataProp": "type2","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"生产厂家", "mDataProp": "product","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"库存数量", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"单价", "mDataProp": "prize","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,mRender:function (data,cell){
-					return data+"￥";
-					}}
-			],"createdRow": function( row, data, dataIndex ) {
-				if(data.id.length > 6){//只有超长，才有td点击事件
-					$(row).children('td').eq(0).attr('onclick','javascript:changeShowRemarks(this);');
-				}
-				$(row).children('td').eq(0).attr('content',data.id);
-				if(data.product.length > 3){//只有超长，才有td点击事件
-					$(row).children('td').eq(4).attr('onclick','javascript:changeShowRemarks2(this);');
-				}
-				$(row).children('td').eq(4).attr('content',data.product);
-			},
-			"columnDefs" : [
-				{
-					"type": "date",
-					"targets": 0,
-					"render": function (data, type, full, meta) {
-						if (full.id.length > 3) {
-							return getPartialRemarksHtml(full.id);//显示部分信息
-						} else {
-							return full.id;//显示原始全部信息 }
-						}
-					}},
-				{
-					"type": "date",
-					"targets": 4,
-					"render": function (data, type, full, meta) {
-						if (full.product.length > 3) {
-							return getPartialRemarksHtml2(full.product);//显示部分信息
-						} else {
-							return full.id;//显示原始全部信息 }
-						}
+				{"sTitle":"包装量", "mDataProp": "type2","sClass": "right", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"当前库存", "mDataProp": "amount","sClass": "right", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"单位", "mDataProp": "liter","sClass": "right", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"采购价格", "mDataProp": "prize","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,mRender:function (data,cell){
+					return data;
 					}}
 			]
 		});
@@ -527,42 +512,6 @@
 
 
 
-
-
-
-
-	// function initStorm(){
-	// 	//初始化库存
-	// 	$.ajax({
-	// 		url:baseUrl+"statistics/store",
-	// 		type:"get",
-	// 		dataType:"json",
-	// 		xhrFields:{withCredentials:true},
-	// 		contentType: "application/x-www-form-urlencoded",
-	// 		async:false,
-	// 		success:function (data){
-	// 			if(data.success){
-	// 				var list = data.data;
-	// 				var html="";
-	// 				var tbody = $("#tb2");
-	// 				for(var i =0;i<list.length;i++){
-	// 					var obj = list[i];
-	// 					html+="<tr>";
-	// 					html+="<td>"+obj.name+"</td>";
-	// 					html+="<td>"+obj.type+"</td>";
-	// 					html+="<td>"+obj.type2+"</td>";
-	// 					html+="<td>"+obj.product+"</td>";
-	// 					html+="<td>"+obj.amount+"</td>";
-	// 					html+="<td>"+obj.liter+"</td>";
-	// 					html+="<td><span className=\"badge badge-success\">"+obj.prize+"￥</span></td>";
-	// 					html+="</tr>";
-	// 				}
-	// 				tbody.append(html);
-	// 			}
-	// 		}
-	// 	});
-	// }
-
 	function initTab(){
 		$('#storm').DataTable({
 			// "destroy":true,
@@ -572,10 +521,10 @@
 			// "serverSide": true,
 			"bPaginate":true,
 			"bLengthChange":false,
-			"edit":false,
-			"bFilter":false,
-			"bSort":true,
-			"bAutoWidth": true,
+<!--			"edit":false,-->
+<!--			"bFilter":false,-->
+<!--			"bSort":true,-->
+			"bAutoWidth": false,
 			language: {
 				"sProcessing": "处理中...",
 				"sLengthMenu": "显示 _MENU_ 项结果",
@@ -603,11 +552,105 @@
 				"type": "get",
 			},
 			"order": [],
+
 			"columns": [
 				{"sTitle":"药品编号", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"药品名称", "mDataProp": "name","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"产品名称", "mDataProp": "name","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"规格", "mDataProp": "type","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"剂量", "mDataProp": "type2","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"包装量", "mDataProp": "type2","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"生产厂家", "mDataProp": "product","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"库存数量", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"操作", "mDataProp": "merch_id","sClass": "center", "bSortable": false, "sWidth": "150",mRender:function (data,cell){
+						var html ="";
+						// html+="<input type='button' onclick='editOne("+data+")' value='修改'></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+						html+="<input type='button' class='btn btn-primary' data-toggle=\"modal\" data-target=\"#myModal\" onclick='showBeach(\""+data+"\")' value='查看批次' /></br>";
+						return html;
+					}},
+			],"createdRow": function( row, data, dataIndex ) {
+				if(data.id.length > 6){//只有超长，才有td点击事件
+					$(row).children('td').eq(0).attr('onclick','javascript:changeShowRemarks(this);');
+				}
+				$(row).children('td').eq(0).attr('content',data.id);
+				if(data.product.length > 3){//只有超长，才有td点击事件
+					$(row).children('td').eq(4).attr('onclick','javascript:changeShowRemarks2(this);');
+				}
+				$(row).children('td').eq(4).attr('content',data.product);
+				 $(row).children('td').eq(3).attr('style', 'text-align: right;')
+                 $(row).children('td').eq(5).attr('style', 'text-align: right;')
+			},
+			"columnDefs" : [
+				{
+					"type": "date",
+					"targets": 0,
+					"render": function (data, type, full, meta) {
+						if (full.id.length > 3) {
+							return getPartialRemarksHtml(full.id);//显示部分信息
+						} else {
+							return full.id;//显示原始全部信息 }
+						}
+					}},
+				{
+					"type": "date",
+					"targets": 4,
+					"render": function (data, type, full, meta) {
+						if (full.product.length > 3) {
+							return getPartialRemarksHtml2(full.product);//显示部分信息
+						} else {
+							return full.id;//显示原始全部信息 }
+						}
+					}}
+			]
+		});
+	}
+
+
+	function initspe(){
+		$('#spe').DataTable({
+			// "destroy":true,
+			"bDestroy":true,
+			"processing": false,
+			"searching": false,
+			// "serverSide": true,
+			"bPaginate":true,
+			"bLengthChange":false,
+<!--			"edit":false,-->
+<!--			"bFilter":false,-->
+<!--			"bSort":true,-->
+			"bAutoWidth": false,
+			language: {
+				"sProcessing": "处理中...",
+				"sLengthMenu": "显示 _MENU_ 项结果",
+				"sZeroRecords": "没有匹配结果",
+				"sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+				"sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+				"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+				"sInfoPostFix": "",
+				"sSearch": "搜索:",
+				"sUrl": "",
+				"sEmptyTable": "表中数据为空",
+				"sLoadingRecords": "载入中...",
+				"oPaginate": {
+					"sFirst": "首页",
+					"sPrevious": "上页",
+					"sNext": "下页",
+					"sLast": "末页"
+				}},
+			"ajax": {//ajax请求数据源
+				"url": baseUrl+"/statistics/speMer",
+				dataType:"json",
+				xhrFields:{withCredentials:true},
+				contentType: "application/x-www-form-urlencoded",
+				async:false,
+				"type": "get",
+			},
+			"order": [],
+
+			"columns": [
+				{"sTitle":"药品编号", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"产品名称", "mDataProp": "name","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"规格", "mDataProp": "type","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"包装量", "mDataProp": "type2","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"生产厂家", "mDataProp": "product","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"库存数量", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
@@ -626,6 +669,8 @@
 					$(row).children('td').eq(4).attr('onclick','javascript:changeShowRemarks2(this);');
 				}
 				$(row).children('td').eq(4).attr('content',data.product);
+				$(row).children('td').eq(3).attr('style', 'text-align: right;')
+                 $(row).children('td').eq(5).attr('style', 'text-align: right;')
 			},
 			"columnDefs" : [
 				{
@@ -662,10 +707,10 @@
 			// "serverSide": true,
 			"bPaginate":false,
 			"bLengthChange":false,
-			"edit":false,
-			"bFilter":false,
-			"bSort":true,
-			"bAutoWidth": true,
+<!--			"edit":false,-->
+<!--			"bFilter":false,-->
+<!--			"bSort":true,-->
+			"bAutoWidth": false,
 			language: {
 				"sProcessing": "处理中...",
 				"sLengthMenu": "显示 _MENU_ 项结果",
@@ -692,75 +737,31 @@
 				"type": "post",
 			},
 			"order": [],
+			 "createdRow": function( row, data, dataIndex ) {
+                    $(row).children('td').eq(2).attr('style', 'text-align: right;')
+                    $(row).children('td').eq(3).attr('style', 'text-align: right;')
+                    $(row).children('td').eq(5).attr('style', 'text-align: right;')
+                },
 			"columns": [
-				{"sTitle":"批次id", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"批次id", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,"visible":false},
+				{"sTitle":"产品名称", "mDataProp": "meachName","sClass": "center", "bSortable": false, "sWidth": "350",editable:true},
+				{"sTitle":"规格", "mDataProp": "type","sClass": "center", "bSortable": false, "sWidth": "250",editable:true},
+				{"sTitle":"数量", "mDataProp": "amount","sClass": "right", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"采购单价", "mDataProp": "shopPrize","sClass": "right", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"批号", "mDataProp": "beach_num","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"药名", "mDataProp": "meachName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"数量", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"规格", "mDataProp": "type","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"剂量", "mDataProp": "type2","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"容量单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"商业公司", "mDataProp": "depositoryName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"开始时间", "mDataProp": "startTime","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,mRender:function (data){
+				{"sTitle":"包装量", "mDataProp": "type2","sClass": "right", "sWidth": "120"},
+				{"sTitle":"单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
+				{"sTitle":"商业公司", "mDataProp": "depositoryName","sClass": "center", "bSortable": false, "sWidth": "600",editable:true},
+				{"sTitle":"生产日期", "mDataProp": "startTime","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,mRender:function (data){
 						var date = new Date(data);
-						date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
+						date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 						return date;
 					}},
 				{"sTitle":"有效期至", "mDataProp": "endTime","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,mRender:function (data){
 						var date = new Date(data);
-						date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
+						date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 						return date;
-					}},
-				{"sTitle":"生产厂家", "mDataProp": "product","sClass": "center", "bSortable": false, "sWidth": "200",editable:true}
-			],"createdRow": function( row, data, dataIndex ) {
-				if(data.id.length > 3){//只有超长，才有td点击事件
-					$(row).children('td').eq(0).attr('onclick','javascript:changeShowRemarks2(this);');
-				}
-				$(row).children('td').eq(0).attr('content',data.id);
-
-				if(data.beach_num.length > 3){//只有超长，才有td点击事件
-					$(row).children('td').eq(1).attr('onclick','javascript:changeShowRemarks2(this);');
-				}
-				$(row).children('td').eq(1).attr('content',data.beach_num);
-				if(data.depositoryName.length > 3){//只有超长，才有td点击事件
-					$(row).children('td').eq(7).attr('onclick','javascript:changeShowRemarks(this);');
-				}
-				$(row).children('td').eq(7).attr('content',data.depositoryName);
-
-			},
-			"columnDefs" : [
-				{
-					"type": "date",
-					"targets": 7,
-					"render": function (data, type, full, meta) {
-						if (full.depositoryName.length > 3) {
-							return getPartialRemarksHtml(full.depositoryName);//显示部分信息
-						} else {
-							return full.depositoryName;//显示原始全部信息 }
-						}
-					}},
-				{
-					"type": "date",
-					"targets": 0,
-					"render": function (data, type, full, meta) {
-						if (full.id.length > 6) {
-							return getPartialRemarksHtml2(full.id);//显示部分信息
-						} else {
-							return full.id;//显示原始全部信息 }
-						}
-					}},
-				{
-					"type": "date",
-					"targets": 1,
-					"render": function (data, type, full, meta) {
-						if (full.beach_num.length > 3) {
-							return getPartialRemarksHtml2(full.beach_num);//显示部分信息
-						} else {
-							return full.beach_num;//显示原始全部信息 }
-						}
 					}}
-
-
 			]
 		});
 	}
@@ -824,151 +825,18 @@
 					console.info(data.data);
 					var obj = data.data;
 					$("#partner").html(obj.partner);
-					$("#partner_increase").html(obj.partner_increase);
 					$("#order").html(obj.order);
-					$("#order_increase").html(obj.order_increase);
 					$("#payment").html(obj.payment);
-					$("#payment_increase").html(obj.payment_increase);
+					$("#allto").html(obj.allto);
 				}
 			}
 		});
 	}
 
-	// function draw(){
-	// 	$.ajax({
-	// 		url: baseUrl + "/statistics/drawCount",
-	// 		type: "get",
-	// 		dataType:"json",
-	// 		xhrFields:{withCredentials:true},
-	// 		contentType: "application/x-www-form-urlencoded",
-	// 		async:false,
-	// 		success: function (data) {
-	// 			console.info(data);
-	// 			var value1 = parseInt(data.data[0]);
-	// 			var value2 = parseInt(data.data[1]);
-	// 			var value3 = parseInt(data.data[2]);
-	// 			var value4 = parseInt(data.data[3]);
-	// 			var value5 = parseInt(data.data[4]);
-	// 			var value6 = parseInt(data.data[5]);
-	// 			var value7 = parseInt(data.data[6]);
-	// 			var value8 = parseInt(data.data[7]);
-	// 			var value9 = parseInt(data.data[8]);
-	// 			var value10 = parseInt(data.data[9]);
-	// 			var value11= parseInt(data.data[10]);
-	// 			var value12 = parseInt(data.data[11]);
-	// 			var data = [
-	// 				{ y: '2021 Q1', Appointments: value1+value2+value3 },
-	// 				// { y: '2021 M2', Appointments: value2 },
-	// 				// { y: '2021 M3', Appointments: value3 },
-	// 				{ y: '2021 Q2', Appointments: value4+value5+value6 },
-	// 				// { y: '2021 M5', Appointments: value5 },
-	// 				// { y: '2021 M6', Appointments: value6 },
-	// 				{ y: '2021 Q3', Appointments: value7+value8+value9 },
-	// 				// { y: '2021 M8', Appointments: value8 },
-	// 				// { y: '2021 M9', Appointments: value8 },
-	// 				{ y: '2021 Q4', Appointments: value10+value11+value12},
-	// 				// { y: '2021 M11', Appointments: value11 },
-	// 				// { y: '2021 M12', Appointments: value12 }
-	// 			];
-	//
-	// 			var lineMorris = new Morris.Line({
-	// 				element: 'lineMorris',
-	// 				resize: true,
-	// 				data: data,
-	// 				xkey: 'y',
-	// 				ykeys: ['Appointments'],
-	// 				labels: ['Appointments'],
-	// 				gridLineColor: '#eef0f2',
-	// 				lineColors: ['#E57498'],
-	// 				lineWidth: 2,
-	// 				hideHover: 'auto'
-	// 			});
-	// 		}
-	// 		});
-	//
-	// }
 
 
 
-// 	function payment(){
-// 		$.ajax({
-// 			url: baseUrl + "/statistics/drawPay",
-// 			type: "get",
-// 			dataType:"json",
-// 			xhrFields:{withCredentials:true},
-// 			contentType: "application/x-www-form-urlencoded",
-// 			async:false,
-// 			success: function (data) {
-// 				var value1 = parseFloat(data.data[0]);
-// 				var value2 = parseFloat(data.data[1]);
-// 				var value3 = parseFloat(data.data[2]);
-// 				var value4 = parseFloat(data.data[3]);
-// 				var value = 10;
-// 				var data = [{
-// 					y: '2018',
-// 					a: value1
-// 				}, {
-// 					y: '2019',
-// 					a: value2
-// 				}, {
-// 					y: '2020',
-// 					a: value3
-// 				}, {
-// 					y: '2021',
-// 					a: value4
-// 				}];
-// //barmorris
-// 				var ctx = document.getElementById("barMorris");
-// 				if (ctx === null) return;
-// 				var chart = Morris.Bar({
-// 					element: 'barMorris',
-// 					data: data,
-// 					xkey: 'y',
-// 					ykeys: ['a'],
-// 					labels: ['Patients'],
-// 					barColors: ['#FF7D00'],
-// 					barOpacity: 1,
-// 					barSizeRatio: 0.5,
-// 					hideHover: 'auto',
-// 					gridLineColor: '#eef0f2',
-// 					resize: true
-// 				});
-//
-// 			}
-// 		});
-// 	}
 
-
-	// function cicle(){
-	// 	$.ajax({
-	// 		url:baseUrl+"/statistics/drawCicle",
-	// 		type:"get",
-	// 		dataType:"json",
-	// 		xhrFields:{withCredentials:true},
-	// 		contentType: "application/x-www-form-urlencoded",
-	// 		async:false,
-	// 		success:function (data){
-	// 			if(data.success){
-	// 				// morris donut charts
-	// 				if($("#donutMorris").length == 1){
-	// 					var $donutData = [
-	// 						{ label: "开全票", value: data.data.ing },
-	// 						{ label: "待发货", value: data.data.cre },
-	// 						{ label: "付全款", value: data.data.fin }
-	// 					];
-	// 					Morris.Donut({
-	// 						element: 'donutMorris',
-	// 						data: $donutData,
-	// 						barSize: 0.1,
-	// 						labelColor: '#3e5569',
-	// 						resize: true, //defaulted to true
-	// 						colors: ['#FFAA2A', '#ef6e6e', '#22c6ab']
-	// 					});
-	// 				}
-	// 			}
-	// 		}
-	// 	});
-	// }
 </script>
 
 </html>

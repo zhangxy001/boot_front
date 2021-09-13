@@ -18,17 +18,17 @@
 			<div class="top-login">
 				<span><img src="images/group.png" alt="" style="margin-left: 19px;margin-top: 27px;"/></span>
 			</div>
-			<h1 style="text-decoration: none;">库存管理系统</h1>
+			<h1 style="text-decoration: none;color: bisque;">药品管理系统</h1>
 			<div class="login-top">
 			<form>
 				<div class="login-ic">
 					<i ></i>
-					<input type="text"  id = "account" value="请输入用户名" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入用户名';}"/>
+					<input type="text"  id = "account" style="color: darkolivegreen;" value="请输入用户名" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入用户名';}"/>
 					<div class="clear"> </div>
 				</div>
 				<div class="login-ic">
 					<i class="icon"></i>
-					<input type="password"  id = "pwd"  value="请输入密码" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入密码';}"/>
+					<input type="password"  id = "pwd"  style="color: darkolivegreen;" value="请输入密码" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入密码';}"/>
 					<div class="clear"> </div>
 				</div>
 				<div class="log-bwn">
@@ -71,7 +71,7 @@
 							storage.setItem("name",data.data.name); //第三种存储方式，推荐使用
 							storage.setItem("role",data.data.role); //第三种存储方式，推荐使用
 							//跳转页面
-							if(data.data.role=='1'){
+							if(data.data.role=='1'||data.data.role=='3'){
 								window.location.href="sys/main.html";
 							}else{
 								window.location.href="sys/main2.html";

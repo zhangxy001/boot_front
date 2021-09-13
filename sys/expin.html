@@ -250,6 +250,7 @@
                				 </span>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="button" value = "上传文件" class="btn-primary btn" onclick="subFile()">
+								<a class=" btn btn-primary" onclick="exportFile()">导出数据</a>
 							</form>
 							<div class="table-responsive mb-3">
 								<table id="tableId" class="table table-bordered table-striped">
@@ -304,9 +305,11 @@
 				<!--				</h4>-->
 			</div>
 			<div class="modal-body" >
-				<table id="detail" style="width: 100%">
+				<div class="table-responsive mb-3">
+					<table id="detail" style="width: 100%" class="table table-bordered table-striped">
 
-				</table>
+					</table>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-dark" data-dismiss="modal">关闭
@@ -329,10 +332,10 @@
 			// "serverSide": true,
 			"bPaginate":true,
 			"bLengthChange":true,
-			"edit":true,
-			"bFilter":true,
-			"bSort":true,
-			"bAutoWidth": true,
+<!--			"edit":true,-->
+<!--			"bFilter":true,-->
+<!--			"bSort":true,-->
+			"bAutoWidth": false,
 			language: {
 				"sProcessing": "处理中...",
 				"sLengthMenu": "显示 _MENU_ 项结果",
@@ -356,15 +359,18 @@
 				"type": "get",
 			},
 			"order": [],
+			 "createdRow": function( row, data, dataIndex ) {
+                    $(row).children('td').eq(2).attr('style', 'text-align: right;')
+                    $(row).children('td').eq(3).attr('style', 'text-align: right;')
+                },
 			"columns": [
-				{"sTitle":"药品名称", "mDataProp": "name","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				// {"sTitle":"药品数量", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "50",editable:true},
+				{"sTitle":"产品名称", "mDataProp": "name","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"规格", "mDataProp": "type","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
-				{"sTitle":"包装量", "mDataProp": "type2","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"单价", "mDataProp": "prize","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
-				{"sTitle":"容量单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "100"},
+				{"sTitle":"库存数量", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
+				{"sTitle":"采购单价", "mDataProp": "prize","sClass": "right", "bSortable": false, "sWidth": "100",editable:true},
+				{"sTitle":"单位", "mDataProp": "liter","sClass": "center", "sWidth": "80"},
 				{"sTitle":"生产单位", "mDataProp": "product","sClass": "center", "bSortable": false, "sWidth": "200"},
-				{"sTitle":"供应商", "mDataProp": "privide","sClass": "center", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"商业公司", "mDataProp": "privide","sClass": "center", "bSortable": false, "sWidth": "200"},
 				{"sTitle":"操作", "mDataProp": "merch_id","sClass": "center", "bSortable": false, "sWidth": "50",mRender:function (data){
 						var html ="";
 						// html+="<input type='button' onclick='editOne("+data+")' value='修改'></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -389,7 +395,7 @@
 			"edit":false,
 			"bFilter":false,
 			"bSort":true,
-			"bAutoWidth": true,
+			"bAutoWidth": false,
 			language: {
 				"sProcessing": "处理中...",
 				"sLengthMenu": "显示 _MENU_ 项结果",
@@ -415,82 +421,38 @@
 				},
 				"type": "post",
 			},
+			 "createdRow": function( row, data, dataIndex ) {
+                    $(row).children('td').eq(3).attr('style', 'text-align: right;')
+                    $(row).children('td').eq(2).attr('style', 'text-align: right;')
+                    $(row).children('td').eq(5).attr('style', 'text-align: right;')
+                },
 			"order": [],
 			"columns": [
-				{"sTitle":"批次id", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"批号", "mDataProp": "beach_num","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"药名", "mDataProp": "meachName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"数量", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"批次id", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,"visible":false},
+				{"sTitle":"产品名称", "mDataProp": "meachName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"规格", "mDataProp": "type","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"剂量", "mDataProp": "type2","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"容量单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"商业公司", "mDataProp": "depositoryName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"开始时间", "mDataProp": "startTime","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,mRender:function (data){
+				{"sTitle":"数量", "mDataProp": "amount","sClass": "right", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"采购单价", "mDataProp": "shopPrize","sClass": "right", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"批号", "mDataProp": "beach_num","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"包装量", "mDataProp": "type2","sClass": "right", "sWidth": "120"},
+				{"sTitle":"单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
+				{"sTitle":"商业公司", "mDataProp": "depositoryName","sClass": "center", "bSortable": false, "sWidth": "600",editable:true},
+				{"sTitle":"生产日期", "mDataProp": "startTime","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,mRender:function (data){
 						var date = new Date(data);
-						date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
+						date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 						return date;
 					}},
 				{"sTitle":"有效期至", "mDataProp": "endTime","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,mRender:function (data){
 						var date = new Date(data);
-						date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
+						date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 						return date;
 					}},
-				{"sTitle":"生产厂家", "mDataProp": "product","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "50",mRender:function (data,cell){
 						var html ="";
 						// html+="<input type='button' onclick='editOne("+data+")' value='修改'></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 						html+="<input type='button' class='btn btn-danger'  onclick='deleteBeach(\""+data+"\")' value='删除批次' /></br>";
 						return html;
 					}},
-			],"createdRow": function( row, data, dataIndex ) {
-				if(data.id.length > 3){//只有超长，才有td点击事件
-					$(row).children('td').eq(0).attr('onclick','javascript:changeShowRemarks2(this);');
-				}
-				$(row).children('td').eq(0).attr('content',data.id);
-
-				if(data.beach_num.length > 3){//只有超长，才有td点击事件
-					$(row).children('td').eq(1).attr('onclick','javascript:changeShowRemarks2(this);');
-				}
-				$(row).children('td').eq(1).attr('content',data.beach_num);
-				if(data.depositoryName.length > 3){//只有超长，才有td点击事件
-					$(row).children('td').eq(7).attr('onclick','javascript:changeShowRemarks(this);');
-				}
-				$(row).children('td').eq(7).attr('content',data.depositoryName);
-
-			},
-			"columnDefs" : [
-				{
-					"type": "date",
-					"targets": 7,
-					"render": function (data, type, full, meta) {
-						if (full.depositoryName.length > 3) {
-							return getPartialRemarksHtml(full.depositoryName);//显示部分信息
-						} else {
-							return full.depositoryName;//显示原始全部信息 }
-						}
-					}},
-				{
-					"type": "date",
-					"targets": 0,
-					"render": function (data, type, full, meta) {
-						if (full.id.length > 6) {
-							return getPartialRemarksHtml2(full.id);//显示部分信息
-						} else {
-							return full.id;//显示原始全部信息 }
-						}
-					}},
-				{
-					"type": "date",
-					"targets": 1,
-					"render": function (data, type, full, meta) {
-						if (full.beach_num.length > 3) {
-							return getPartialRemarksHtml2(full.beach_num);//显示部分信息
-						} else {
-							return full.beach_num;//显示原始全部信息 }
-						}
-					}}
-
-
 			]
 		});
 	}
@@ -596,6 +558,8 @@
 	}
 
 	function deleteInfo(id){
+		const confirm = window.confirm("真的要删除吗");
+		if(confirm){
 		$.ajax({
 			url:baseUrl+"order/deleteMerchandise",
 			type:"get",
@@ -604,6 +568,11 @@
 				window.location.href="expin.html";
 			}
 		});
+		}
+	}
+
+	function exportFile(){
+      window.location.href=baseUrl+"/export/exportMer";
 	}
 
 

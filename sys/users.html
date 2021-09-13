@@ -21,12 +21,8 @@
 	<link rel="stylesheet" href="charts/css/morris.css">
 	<!-- jvectormap -->
 	<link rel="stylesheet" href="css/jquery-jvectormap.css">
+
 	<script src="js/modernizr.min.js"></script>
-<!--	<script src="js/common.js"></script>-->
-	<link rel="import" href="common.html">
-	<link rel="stylesheet" href="../css/normalize.min.css">
-	<link rel="stylesheet" href="../css/txstyle.css">
-	<script src="js/common.js"></script>
 </head>
 
 <body>
@@ -184,7 +180,7 @@
 				</div>
 			</nav>
 		</div>
-				<div class="container mt-0">
+				<div class="container">
 					<div class="row breadcrumb-bar">
 						<div class="col-md-6">
 							<h3 class="block-title">用户列表</h3>
@@ -203,21 +199,24 @@
 					</div>
 				</div>
 			<div class="container">
+
 				<div class="row">
 					<!-- Widget Item -->
 					<div class="col-md-12">
+
 						<div class="widget-area-2 lochana-box-shadow">
+
 							<h3 class="widget-title">  <button  class="btn btn-primary" onclick="tz()">添加用户</button></h3>
-							<div class="table-responsive mb-3">
+							<div class="table-responsive mb-12">
 								<table id="tableId" class="table table-bordered table-striped">
 									<thead>
-											<th>ID</th>
-											<th>名称</th>
-											<th>账号</th>
-											<th>密码</th>
-											<th>电话</th>
-											<th>角色</th>
-											<th>操作</th>
+											<th width="20%">ID</th>
+											<th width="20%">名称</th>
+											<th width="20%">账号</th>
+											<th width="20%">密码</th>
+											<th width="20%">电话</th>
+											<th width="20%">角色</th>
+											<th width="20%">操作</th>
 										</tr>
 									</thead>
 									<tbody id="tb">
@@ -230,6 +229,9 @@
 							</div>
 						</div>
 					</div>
+
+
+				</div>
 				</div>
 			</div>
 
@@ -244,40 +246,85 @@
 	</div>
 </div>
 
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<!-- Popper Library-->
-	<script src="js/popper.min.js"></script>
-	<!-- Bootstrap Library-->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <!-- Datatable  -->
-	<script src="datatable/jquery.dataTables.min.js"></script>
-	<script src="datatable/dataTables.bootstrap4.min.js"></script>
-    
-	<!-- Custom Script-->
-	<script src="js/custom.js"></script>
-	<script src="js/custom-datatables.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<!-- Popper Library-->
+<script src="js/popper.min.js"></script>
+<!-- Bootstrap Library-->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Datatable  -->
+<script src="datatable/jquery.dataTables.min.js"></script>
+<script src="datatable/dataTables.bootstrap4.min.js"></script>
+<!-- Custom Script-->
+<script src="js/custom.js"></script>
+<script src="js/common.js"></script>
 </body>
 <script>
 	window.onload = showUsers;
 	function showUsers(){
-		$.ajax({
-			url:baseUrl+"login/show",
-			type:"get",
-			success:function(data){
-				const list = data.data;
-				if(data.success){
-					var html = "";
-					for(var i = 0;i < list.length ; i++){
-						var medicalAdmin = list[i];
-						var id = medicalAdmin.id;
-						html += "<tr><td>"+medicalAdmin.id+"</td><td>"+medicalAdmin.name+"</td><td>"+medicalAdmin.account+"</td><td>"+medicalAdmin.pwd+"</td><td>"+medicalAdmin.phone+"</td><td>"+medicalAdmin.role?.replace("0","普通员工").replace("1","管理员")+"</td><td><button type='button' class='btn btn-danger' id='delbtn' onclick=deleteUser('"+id+"')><span class='ti-trash'></span> 删除 </button>"+
-								"&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary' onclick=editUser('"+id+"')><span class='ti-pencil-alt'></span> 编辑</button></td></tr>";
-					}
-					$("#tb").append(html);
-				}
-			}
-		})
+		$('#tableId').DataTable({
+			 "destroy":true,
+			"processing": true,
+			"searching": true,
+			// "serverSide": true,
+			"bPaginate":true,
+			"bLengthChange":true,
+			"edit":true,
+			"bFilter":true,
+			"bSort":true,
+			"bAutoWidth": true,
+			language: {
+				"sProcessing": "处理中...",
+				"sLengthMenu": "显示 _MENU_ 项结果",
+				"sZeroRecords": "没有匹配结果",
+				"sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+				"sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+				"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+				"sInfoPostFix": "",
+				"sSearch": "搜索:",
+				"sUrl": "",
+				"sEmptyTable": "表中数据为空",
+				"sLoadingRecords": "载入中...",
+				"oPaginate": {
+					"sFirst": "首页",
+					"sPrevious": "上页",
+					"sNext": "下页",
+					"sLast": "末页"
+				}},
+			"ajax": {//ajax请求数据源
+				"url":baseUrl+"login/show",
+				"type": "get",
+			},
+			"order": [],
+			"columns": [
+				{"sTitle":"用户名", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,"visible":false},
+				{"sTitle":"名称", "mDataProp": "name","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"账号", "mDataProp": "account","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
+				{"sTitle":"密码", "mDataProp": "pwd","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"电话", "mDataProp": "phone","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"角色", "mDataProp": "role","sClass": "center", "bSortable": false, "sWidth": "100",editable:true,mRender:function (data){
+						if(data=="0"){
+							return "普通员工";
+						}
+						if(data=="1"){
+							return "管理员";
+						}
+						if(data=="3"){
+							return "超级管理员";
+						}
+
+					}},
+				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "50",mRender:function (data,cell){
+						var html ="";
+						//html+="<input type='button' onclick='editOne("+data+")' value='修改'></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+						html+="<button type='button' class='btn btn-danger' id='delbtn' onclick=deleteUser('"+data+"')><span class='ti-trash'></span> 删除 </button>";
+						return html;
+					}},
+
+
+				// {"data": ''}
+			]
+		});
 	}
 
 	function tz(){

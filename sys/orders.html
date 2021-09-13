@@ -211,11 +211,13 @@
 				</div>
 			</div>
 		</div>
+
 		<!-- /Page Title -->
 
 		<!-- /Breadcrumb -->
 		<!-- Main Content -->
 		<div class="container">
+
 			<div class="row">
 				<!-- Widget Item -->
 				<div class="col-md-12">
@@ -225,8 +227,20 @@
 <!--							<input type="file" id="upfile" name="upfile">-->
 <!--							<input type="button" value = "上传文件" onclick="subFile()">-->
 <!--						</form>-->
-						<div class="table-responsive mb-3">
-							<table id="tableId" class="table table-bordered table-striped">
+						<div class="row ">
+						<div class="col-md-6">
+							<div><label for="password">密码搜索:</label><input name="password" id="password" onchange="findOrdersId()" class="form-control form-control-sm" width="100px;"></div>
+						</div>
+
+						<div class="col-md-6">
+							<div><label for="password">药名搜索:</label><input name="name" id="name" onchange="findOrdersId()" class="form-control form-control-sm" width="100px;"></div>
+						</div>
+							</div>
+
+						    <div class="table-responsive mb-1">
+
+
+						<table id="tableId" class="table table-bordered table-striped">
 								<!--                                    <tbody id="tb">-->
 
 								<!--                                    </tbody>-->
@@ -260,14 +274,17 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 					&times;
 				</button>
-<!--				<h4 class="modal-title" id="myModalLabel">-->
-<!--					订单明细-->
-<!--				</h4>-->
+
 			</div>
 			<div class="modal-body" >
-				<table id="detail" style="width: 100%">
+				<div class="widget-area-2 lochana-box-shadow">
 
-				</table>
+					<div class="table-responsive mb-3">
+						<table id="detail" style="width: 100%" class="table table-bordered table-striped">
+
+						</table>
+					</div>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-dark" data-dismiss="modal">关闭
@@ -361,19 +378,25 @@
 </body>
 <script>
 
+	var pwd = "";
 	window.onload=initData;
-	function initData(){
+	function initData(pwd,name,type){
+		if(type == '1'){
+		}else{
+			pwd="";
+			name="";
+		}
 		$('#tableId').DataTable({
-			// "destroy":true,
+			 "destroy":true,
 			"processing": true,
 			"searching": true,
 			// "serverSide": true,
 			"bPaginate":true,
-			"bLengthChange":true,
-			"edit":true,
-			"bFilter":true,
-			"bSort":true,
-			"bAutoWidth": true,
+<!--			"bLengthChange":true,-->
+<!--			"edit":true,-->
+<!--			"bFilter":true,-->
+<!--			"bSort":true,-->
+			"bAutoWidth": false,
 			language: {
 				"sProcessing": "处理中...",
 				"sLengthMenu": "显示 _MENU_ 项结果",
@@ -395,17 +418,21 @@
 			"ajax": {//ajax请求数据源
 				"url": baseUrl+"/order/list",
 				data:{
-					userId:userId
+					userId:userId,
+					pwd:pwd,
+					name:name
 				},
 				"type": "get",
 			},
-			"order": [],
+			 "createdRow": function( row, data, dataIndex ) {
+                    $(row).children('td').eq(4).attr('style', 'text-align: right;')
+                },
 			"columns": [
 				{"sTitle":"订单编号", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"客户", "mDataProp": "cusName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"电话", "mDataProp": "phone","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
 				{"sTitle":"地址", "mDataProp": "address","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"状态", "mDataProp": "state","sClass": "center", "bSortable": false, "sWidth": "100",editable:true,mRender:function (data){
+				{"sTitle":"状态", "mDataProp": "state","sClass": "center", "bSortable": false, "sWidth": "160",editable:true,mRender:function (data){
 						if(data=="0"){
 							return "未发货";
 						}
@@ -420,47 +447,6 @@
 						}
 					}},
 				{"sTitle":"总额", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
-				{"sTitle":"密码", "mDataProp": "remark","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,
-					'createdCell': function(nTd, sData, oData, iRow, iCol){
-						// var prise = oData.sallAmount;
-						var state = oData.state;
-						var id = oData.id;
-						var sallAmount = oData.sallAmount;
-						var count = oData.count;
-						$(nTd).dblclick(
-								function(){
-									var td = $(this);
-									// 根据表格文本创建文本框 并加入表表中--文本框的样式自己调整
-									var text = td.text();
-									var txt = $("<input type='text' class='edit_text'>").val(text);
-									txt.blur(function() {
-										// 失去焦点，保存值。于服务器交互自己再写,最好ajax
-										var newText = $(this).val();
-										// 移除文本框,显示新值
-										$.ajax({
-											url:baseUrl+"option/updateRemark",
-											type:"get",
-											data:{id:id,remark:newText},
-											success:function (data){
-												$(this).remove();
-												td.text(newText);
-												location.href = "orders.html";
-												// window.location.href="orders2.html";
-												// $('#detail').DataTable().ajax.url(baseUrl+"/option/getOrderByOrderId").load();
-											}
-										});
-										// showdetail();
-										// $('#detail').DataTable().Rows[1][12] = "1";
-
-									});
-									td.text("");
-									td.append(txt);
-									txt.focus();
-								}
-
-						);
-						$(nTd).attr('title','双击可修改');
-					}},
 				{"sTitle":"创建人", "mDataProp": "userName","sClass": "center", "bSortable": false, "sWidth": "200"},
 				{"sTitle":"创建时间", "mDataProp": "createTime","sClass": "center", "bSortable": false, "sWidth": "200",mRender:function (data){
 						var date = new Date(data);
@@ -528,6 +514,12 @@
 		});
 	}
 
+
+    function findOrdersId(){
+       var pwd = $("#password").val();
+       var name = $("#name").val();
+       initData(pwd,name,'1');
+	}
 
 	function pubInfo(id){
 		var confirm = window.confirm("是否要发货");
@@ -682,10 +674,10 @@
 			// "serverSide": true,
 			"bPaginate":false,
 			"bLengthChange":false,
-			"edit":false,
-			"bFilter":false,
-			"bSort":true,
-			"bAutoWidth": true,
+<!--			"edit":false,-->
+<!--			"bFilter":false,-->
+<!--			"bSort":true,-->
+			"bAutoWidth": false,
 			language: {
 				"sProcessing": "处理中...",
 				"sLengthMenu": "显示 _MENU_ 项结果",
@@ -711,11 +703,48 @@
 				},
 				"type": "post",
 			},
-			"order": [],
+			 "createdRow": function( row, data, dataIndex ) {
+                    $(row).children('td').eq(2).attr('style', 'text-align: right;')
+                    $(row).children('td').eq(7).attr('style', 'text-align: right;')
+                    $(row).children('td').eq(8).attr('style', 'text-align: right;')
+                    $(row).children('td').eq(10).attr('style', 'text-align: right;')
+                    $(row).children('td').eq(11).attr('style', 'text-align: right;')
+                },
 			"columns": [
-				{"sTitle":"订单编号", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"流水号", "mDataProp": "flowno","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"药名", "mDataProp": "merchName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"订单编号", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "0","visible":false},
+				{"sTitle":"密码", "mDataProp": "pwd","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,'createdCell': function(nTd, sData, oData, iRow, iCol){
+					    var id = oData.id;
+						$(nTd).dblclick(
+								function(){
+									var td = $(this);
+									// 根据表格文本创建文本框 并加入表表中--文本框的样式自己调整
+									var text = td.text();
+									var txt = $("<input type='text' class='edit_text'>").val(text);
+									txt.blur(function() {
+										// 失去焦点，保存值。于服务器交互自己再写,最好ajax
+										var newText = $(this).val();
+										// 移除文本框,显示新值
+										$.ajax({
+											url:baseUrl+"option/updatePwd",
+											type:"get",
+											data:{id:id,pwd:newText},
+											success:function (data){
+												if(data.success){
+													$(this).remove();
+													td.text(newText);
+													window.location.href="orders.html";
+												}
+											}
+										});
+									});
+									td.text("");
+									td.append(txt);
+									txt.focus();
+								}
+						);
+						$(nTd).attr('title','双击可修改');
+					}},
+				{"sTitle":"产品名称", "mDataProp": "merchName","sClass": "center", "bSortable": false, "sWidth": "500",editable:true},
 				{"sTitle":"数量", "mDataProp": "count","sClass": "center", "bSortable": false, "sWidth": "200",editable:true,
 					'createdCell': function(nTd, sData, oData, iRow, iCol){
 						var prise = oData.sallAmount;
@@ -741,7 +770,7 @@
 													$('#detail').DataTable().data()[iRow].amount = parseFloat(prise)*parseInt(count);
 													$(this).remove();
 													td.text(newText);
-													window.location.href="orders2.html";
+													window.location.href="orders.html";
 												}else{
 													alert("可修改的最大数为"+data.data);
 												}
@@ -759,7 +788,7 @@
 						$(nTd).attr('title','双击可修改');
 					}},
 				{"sTitle":"批号", "mDataProp": "beachNum","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"商业公司", "mDataProp": "depositoryName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"商业公司", "mDataProp": "depositoryName","sClass": "center", "bSortable": false, "sWidth": "800",editable:true},
 				{"sTitle":"状态", "mDataProp": "state","sClass": "center", "bSortable": false, "sWidth": "200",
 					mRender: function (data) {
 						if (data == "0") {
@@ -781,7 +810,7 @@
 							return "部分回款";
 						}
 					}},
-				{"sTitle":"支付方式", "mDataProp": "sallWay","sClass": "center", "bSortable": false, "sWidth": "200",mRender:function (data,cell){
+				{"sTitle":"支付方式", "mDataProp": "sallWay","sClass": "center", "bSortable": false, "sWidth": "600",mRender:function (data,cell){
 						if(data=='0'){
 							return "对公实销实结";
 						}
@@ -795,11 +824,22 @@
 							return "效期换货不回款";
 						}if(data=='5'){
 							return "抵返利，不回款";
+						}if(data=='6'){
+							return "销毁";
 						}
-
 					}},
 				{"sTitle":"已开票数", "mDataProp": "pjc","sClass": "center", "bSortable": false, "sWidth": "200"},
 				{"sTitle":"已回款数", "mDataProp": "moneyCount","sClass": "center", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"票据种类", "mDataProp": "specialized","sClass": "center", "bSortable": false, "sWidth": "200",mRender:function (data,cell){
+						if(data=='0'){
+							return "普票";
+						}
+						else if(data=='1'){
+							return "专票";
+						}else{
+							return "未开票";
+						}
+					}},
 				{"sTitle":"单价", "mDataProp": "sallAmount","sClass": "center", "bSortable": false, "sWidth": "200",'createdCell': function(nTd, sData, oData, iRow, iCol){
 						// var prise = oData.sallAmount;
 						var id = oData.id;
@@ -823,7 +863,7 @@
 												$(this).remove();
 												td.text(newText);
 												var amount = parseFloat(newText)*parseInt(count);
-												window.location.href="orders2.html";
+												window.location.href="orders.html";
 											}
 										});
 										// showdetail();
@@ -839,65 +879,18 @@
 						$(nTd).attr('title','双击可修改');
 					}},
 				{"sTitle":"总价", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200"},
-				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "100",mRender:function (data,cell){
+				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "100",mRender:function (data,type,full){
 						var html ="";
+						var state = full.state;
 						// html+="<input type='button' onclick='editOne("+data+")' value='修改'></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 						html+="<input type='button' class='btn-danger btn' onclick='deleteSonInfo(\""+data+"\",\""+state+"\")' value='删除子订单' /></br>";
 						html+="<input type='button' class='btn-success btn' onclick='allPay(\""+data+"\")' value='开全款票据' /></br>";
 						html+="<input type='button' class='btn-dark btn'  data-toggle=\"modal\" data-target=\"#payModel\"   onclick='unPay(\""+data+"\")' value='开非全款票据' /></br>";
 						html+="<input type='button' class='btn-primary btn' onclick='payment(\""+data+"\")' value='已收全款' /></br>";
-						html+="<input type='button'  class='btn-dark btn' data-toggle=\"modal\" data-target=\"#moneyModel\"  onclick='unpayment(\""+data+"\")' value='部分收款' /><hr/>";
+						html+="<input type='button'  class='btn-dark btn' data-toggle=\"modal\" data-target=\"#moneyModel\"  onclick='unpayment(\""+data+"\")' value='部分收款' /></br>";
+						html+="<input type='button' class='btn-danger btn' onclick='pubSep(\""+data+"\",\""+state+"\")' value='普票转专票' /></br><hr/>";
 						return html;
 					}},
-			],"createdRow": function( row, data, dataIndex ) {
-				if(data.depositoryName.length > 3){//只有超长，才有td点击事件
-					$(row).children('td').eq(5).attr('onclick','javascript:changeShowRemarks(this);');
-				}
-				$(row).children('td').eq(5).attr('content',data.depositoryName);
-
-				if(data.id.length > 6){//只有超长，才有td点击事件
-					$(row).children('td').eq(0).attr('onclick','javascript:changeShowRemarks(this);');
-				}
-				$(row).children('td').eq(0).attr('content',data.id);
-				if(data.flowno.length > 6){//只有超长，才有td点击事件
-					$(row).children('td').eq(1).attr('onclick','javascript:changeShowRemarks(this);');
-				}
-				$(row).children('td').eq(1).attr('content',data.flowno);
-
-			},
-			"columnDefs" : [
-				{
-					"type": "date",
-					"targets": 5,
-					"render": function (data, type, full, meta) {
-						if (full.depositoryName.length > 3) {
-							return getPartialRemarksHtml(full.depositoryName);//显示部分信息
-						} else {
-							return full.depositoryName;//显示原始全部信息 }
-						}
-					}},
-				{
-					"type": "date",
-					"targets": 0,
-					"render": function (data, type, full, meta) {
-						if (full.id.length > 6) {
-							return getPartialRemarksHtml(full.id);//显示部分信息
-						} else {
-							return full.id;//显示原始全部信息 }
-						}
-					}},
-				{
-					"type": "date",
-					"targets": 1,
-					"render": function (data, type, full, meta) {
-						if (full.flowno.length > 6) {
-							return getPartialRemarksHtml(full.flowno);//显示部分信息
-						} else {
-							return full.flowno;//显示原始全部信息 }
-						}
-					}}
-
-
 			]
 	});
 	}
@@ -928,48 +921,26 @@
 	}
 
 
-	function subFile(){
-		var val = $("#upfile").val();
-		if(val==''||val=='undefined'){
-			alert("请先上传文件");
-			return false;
-		}
-		var formData = new FormData();
-		formData.append("upfile", document.getElementById("upfile").files[0]);
-		formData.append("type","3");
-		$.ajax({
-			url: baseUrl+"export/exportIntoFile",
-			type: "POST",
-			data: formData,
-			/**
-			 *必须false才会自动加上正确的Content-Type
-			 */
-			contentType: false,
-			/**
-			 * 必须false才会避开jQuery对 formdata 的默认处理
-			 * XMLHttpRequest会对 formdata 进行正确的处理
-			 */
-			processData: false,
-			beforeSend:function (request){
-				request.setRequestHeader("token",userId);
-			},
-			success: function (data) {
-				alert("导入成功！");
-				location.href='cus.html';
-			},
-			error: function () {
-				alert("导入失败！");
+   function pubSep(id){
+			$.ajax({
+			url: baseUrl+"order/pubSep",
+			type:"get",
+			data:{id:id},
+			success:function (data){
+				alert("已转为专票");
+				window.location.href="orders.html";
 			}
 		});
-	}
+   }
 
 	function deleteInfo(id){
+		var role = window.localStorage.getItem("role");
 		$.ajax({
 			url: baseUrl+"order/validate",
 			type:"get",
 			data:{id:id},
 			success:function (data){
-				if(data!='0'){
+				if(data!='0'&&role!='3'){
 					alert("订单已发货不能删除");
 				}else{
 					var confirm = window.confirm("确定要删除吗");
@@ -1002,7 +973,8 @@
 
 
 	function deleteSonInfo(id,state){
-		if(state!='0'){
+	var role = window.localStorage.getItem("role");
+		if(state!='0'&&role!='3'){
 			alert("订单已发货不能删除");
 			return false;
 		}

@@ -243,10 +243,11 @@
 												<option value="">请选择支付方式</option>
 												<option value="0">对公实销实结</option>
 												<option value="1">对公月结</option>
-												<option value="2">现金（微信、支付宝、转账）</option>
+												<option value="2">对私现金（微信、支付宝、转账）</option>
 												<option value="3">赠品不回款</option>
 												<option value="4">效期换货不回款</option>
 												<option value="5">抵返利，不回款</option>
+											    <option value="6">销毁</option>
 										</select>
 									</div>
 
@@ -359,7 +360,7 @@
 			alert("请填写客户名称");
 			return false;
 		}
-		if(cus == ""){
+		if(sell == ""){
 			alert("请选择支付方式");
 			return false;
 		}

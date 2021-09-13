@@ -65,14 +65,14 @@
 					<tr >
 						<td>
 							<div class="form-row"  style="padding-left: 10px;">
-								<label for="merchName" class="form-inline">药品名称:</label>
+								<label for="merchName" class="form-inline">产品名称:</label>
 							<input class="form-control" style="width: 120px;"  onblur="changeAll()"  onkeyup="catch_keyword(this.value)" name="merchName" id="merchName" placeholder="请填写药品名称"/>
 <!--							药品名称:<select style="width: 120px;border: none;" onchange="changeAll()" name="merchName" id="merchName"><option value="">请选择</option></select>-->
 							</div>
 						</td>
 						<td>
 							<div class="form-row">
-								<label for="merchName" class="form-inline">药品类型:</label>
+								<label for="merchName" class="form-inline">产品规格:</label>
 								<select class="form-control" style="width: 120px;" name="type" id="type" onchange="changeName()"  ><option value="">请选择</option></select>
 							</div>
 						</td>
@@ -92,23 +92,25 @@
 						</td>
 						<td>
 							<div class="form-row" style="padding-left: 10px;">
-								<label for="xsWay" class="form-inline">销售方式:</label>
+								<label for="xsWay" class="form-inline">提货方式:</label>
 								<select name="xsWay" id ="xsWay" class='form-control' style="width: 120px;"><option value="">请选择</option><option value="0">自提</option><option value="1">邮寄</option></select>
 							</div>
 						</td>
 						</tr>
 						<tr>
-						<td>
-							<div class="form-row"  style="padding-left: 35px;">
-								<label for="liter" class="form-inline">单&nbsp;位:</label>
-								<select class='form-control' style="width: 120px;" name="liter" id="liter" onchange="changeName()" ><option value="">请选择</option></select>
-							</div>
-						</td>
+
 
 							<td>
-								<div class="form-row" style="padding-left: 15px;">
+								<div class="form-row" style="padding-left: 25px;">
 									<label for="type2" class="form-inline">包装量:</label>
-									<select style="width: 120px;" class="form-control" name="type2" id="type2" onchange="changeName()"><option value="">请选择</option></select>
+									<input style="width: 120px;" readonly="readonly" class="form-control" name="type2" id="type2" ></input>
+								</div>
+							</td>
+
+							<td>
+								<div class="form-row"  style="padding-left: 25px;">
+									<label for="liter" class="form-inline">单&nbsp;位:</label>
+									<input class='form-control' readonly="readonly" style="width: 120px;" name="liter" id="liter"></input>
 								</div>
 							</td>
 						<td>
@@ -233,6 +235,8 @@
 			success: function (response) {
 				console.log('1');
 				availableTags = response;
+			},beforeSend:function (request){
+				request.setRequestHeader("token",userId);
 			}
 		});
 	}
@@ -263,12 +267,18 @@
 				liter:liter
 			},
 			success:function (data){
+				var map = new Map();
 				var options = "";
 				options += "<option value=''>请选择</option>";
 				for(var i=0;i<data.length;i++){
-					options+="<option value='"+data[i].type+"'>"+data[i].type+" </option>";
+					map.set(data[i].type,data[i].type);
 				}
+				map.forEach(function(value,key,map){
+					options+="<option value='"+key+"'>"+value+" </option>";
+				})
 				sel.html(options)
+			},beforeSend:function (request){
+				request.setRequestHeader("token",userId);
 			}
 		});
 	}
@@ -287,12 +297,19 @@
 				liter:liter
 			},
 			success:function (data){
+				var map = new Map();
 				var options = "";
 				options += "<option value=''>请选择</option>";
 				for(var i=0;i<data.length;i++){
-					options+="<option value='"+data[i].type2+"'>"+data[i].type2+" </option>";
+					map.set(data[i].type2,data[i].type2);
 				}
+				map.forEach(function(value,key,map){
+					options+="<option value='"+key+"'>"+value+" </option>";
+				})
 				sel.html(options)
+
+			},beforeSend:function (request){
+				request.setRequestHeader("token",userId);
 			}
 		});
 	}
@@ -317,6 +334,8 @@
 					options+="<option value='"+data[i].beach_num+"'>"+data[i].beach_num+" </option>";
 				}
 				sel.html(options)
+			},beforeSend:function (request){
+				request.setRequestHeader("token",userId);
 			}
 		});
 	}
@@ -335,12 +354,18 @@
 				liter:liter
 			},
 			success:function (data){
+				var map = new Map();
 				var options = "";
 				options += "<option value=''>请选择</option>";
 				for(var i=0;i<data.length;i++){
-					options+="<option value='"+data[i].depositoryName+"'>"+data[i].depositoryName+" </option>";
+					map.set(data[i].depositoryName,data[i].depositoryName);
 				}
-				sel.html(options);
+				map.forEach(function(value,key,map){
+					options+="<option value='"+key+"'>"+value+" </option>";
+				})
+				sel.html(options)
+			},beforeSend:function (request){
+				request.setRequestHeader("token",userId);
 			}
 		});
 	}
@@ -360,11 +385,13 @@
 			},
 			success:function (data){
 				var options = "";
-				options += "<option value=''>请选择</option>";
+				// options += "<option value=''>请选择</option>";
 				for(var i=0;i<data.length;i++){
 					options+="<option value='"+data[i].liter+"'>"+data[i].liter+" </option>";
 				}
 				sel.html(options)
+			},beforeSend:function (request){
+				request.setRequestHeader("token",userId);
 			}
 		});
 	}
@@ -379,18 +406,18 @@
 		if(type==""){
 			initType(merchName,type,type2,beachNum,depositoryName,liter);
 		}
-		if(type2==""){
-			initType2(merchName,type,type2,beachNum,depositoryName,liter);
-		}
+		// if(type2==""){
+		// 	initType2(merchName,type,type2,beachNum,depositoryName,liter);
+		// }
 		if(beachNum==""){
 			initbeachNum(merchName,type,type2,beachNum,depositoryName,liter);
 		}
 		if(depositoryName==""){
 			initdepositoryName(merchName,type,type2,beachNum,depositoryName,liter);
 		}
-		if(liter==""){
-			initliter(merchName,type,type2,beachNum,depositoryName,liter);
-		}
+		// if(liter==""){
+		// 	initliter(merchName,type,type2,beachNum,depositoryName,liter);
+		// }
 		if(merchName!=""&&merchName!="请选择药品名称"&&type!=""&&type2!=""&&beachNum!=""&&depositoryName!=""&&liter!=""){
 			$.ajax({
 				"url":baseUrl+"/option/getModel",
@@ -405,12 +432,18 @@
 				},
 				success:function (data){
 					var obj = data[0];
-					$("#sallAmount").val(obj.shopPrize);
+					// $("#sallAmount").val(obj.shopPrize);
 					$("#startTime").val(obj.startTime);
 					$("#endTime").val(obj.endTime);
 					$("#product").val(obj.product);
 					$("#max").val(obj.amount);
-				}
+					$("#type2").val(obj.type2);
+					$("#liter").val(obj.liter);
+
+
+				},beforeSend:function (request){
+				request.setRequestHeader("token",userId);
+			}
 			});
 
 		}
@@ -425,10 +458,10 @@
 		var depositoryName = $("#depositoryName option:selected").val();
 		var liter = $("#liter option:selected").val();
 		initType(merchName,"","","","","");
-		initType2(merchName,"","","","","");
 		initbeachNum(merchName,"","","","","");
 		initdepositoryName(merchName,"","","","","");
-		initliter(merchName,"","","","","");
+		// initType2(merchName,"","","","","");
+		// initliter(merchName,"","","","","");
 	}
 
 
@@ -439,14 +472,14 @@
 		var xsWay = $("#xsWay option:selected").val();
 		var merchName = $("#merchName").val();
 		var type = $("#type option:selected").val();
-		var type2 = $("#type2 option:selected").val();
+		var type2 = $("#type2").val();
 		var beachNum = $("#beachNum option:selected").val();
 		var depositoryName = $("#depositoryName option:selected").val();
-		var liter = $("#liter option:selected").val();
+		var liter = $("#liter").val();
 		var count = $("#count").val();
 		var max = $("#max").val();
 		if(xsWay==""){
-			alert("请选择销售方式");
+			alert("请选择提货方式");
 			delNotTrue(dat);
 			localStorage.setItem("flag",false);
 			return false;
@@ -512,12 +545,7 @@
 	}
 
 	addEventListener('message', e => {
-		// e.data为父页面发送的数据
-		// if(e.data=='validate'){
-		// 	validate();
-		// }else{
 			savePage(e.data);
-		// }
 	})
 
 	function delNotTrue(id){
