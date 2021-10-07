@@ -219,7 +219,7 @@
 							  <a href="#" class="btn btn-primary" onclick="exportOrder()">导出订单</a></h3>
 						<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="cusName">客户</label>
+							<label for="cusName">客户搜索:</label>
 							<input class="form-control" id="cusName"  onkeyup="catch_keyword(this.value)" onblur="initData()" />
 						</div>
 						<div class="form-group col-md-6">
@@ -297,12 +297,12 @@
 			"processing": false,
 			"searching": false,
 			// "serverSide": true,
-			"bPaginate":false,
-			"bLengthChange":false,
+			"bPaginate":true,
+			"bLengthChange":true,
 			"edit":false,
 			"bFilter":false,
 			"bSort":true,
-			"bAutoWidth": true,
+			"bAutoWidth": false,
 			language: {
 				"sProcessing": "处理中...",
 				"sLengthMenu": "显示 _MENU_ 项结果",
@@ -322,7 +322,7 @@
 					"sLast": "末页"
 				}},
 			"ajax": {//ajax请求数据源
-				"url": baseUrl+"/option/getOrderB",
+				"url": baseUrl+"/option/getOrderC",
 				data:{
 					cusName:cusName,
 					state:state
@@ -330,15 +330,16 @@
 				"type": "post",
 			},
 			"order": [],
+			"createdRow": function( row, data, dataIndex ) {
+                    $(row).children('td').eq(5).attr('style', 'text-align: right;')
+                    $(row).children('td').eq(6).attr('style', 'text-align: right;')
+                },
 			"columns": [
-				{"sTitle":"父订单编号", "mDataProp": "ordersId","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"子订单编号", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"流水号", "mDataProp": "flowno","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"药名", "mDataProp": "merchName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"数量", "mDataProp": "count","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"批号", "mDataProp": "beachNum","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"商业公司", "mDataProp": "depositoryName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
-				{"sTitle":"支付方式", "mDataProp": "sallWay","sClass": "center", "bSortable": false, "sWidth": "200",mRender:function (data,cell){
+				{"sTitle":"药名", "mDataProp": "merchName","sClass": "center", "bSortable": false, "sWidth": "600",editable:true},
+				//{"sTitle":"数量", "mDataProp": "count","sClass": "center", "bSortable": false, "sWidth": "150",editable:true},
+				{"sTitle":"批号", "mDataProp": "beachNum","sClass": "center", "bSortable": false, "sWidth": "300",editable:true},
+				{"sTitle":"商业公司", "mDataProp": "depositoryName","sClass": "center", "bSortable": false, "sWidth": "600",editable:true},
+				{"sTitle":"支付方式", "mDataProp": "sallWay","sClass": "center", "bSortable": false, "sWidth": "600",mRender:function (data,cell){
 						if(data=='0'){
 							return "对公实销实结";
 						}
@@ -355,91 +356,39 @@
 						}
 
 					}},
-				{"sTitle":"单价", "mDataProp": "sallAmount","sClass": "center", "bSortable": false, "sWidth": "200"},
-				{"sTitle":"已开票数", "mDataProp": "pjc","sClass": "center", "bSortable": false, "sWidth": "200"},
-				{"sTitle":"已回款数", "mDataProp": "moneyCount","sClass": "center", "bSortable": false, "sWidth": "200"},
-				{"sTitle":"单价", "mDataProp": "sallAmount","sClass": "center", "bSortable": false, "sWidth": "200"},
-				{"sTitle":"总价", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200"}
-				// {"sTitle":"客户名称", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200"},
+					{"sTitle":"状态", "mDataProp": "state","sClass": "center", "bSortable": false, "sWidth": "600",mRender:function (data,cell){
+						if(data=='0'){
+							return "未发货";
+						}
+						if(data=='1'){
+							return "已发货";
+						}if(data=='2'){
+							return "开全票";
+						}if(data=='3'){
+							return "部分开票";
+						}if(data=='4'){
+							return "回全款";
+						}if(data=='5'){
+							return "部分回款";
+						}
+
+					}},
+<!--				{"sTitle":"单价", "mDataProp": "sallAmount","sClass": "center", "bSortable": false, "sWidth": "200"},-->
+<!--				{"sTitle":"开票数", "mDataProp": "pjc","sClass": "center", "bSortable": false, "sWidth": "200"},-->
+<!--				{"sTitle":"回款数", "mDataProp": "moneyCount","sClass": "center", "bSortable": false, "sWidth": "200"},-->
+				{"sTitle":"单价", "mDataProp": "sallAmount","sClass": "center", "bSortable": false, "sWidth": "200",mRender:function (data,cell){
+				    data = parseFloat(data);
+				    data = data.toFixed(2);
+					return data;
+					}},
+				{"sTitle":"总价", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200",mRender:function (data,cell){
+				    data = parseFloat(data);
+				    data = data.toFixed(2);
+					return data;
+					}},
+				{"sTitle":"客户名称", "mDataProp": "cusName","sClass": "center", "bSortable": false, "sWidth": "600"}
 				// {"sTitle":"地址", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200"}
-			],"createdRow": function( row, data, dataIndex ) {
-			if(data.id.length > 3){//只有超长，才有td点击事件
-				$(row).children('td').eq(1).attr('onclick','javascript:changeShowRemarks(this);');
-			}
-			$(row).children('td').eq(1).attr('content',data.id);
-			if(data.ordersId.length > 3){//只有超长，才有td点击事件
-				$(row).children('td').eq(0).attr('onclick','javascript:changeShowRemarks(this);');
-			}
-			$(row).children('td').eq(0).attr('content',data.ordersId);
-
-			if(data.flowno.length > 3){//只有超长，才有td点击事件
-				$(row).children('td').eq(2).attr('onclick','javascript:changeShowRemarks(this);');
-			}
-			$(row).children('td').eq(6).attr('content',data.depositoryName);
-				if(data.depositoryName.length > 3){//只有超长，才有td点击事件
-					$(row).children('td').eq(6).attr('onclick','javascript:changeShowRemarks(this);');
-				}
-				$(row).children('td').eq(6).attr('content',data.depositoryName);
-
-
-			// if(data.cusName.length > 3){//只有超长，才有td点击事件
-			// 	$(row).children('td').eq(1).attr('onclick','javascript:changeShowRemarks(this);');
-			// }
-			// $(row).children('td').eq(1).attr('content',data.cusName);
-
-		},
-		"columnDefs" : [
-			{
-				"type": "date",
-				"targets": 1,
-				"render": function (data, type, full, meta) {
-					if (full.id.length > 3) {
-						return getPartialRemarksHtml(full.id);//显示部分信息
-					} else {
-						return full.id;//显示原始全部信息 }
-					}
-				}},
-			{
-				"type": "date",
-				"targets": 0,
-				"render": function (data, type, full, meta) {
-					if (full.ordersId.length > 3) {
-						return getPartialRemarksHtml(full.ordersId);//显示部分信息
-					} else {
-						return full.ordersId;//显示原始全部信息 }
-					}
-				}},
-			{
-				"type": "date",
-				"targets": 2,
-				"render": function (data, type, full, meta) {
-					if (full.flowno.length > 3) {
-						return getPartialRemarksHtml(full.flowno);//显示部分信息
-					} else {
-						return full.flowno;//显示原始全部信息 }
-					}
-				}},
-			{
-				"type": "date",
-				"targets": 6,
-				"render": function (data, type, full, meta) {
-					if (full.depositoryName.length > 3) {
-						return getPartialRemarksHtml(full.depositoryName);//显示部分信息
-					} else {
-						return full.depositoryName;//显示原始全部信息 }
-					}
-				}}
-			// ,{
-			// 	"type": "date",
-			// 	"targets": 1,
-			// 	"render": function (data, type, full, meta) {
-			// 		if (full.cusName.length > 3) {
-			// 			return getPartialRemarksHtml(full.cusName);//显示部分信息
-			// 		} else {
-			// 			return full.cusName;//显示原始全部信息 }
-			// 		}
-			// 	}}
-		]
+			]
 		});
 	}
 

@@ -446,7 +446,11 @@
 							return "已回款";
 						}
 					}},
-				{"sTitle":"总额", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
+				{"sTitle":"总额", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "100",editable:true,mRender:function(data){
+					data = parseFloat(data);
+				    data = data.toFixed(2);
+				    return data;
+				}},
 				{"sTitle":"创建人", "mDataProp": "userName","sClass": "center", "bSortable": false, "sWidth": "200"},
 				{"sTitle":"创建时间", "mDataProp": "createTime","sClass": "center", "bSortable": false, "sWidth": "200",mRender:function (data){
 						var date = new Date(data);
@@ -878,7 +882,11 @@
 						);
 						$(nTd).attr('title','双击可修改');
 					}},
-				{"sTitle":"总价", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200"},
+				{"sTitle":"总价", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "200",mRender:function(data){
+					data = parseFloat(data);
+				    data = data.toFixed(2);
+				    return data;
+				}},
 				{"sTitle":"操作", "mDataProp": "id","sClass": "center", "bSortable": false, "sWidth": "100",mRender:function (data,type,full){
 						var html ="";
 						var state = full.state;

@@ -209,16 +209,26 @@
 			<!--					</div>-->
 			<!-- /Widget Item -->
 			<!-- Widget Item -->
+			<div class="row">
+
 			<div class="col-md-12">
+
 				<div class="widget-area-2  lochana-box-shadow">
 					<h3 class="widget-title">库存情况</h3>
 					<div class="table-responsive">
+
+						<label style="display:block;float:left;margin-left:150px;">
+							按商业公司搜索:
+							<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="storm" id="depNa" onblur="initTab('','2')">
+						</label>
+
 						<table class="table table-bordered" id="storm">
 
 						</table>
 					</div>
 
 				</div>
+			</div>
 			</div>
 			<!-- /Widget Item -->
 
@@ -272,7 +282,7 @@
 	function initData(){
 		initrankingList()
 		// initRankList();
-		initTab();
+		initTab('','0');
 		initShowFast();
 	}
 
@@ -341,13 +351,18 @@
 		});
 	}
 
-	function initTab(){
+	function initTab(depNam,type){
+		if(type=='0'){
+			depNam="";
+		}else{
+			depNam = $("#depNa").val();
+		}
 		$('#storm').DataTable({
-			// "destroy":true,
+			"destroy":true,
 			"bDestroy":true,
 			"processing": false,
-			"searching": false,
-			// "serverSide": true,
+			"searching": true,
+			//"serverSide": true,
 			"bPaginate":true,
 			"bLengthChange":false,
 <!--			"edit":false,-->
@@ -362,7 +377,7 @@
 				"sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
 				"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
 				"sInfoPostFix": "",
-				"sSearch": "搜索:",
+				"sSearch": "任意项搜索:",
 				"sUrl": "",
 				"sEmptyTable": "表中数据为空",
 				"sLoadingRecords": "载入中...",
@@ -375,6 +390,9 @@
 			"ajax": {//ajax请求数据源
 				"url": baseUrl+"/statistics/store",
 				dataType:"json",
+				data:{
+					depNam:depNam
+				},
 				xhrFields:{withCredentials:true},
 				contentType: "application/x-www-form-urlencoded",
 				async:false,
@@ -401,10 +419,10 @@
 					$(row).children('td').eq(0).attr('onclick','javascript:changeShowRemarks(this);');
 				}
 				$(row).children('td').eq(0).attr('content',data.id);
-				if(data.product.length > 3){//只有超长，才有td点击事件
-					$(row).children('td').eq(4).attr('onclick','javascript:changeShowRemarks2(this);');
-				}
-				$(row).children('td').eq(4).attr('content',data.product);
+<!--				if(data.product.length > 3){//只有超长，才有td点击事件-->
+<!--					$(row).children('td').eq(4).attr('onclick','javascript:changeShowRemarks2(this);');-->
+<!--				}-->
+<!--				$(row).children('td').eq(4).attr('content',data.product);-->
 				 $(row).children('td').eq(3).attr('style', 'text-align: right;')
                  $(row).children('td').eq(5).attr('style', 'text-align: right;')
 			},
@@ -419,16 +437,16 @@
 							return full.id;//显示原始全部信息 }
 						}
 					}},
-				{
-					"type": "date",
-					"targets": 4,
-					"render": function (data, type, full, meta) {
-						if (full.product.length > 3) {
-							return getPartialRemarksHtml2(full.product);//显示部分信息
-						} else {
-							return full.id;//显示原始全部信息 }
-						}
-					}}
+<!--				{-->
+<!--					"type": "date",-->
+<!--					"targets": 4,-->
+<!--					"render": function (data, type, full, meta) {-->
+<!--						if (full.product.length > 3) {-->
+<!--							return getPartialRemarksHtml2(full.product);//显示部分信息-->
+<!--						} else {-->
+<!--							return full.id;//显示原始全部信息 }-->
+<!--						}-->
+<!--					}}-->
 			]
 		});
 	}

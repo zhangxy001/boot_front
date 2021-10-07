@@ -367,7 +367,11 @@
 				{"sTitle":"产品名称", "mDataProp": "name","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"规格", "mDataProp": "type","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
 				{"sTitle":"库存数量", "mDataProp": "amount","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},
-				{"sTitle":"采购单价", "mDataProp": "prize","sClass": "right", "bSortable": false, "sWidth": "100",editable:true},
+				{"sTitle":"采购单价", "mDataProp": "prize","sClass": "right", "bSortable": false, "sWidth": "100",editable:true,mRender:function(data){
+					 data = parseFloat(data);
+				    data = data.toFixed(2);
+				    return data;
+				}},
 				{"sTitle":"单位", "mDataProp": "liter","sClass": "center", "sWidth": "80"},
 				{"sTitle":"生产单位", "mDataProp": "product","sClass": "center", "bSortable": false, "sWidth": "200"},
 				{"sTitle":"商业公司", "mDataProp": "privide","sClass": "center", "bSortable": false, "sWidth": "200"},
@@ -432,7 +436,11 @@
 				{"sTitle":"产品名称", "mDataProp": "meachName","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"规格", "mDataProp": "type","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"数量", "mDataProp": "amount","sClass": "right", "bSortable": false, "sWidth": "200"},
-				{"sTitle":"采购单价", "mDataProp": "shopPrize","sClass": "right", "bSortable": false, "sWidth": "200",editable:true},
+				{"sTitle":"采购单价", "mDataProp": "shopPrize","sClass": "right", "bSortable": false, "sWidth": "200",editable:true,mRender:function(data){
+					data = parseFloat(data);
+				    data = data.toFixed(2);
+				    return data;
+					}},
 				{"sTitle":"批号", "mDataProp": "beach_num","sClass": "center", "bSortable": false, "sWidth": "200",editable:true},
 				{"sTitle":"包装量", "mDataProp": "type2","sClass": "right", "sWidth": "120"},
 				{"sTitle":"单位", "mDataProp": "liter","sClass": "center", "bSortable": false, "sWidth": "100",editable:true},

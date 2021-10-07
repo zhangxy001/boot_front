@@ -23,6 +23,14 @@
 	<link rel="stylesheet" href="css/jquery-jvectormap.css">
 
 	<script src="js/modernizr.min.js"></script>
+	<style>
+
+		.ui-autocomplete{
+			background-color: aliceblue;
+			width: 500px;
+		}
+
+	</style>
 </head>
 
 <body>
@@ -216,7 +224,7 @@
 								<div class="form-row">
 									<div class="form-group col-md-6">
 										<label for="name">产品名称</label>
-										<input  type="text" class="form-control" placeholder="请输入药品名称" id="name">
+										<input  type="text" class="form-control" placeholder="请输入药品名称" id="name" onkeyup="catch_keyword(this.value)">
 									</div>
 
 									<div class="form-group col-md-6">
@@ -312,6 +320,10 @@
     <!-- Datatable  -->
 	<script src="datatable/jquery.dataTables.min.js"></script>
 	<script src="datatable/dataTables.bootstrap4.min.js"></script>
+
+<script src="datatable/jquery.dataTables.min.js"></script>
+<script src="datatable/dataTables.bootstrap4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
 	<!-- Custom Script-->
 	<script src="js/custom.js"></script>
@@ -397,6 +409,34 @@
 
 	}
 
+function catch_keyword(word){
+		get_source(word);
+		$("#name").autocomplete({
+			source: availableTags, //数据源
+			messages: {
+				noResults: '',
+				results: function(){
+				}
+			}
+		});
+
+	}
+	//请求后端获取数据源
+	function get_source(word) {
+		var url = baseUrl+"option/getMechNames?keyword=" + word;
+		$.get({
+			type: 'GET',
+			url: url,
+			async: false,//改为同步
+			dataType: 'json',
+			success: function (response) {
+				console.log('1');
+				availableTags = response;
+			},beforeSend:function (request){
+				request.setRequestHeader("token",userId);
+			}
+		});
+	}
 
 
 </script>
